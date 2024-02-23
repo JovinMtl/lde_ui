@@ -1,0 +1,7 @@
+{
+  "name": "SecondLde",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
