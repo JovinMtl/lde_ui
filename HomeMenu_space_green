@@ -1,0 +1,17 @@
+## in signature
+    methods:{
+        findHeigh(){
+            window.onload = ()=>{
+                const winHeight = window.innerHeight
+                const lab1 = document.body.querySelector('.lab1')
+                const parLab1 = lab1.parentElement.parentElement.parentElement.parentElement
+                // const grandparLab1 = 
+
+                console.log("The height of your ViewPort is : ", winHeight)
+                console.log("Setting the color to RED ")
+                lab1.style.color = 'red'
+                parLab1.style.backgroundColor= 'green'
+                console.log("THe parent has: ", parLab1.textContent)
+            }
+        }
+    }

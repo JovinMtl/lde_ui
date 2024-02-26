@@ -5,6 +5,7 @@
       <ion-icon :icon="arrowBack" class="bige"></ion-icon>
       <ion-icon :icon="home"></ion-icon>
     </template>
+    <sign-ature></sign-ature>
     <div class="same">
       <div class="centered">
             <p>Please Complete this Form to create your Account</p>
@@ -33,9 +34,12 @@ import { IonBackButton,  } from '@ionic/vue'
 // import { return-up-back } from 'ionicons/icons'
 import { add } from 'ionicons/icons'
 import { heart, returnUpBack, arrowBack, home} from 'ionicons/icons';
+import Signature from './signature.vue'
+
 export default {
   components: {
     IonBackButton,
+    Signature
   },
   data(){
     return { add, heart, returnUpBack, arrowBack, home, }

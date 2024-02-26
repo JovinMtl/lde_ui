@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-// import TabsPage from '../views/TabsPage.vue'
 import ConneXion from '../views/connexion.vue'
 import Conne from '../views/conne.vue'
 import Logi from '../views/logi.vue'
@@ -7,11 +6,13 @@ import SignUp from '../views/inscrire.vue'
 import Menu from '../views/menu.vue'
 import Men from '../views/men.vue'
 import List from '../views/listOptions.vue'
+import Signature from '../views/signature.vue'
+import Depot from '../views/operations/depo.vue'
 
 const routes= [
   {
     path: '/',
-    redirect: '/list'
+    redirect: '/depot'
   },
   {
     path:'/connexion',
@@ -40,6 +41,14 @@ const routes= [
   {
     path :'/list',
     component: List,
+  },
+  {
+    path :'/signature',
+    component : Signature
+  },
+  {
+    path : '/depot',
+    component: Depot,
   }
 ]
 

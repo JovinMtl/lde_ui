@@ -1,7 +1,12 @@
 
 <template>
     <me-nu>
+
+        
         <template v-slot:options>
+            <div class="centered">
+                <p>Please Select the Action you want to Perform</p>
+            </div>
             <div class="opt">
                  <div v-for="app in apps" class="opti1" :style="{
                     borderRadius: app.borderRadius,
@@ -11,19 +16,18 @@
                     <div class="labe1">{{ app.name }}</div>
                 </div>
             </div>
+            <sign-ature></sign-ature>
         </template>
     </me-nu>
 </template>
 
 <script>
 import Menu from './menu.vue'
+import Signature from './signature.vue'
 export default {
     components:{
-        'me-nu': Menu,
-    },
-    beforeUpdate(){
-        // console.log("Before UPDATE, LIst")
-        // this.moveLab()
+        'sign-ature': Signature,
+        'me-nu' : Menu,
     },
     data(){
         return {
@@ -62,18 +66,17 @@ export default {
             ]
         }
     },
-    methods:{
-        moveLab(){
-            const lab = document.body.querySelector('.lab1')
-
-            console.log("Have applied the LEFT property")
-            lab.style.left = '1px'
-        },
-    }
 }
 </script>
 
 <style scoped>
+    .centered {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -50px;
+  }
     .opt{
         margin: 20px;
         justify-content: center; 
@@ -96,10 +99,12 @@ export default {
     .labe1{
         
         display: inline-block;
-        background-color: blueviolet;
+        /* background-color: blueviolet; */
+        background-color: black;
         height: 20px;
         width: 90px;
         position : relative;
+        color: #ab7400;
         margin: 0;
         top : 85px;
         fill: blue;

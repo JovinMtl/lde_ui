@@ -22,14 +22,16 @@ import '@ionic/vue/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/jove.css'
 
 
 import Base from './Layout/base.vue'
-
+import store from './store/index.js'
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .use(store);
 
 app.component('base-layout', Base)
   

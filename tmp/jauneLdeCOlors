@@ -6,12 +6,12 @@
 	--ion-color-primary-shade: #966600;
 	--ion-color-primary-tint: #b3821a;
 
-	--ion-color-secondary: #ab7400;
-	--ion-color-secondary-rgb: 171,116,0;
+	--ion-color-secondary: #ffff;
+	--ion-color-secondary-rgb: 0,255,255;
 	--ion-color-secondary-contrast: #000000;
 	--ion-color-secondary-contrast-rgb: 0,0,0;
-	--ion-color-secondary-shade: #966600;
-	--ion-color-secondary-tint: #b3821a;
+	--ion-color-secondary-shade: #00e0e0;
+	--ion-color-secondary-tint: #1affff;
 
 	--ion-color-tertiary: #ab7400;
 	--ion-color-tertiary-rgb: 171,116,0;

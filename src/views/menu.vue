@@ -1,14 +1,9 @@
 
 <template>
-    <base-layout pageTitle="Bienvenu sur LD">
-    <template v-slot:back-left>
-        <ion-menu-button></ion-menu-button>
-        <!-- <ion-button>
-            <ion-menu-toggle></ion-menu-toggle>
-        </ion-button> -->
-        
-      <!-- <ion-icon :icon="arrowBack" class="bige"></ion-icon>
-      <ion-icon :icon="home"></ion-icon> -->
+    <base-layout :pageTitle="title ? title : 'Bienvenue sur LD'">
+    <template v-slot:back-left v-if="backButton == 'true'">
+      <ion-icon :icon="arrowBack" size="large" class="bige"></ion-icon>
+      <!-- <ion-icon :icon="home"></ion-icon> -->
     </template>
     <template v-slot:finish-right>
       <div class="right-icon">
@@ -26,16 +21,9 @@
                 <p v-else @click="Invert">{{ solde }} LiD</p>
             </div>
         </div>
-        <div class="centered">
-            <p>Please Selection the Action you want to Perform</p>
-        </div>
-        <div class="options">
-            <div class="opt1"></div>
-        </div>
+        <br><br>
         <slot name="options"></slot>
-        <div class="endPage">
-          <slot name="signature"></slot>
-        </div>
+        <slot name="depot"></slot>
     </div>
     <template v-slot:bottom-menu>
         <div class="menu">
@@ -69,6 +57,10 @@ import {
     notificationsCircle, notifications
      } from 'ionicons/icons';
 export default {
+  props:[
+    'title',
+    'backButton',
+  ],
   components: {
     IonBackButton,
     IonMenuButton,
@@ -180,17 +172,12 @@ export default {
 </script>
 
 <style scoped>
-  .centered {
-    width: 100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
 
  .fields{
     height: 30px;
     border-radius: 15px;
-    color: green;
+    /* color: green; */
+    color: #ab7400;
     /* background-color: green !important; */
   }
   .user {
@@ -203,7 +190,8 @@ export default {
   }
   .same{
     height: 100vh;
-    background-color: green;
+    /* background-color: green; */
+    background-color: #ab7400;;
     padding-top: 50px;
   }
   ion-back-button{
@@ -254,6 +242,8 @@ export default {
     height: 100%;
     /* color: green; */
     /* background-color: yellow; */
+    /* background-color: black; */
+    /* top: 30px; */
     /* margin: 0; */
 
   }
@@ -263,7 +253,8 @@ export default {
     left: 200px;
     /* left: var(--min-width); */
     color: black;
-    color: green
+    /* color: green; */
+    color: #ab7400;
   }
   .lab4{
     display: inline-flex;
@@ -277,7 +268,8 @@ export default {
     left: 150px;
     /* left: var(--min-width); */
     color: black;
-    color: green
+    /* color: green; */
+    color: #ab7400;
 
   }
   .lab3{
@@ -290,9 +282,8 @@ export default {
     display: inline-flex;
     position: fixed;
     left: 100px;
-    /* left: var(--min-width); */
-    /* color: black; */
-    color: green
+    /* color: green; */
+    color: #ab7400;
     }
   .lab2{
     display: inline-flex;
@@ -304,9 +295,8 @@ export default {
     display: inline-flex;
     position: relative;
     left: 50px;
-    /* left: var(--min-width); */
-    color: black;
-    color: green
+    /* color: green; */
+    color: #ab7400;
     }
   .labels{
     display: flex;
@@ -320,12 +310,6 @@ export default {
     left: 45px;
     top: 28px;
   }
-  /* ion-label{
-    position: relative;
-    top: 15px;
-    font-size: 11px;
-    left: 18px;
-  } */
   ion-icon{
     position: relative;
     bottom: 5px;
@@ -334,9 +318,8 @@ export default {
   .right-icon{
     position:relative;
     top: 6px;
-    /* margin-left: -20px; */
-    /* margin-right: -15px; */
-    /* padding: -5px; */
-    /* margin: 5px; */
+  }
+  .bige{
+    top: 4px;
   }
 </style>
