@@ -8,7 +8,9 @@
     <template v-slot:finish-right>
       <div class="right-icon">
         <ion-icon :icon="notifications" size="large"></ion-icon>
-        <ion-icon :icon="exit" slot="end" size="large"></ion-icon>
+        <router-link to="/">
+                    <ion-icon :icon="exitOutline" slot="end" size="large"></ion-icon>
+        </router-link>
       </div>
         
     </template>
@@ -24,6 +26,7 @@
         <br><br>
         <slot name="options"></slot>
         <slot name="depot"></slot>
+        <slot name="takephoto"></slot>
     </div>
     <template v-slot:bottom-menu>
         <div class="menu">
@@ -48,7 +51,7 @@
 <script>
 import { 
     IonBackButton, IonMenuButton, IonButton, 
-    IonMenuToggle
+    IonMenuToggle, IonIcon, IonLabel
 } from '@ionic/vue'
 import { add } from 'ionicons/icons'
 import { 
@@ -66,6 +69,8 @@ export default {
     IonMenuButton,
     IonButton,
     IonMenuToggle,
+    IonIcon,
+    IonLabel,
   },
   beforeCreate(){
     console.log("Before Create")

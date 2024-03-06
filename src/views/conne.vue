@@ -1,21 +1,25 @@
 <template>
     <ion-page>
         <ion-content>
-            <ion-img :src="homelde1"></ion-img><br>
+            <ion-img :src="homelde"></ion-img><br>
             <h2>Bienvenue</h2>
             <p>Envoyez de l'argent, epargnez votre argent, Retirer votre argent,
                 et bien plus de fonctionnalite
             </p>
-            <ion-button router-link="/log">Se connecter</ion-button>
-            <ion-button class="bigger" router-link="/signup">S'Inscrire</ion-button>
+            <ion-button id="confirmButton" router-link="/logi">Se connecter</ion-button>
+            <ion-button id="confirmButton" class="bigger" router-link="/registration">S'Inscrire</ion-button>
+            <signa-ture></signa-ture>
         </ion-content>
     </ion-page>
 </template>
 
 <script>
+import signature from './signature.vue'
 import { IonPage, IonContent, IonImg, IonButton} from '@ionic/vue'
+import signatureVue from './signature.vue'
 export default {
     components: {
+        'signa-ture': signature,
         IonPage,
         IonContent,
         IonImg,
@@ -23,8 +27,7 @@ export default {
     },
     data(){
         return {
-            homelde: '../../resources/logo/welcome.png',
-            homelde1: '../../resources/logo/HomeLde_skyblue.png'
+            homelde: 'public/resources/logo/logo_home/welcomeLit.png',
         }
     }
 }

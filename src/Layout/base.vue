@@ -55,7 +55,6 @@ export default {
     },
     methods: {
         getBack(){
-            // this.$router.replace('/home')
             this.$router.back()
         }
     }

@@ -41,7 +41,8 @@
 	--ion-color-danger-shade: #cf3c4f;
 	--ion-color-danger-tint: #ed576b;
 
-	--ion-color-light: #f4f5f8;
+	/* --ion-color-light: #f4f5f8; */
+	--ion-color-light: #ab7400;
 	--ion-color-light-rgb: 244,245,248;
 	--ion-color-light-contrast: #000000;
 	--ion-color-light-contrast-rgb: 0,0,0;

@@ -5,10 +5,15 @@ const store = createStore({
 
     state(){
         return {
+            devWidth : 0,
+            devToolbarHeight: 0,
+            toolbarHeight: 0,
             toobarTop : '',
             toobarBotom : '',
             hasTop5 : false,
-            top5 : [1, 2, 3, 4, 5],
+            top5 : [6, 9, 3, 8, 15],
+            capturedImage : null,
+            numberTaken : 0,
         }
     },
     mutations:{
@@ -34,6 +39,15 @@ const store = createStore({
             })
             state.top5 = numberArray
         },
+        addcapturedImage(state, capturedImage){
+            state.capturedImage = capturedImage.value
+        },
+        addPhotoNumber(state){
+            state.numberTaken++;
+        },
+        initPhotoNumber(state){
+            state.numberTaken = 0;
+        }
     },
     actions:{
         async addTop5(context, value){
@@ -50,7 +64,13 @@ const store = createStore({
     getters:{
         getTop5(state){
             return state.top5
-        }
+        },
+        getcapturedImage(state){
+            return state.capturedImage
+        },
+        getNumberTaken(state){
+            return state.numberTaken
+        },
     }
 })
 

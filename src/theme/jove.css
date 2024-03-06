@@ -1,8 +1,116 @@
 
-.centered {
+/* .centered {
     width: 100%;
     display:flex;
     justify-content: center;
     align-items: center;
     margin-bottom: -50px;
+  } */
+  ion-content {
+    --ion-background-color: #ab7400;
+  }
+  ion-toolbar{
+    /* --background: rgba(171, 116, 0, 0.3) ; */
+    --background: black;
+    color : white;
+    /* color : #ab7400; */
+  }
+  html {
+    --ion-dynamic-font: var(--ion-default-dynamic-font);
+    --ion-font-family: 'roboto';
+  }
+
+  .segoe{
+    /* background-color: red; */
+    font-family: var(--ion-font-family-base);
+    font-size: 1.2rem;
+  }
+  #ico1{
+    display: inline-flex;
+    position: fixed;
+    top: 3px;
+    /* top: -5px; */
+    bottom: 5%;
+    left: 9%
+  }
+  #lab1{
+    display: inline-flex;
+    position: fixed;
+    bottom: 0px;
+    font-size: 12px;
+    /* top : 2px; */
+    left: 8.8%;
+  }
+  #ico2{
+    display: inline-flex;
+    position: fixed;
+    top: 5px;
+    /* top: 0vh; */
+    /* bottom: 5; */
+    left: 32vw;
+  }
+  #lab2{
+    display: inline-flex;
+    position: fixed;
+    bottom: 1px;
+    font-size: 0.69rem;
+    /* top : 3px; */
+    left: 29vw
+  }
+  #ico3{
+    display: inline-flex;
+    position: fixed;
+    /* bottom: px; */
+    /* top: 0px; */
+    top: 3px;
+    /* bottom: 5%; */
+    left: 58vw;
+  }
+  #lab3{
+    display: inline-flex;
+    position: fixed;
+    bottom: 2px;
+    font-size: 0.69rem;
+    /* top : 2px; */
+    left: 55.6vw
+  }
+  #ico4{
+    display: inline-flex;
+    position: fixed;
+    /* top: 0px; */
+    top: 3px;
+    /* bottom: 5%; */
+    left: 79vw;
+  }
+  #lab4{
+    display: inline-flex;
+    position: fixed;
+    bottom: 1px;
+    font-size: 12px;
+    /* top : 2px; */
+    left: 79%
+  }
+  #selectedFile{
+    border: 4px black solid;
+    border-radius: 35px;
+  }
+  #confirmButton{
+    position: relative;
+    color : white;
+    --background: black;
+    top: 50px;
+    /* bottom: 10px; */
+  }
+  #back{
+    display: inline-flex;
+    position: fixed;
+    top : 1%;
+  }
+
+  #info{
+    /* background-color: red; */
+    margin-left: 8%;
+    margin-right: 8%;
+    text-align: center;
+    color: white;
   }

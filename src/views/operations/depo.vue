@@ -2,35 +2,66 @@
     <me-nu title="Depot avec " backButton="true">
         <template v-slot:depot>
             <div class="centered">
-                Here is our Form of Depott>
             </div>
             <ion-list>
                 <ion-item>
                         <!-- justify = start, end, space-between -->
                         <ion-select label-placement="floating" justify="space-between" label="Recharger avec" placeholder="votre methode de paiement" v-model="selectedItem">
-                            <ion-select-option class="jov" v-for="(pay, index) in finished" :value="pay.id"> 
-                                <template v-if="index < 5">
-                                    <strong>{{ pay.name }} ({{ pay.country }}), {{ index }}</strong>
-                                </template>
-                                <template v-else>
-                                    {{ pay.name }} ({{ pay.country }})
-                                </template>
-
+                            <ion-select-option class="jov" v-for="pay in finished" :value="pay.id"> 
+                                {{ pay.name }} ({{ pay.country }})
                             </ion-select-option>
                         </ion-select>
                         
                 </ion-item>
-                <ion-item>
-                    <input type="file" @change="onFileChange" accept="image/*" />
+                
+                <ion-button expand="block" v-if="paymethod == 'gallery' || this.$store.getters.getNumberTaken > 1 && paymethod != null "
+                    @click="changeImage">Supprimer Image</ion-button>
+                <ion-item v-if="paymethod == null">
+                    <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Votre Bordereau" v-model="paymethod">
+                        <ion-select-option value="gallery">From Gallery</ion-select-option>
+                        <ion-select-option value="camera">From Camera</ion-select-option>
+                    </ion-select>
                 </ion-item>
-                <ion-button expand="block" @click="uploadImage">Upload</ion-button>
+                <ion-item v-show=" paymethod == 'gallery'">
+                    <!-- <input type="file" @change="onFileChange" accept="image/*" /> -->
+                    <input type="file" id="fileInput" style="display: none"
+                    @change="onFileChange" accept="image/*" />
+                    <ion-thumbnail></ion-thumbnail>
+                    <img id="selectedFile" alt="your File">
+
+                </ion-item>
+                <ion-item v-if=" paymethod == 'camera'">
+                    <take-im></take-im>
+                </ion-item>
+                <ion-item>r
+                    <ion-label>Nom  </ion-label>
+                    <ion-input color="primary" placeholder="du deposant"
+                        aria-label="Nom et prenom du destinataire"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Numero</ion-label>
+                    <ion-input color="primary" placeholder="du deposant"
+                        aria-label="du deposant"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Montant</ion-label>
+                    <ion-input color="primary" placeholder="de votre depot"
+                        aria-label="du destinataire"></ion-input>
+                </ion-item>
+                <router-link to="/list">See list</router-link>
+                <a href="">SEND</a>
+                <ion-button expand="block">Pour le moment, Ne Pressez pas ICI</ion-button>
 
             </ion-list>   
             <br>
-            <button @click="updateTop5">UpdateTop5</button><br><br>
+            <!-- <button @click="updateTop5">UpdateTop5</button><br><br>
             <button @click="updateOptions">CONFIRM</button><br><br>
             <button @click="downloadTop5">Download TOP5</button><br><br>
             <button @click="uploadTop5">Upload TOP5</button><br><br>
+            <br>
+            <ion-button @click="captureImage">Capture Image</ion-button>
+            <img v-if="imageData" :src="imageData" alt="Captured Image" />
+            <ion-button @click="uploadImage" v-if="imageData">Upload Image</ion-button> -->
         </template>
     </me-nu>
 </template>
@@ -38,20 +69,28 @@
 <script>
 import { IonIcon } from '@ionic/vue';
 import { 
-    IonItem, IonInput, IonList,
+    IonItem, IonInput, IonList, IonButton,
     IonSelect, IonSelectOption, IonImg,
+    IonThumbnail, IonLabel,
 } from '@ionic/vue'
 import Menu from '../menu.vue'
+import TakeIm from './takeim.vue'
 import { home } from 'ionicons/icons'
 export default {
     components : {
         'me-nu' : Menu,
-        IonItem, IonInput, IonList,
-        IonSelect, IonSelectOption, IonImg, IonIcon
+        'take-im' : TakeIm,
+        IonItem, IonInput, IonList, IonButton,
+        IonSelect, IonSelectOption, IonImg, IonIcon,
+        IonThumbnail, IonLabel,
 
     },
     data(){
         return {
+            paymethod : null,
+            imageData : null,
+            selectedItem: null,
+            selectedFile : '',
             wanted : [ 6, 3, 8, 9, 1, 11, 2, 5],
             allElements : [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
             finished : [],
@@ -174,7 +213,6 @@ export default {
                     country: 'Int'
                 },
             ],
-            selectedItem: null,
             selectOptions: [
                             { label: 'Option 1', value: 'option1', icon: home },
                             { label: 'Option 2', value: 'option2', icon: home },
@@ -193,8 +231,73 @@ export default {
         //     console.log("THe new value : ", value, "from", oldvalue)
         //     console.log("The Liked : ", this.$store.getters.getTop5)
         // }
+        paymethod(value){
+            if(value == 'gallery'){
+                console.log("You chose :", value)
+                // this.sayHello()
+                this.selectFile()
+                // document.getElementById('fileInput').click();
+            }else if(value == 'camera'){
+                this.$store.commit('initPhotoNumber')
+            }
+        }
     },
     methods:{
+        async captureImage(){
+            const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+            const video = document.createElement('video');
+            document.body.appendChild(video);
+            video.srcObject = mediaStream;
+            video.play();
+
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            this.imageData = canvas.toDataURL('image/jpeg');
+
+            video.remove();
+            mediaStream.getVideoTracks()[0].stop();
+        },
+        onFileChange(event, image='null') {
+            this.selectedFile = event.target.files[0];
+            console.log("The file selected: ", this.selectedFile)
+            console.log("THe fileName is :", (this.selectedFile.name))
+            const selectedImage = document.getElementById('selectedFile')
+
+            selectedImage.style.display = 'block'
+            console.log("The url: ", this.selectedFile)
+            if(image != 'null'){
+                console.log("Image n'est pas nuLLL")
+            }
+            selectedImage.src = URL.createObjectURL(this.selectedFile)
+        },
+        async uploadImage() {
+            if (this.selected) {
+                const formData = new FormData();
+                formData.append('image', this.selected);
+
+                try {
+                const response = await fetch('your-upload-api-endpoint', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    console.log('File uploaded successfully');
+                    // You can handle the server's response here if needed
+                } else {
+                    console.error('File upload failed');
+                }
+                } catch (error) {
+                console.error('An error occurred while uploading the file:', error);
+                }
+            } else {
+                console.log('No file selected');
+            }
+        },
         updateOptions(){
             //chunk combining the existing top5 with the rest of 23
             // and return an array of 23, having removed the double
@@ -280,6 +383,12 @@ export default {
             console.log("The set is : ", uniqueValuesSet)
             this.wanted = Array.from(uniqueValuesSet);
             console.log("CHUNK, THe array is: ", this.wanted)
+        },
+        selectFile(){
+            let file = document.getElementById('fileInput').click();
+        },
+        changeImage(){
+            this.paymethod = null
         }
     }
 }
