@@ -12,18 +12,22 @@
         </p>
         <div class="jove">
             <div class="buto1">
-                <router-link class="butto1" to="/logi">
-                    <button>Se connecter</button>
+                <router-link to="/logi">
+                    <input class="fields butto1" type="button" value="Se Connecter" router-link="/hop"/>
                 </router-link>
                 
             </div>
             <div class="buto2">
-                <router-link class="butto2" to="/registration">
-                    <button>S'inscrire</button>
+                <router-link to="/registration">
+                    <input class="fields butto2" type="button" value="S'inscrire" router-link="/hop"/>
                 </router-link>
                 
             </div>   
-            </div>
+        </div>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
         
         <signature-vide></signature-vide>
         
@@ -66,11 +70,12 @@ export default {
 }
 .jove{
     margin-left: 10vw;
-    height: 5vh;
+    height: 6vh;
     width: 80vw;
 }
 .buto1{
     display: inline-flex;
+    /* background-color: red; */
     height: 100%;
     width: 50%;
     text-align: center;
@@ -79,6 +84,7 @@ export default {
 }
 .buto2{
     display: inline-flex;
+    /* background-color: green; */
     height: 100%;
     width: 50%;
     justify-content: center;
@@ -87,17 +93,27 @@ export default {
 .butto1{
     background-color: black;
     width: 89%;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     margin-top: 5px;
+    text-align: right;
+    text-align: center;
 }
 .butto2{
     background-color: black;
     width: 89%;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     margin-top: 5px;
+    text-align: center;
 }
 button{
     background-color: black;
     justify-content: baseline;
 }
+.fields{
+    height: 30px;
+    width: 20vh;
+    border-radius: 15px;
+    color: white;
+    font-size: .9em;
+  }
 </style>

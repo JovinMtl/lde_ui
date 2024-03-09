@@ -76,7 +76,7 @@ import {
     IonSelect, IonSelectOption, IonImg,
     IonThumbnail, IonLabel,
 } from '@ionic/vue'
-import { ref, watch, onBeforeUpdate, onMounted } from 'vue'
+import { ref, watch, onBeforeUpdate, onBeforeUnmount, onMounted } from 'vue'
 import { useStore} from 'vuex'
 export default {
     components:{
@@ -88,130 +88,194 @@ export default {
         IonThumbnail, IonLabel,
     },
     setup() {
+        //Beginning of Things for Currencies
         const store = useStore()
         const paymethod = ref(null)
         const selectedItem = ref(null)
-        const allElements = [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+        const allElements = [ 1,2,3,4,5,6,7,8,9,10,11]
         var wanted = []
         const payes = [
                 {
                     id: 1,
-                    name:'Lumicash',
-                    country: 'Bi'
+                    name:'US Dollar',
+                    country: 'International',
+                    abbreviation: 'USD',
                 },
                 {
                     id: 2,
-                    name:'enoti',
-                    country: 'Bi'
+                    name:'Fbu',
+                    country: 'Bi',
+                    abbreviation: 'BIF',
                 },
                 {
                     id: 3,
-                    name: 'ecocash',
-                    country: 'Bi'
+                    name: 'Frw',
+                    country: 'Rw',
+                    abbreviation: 'RWF',
                 },
                 {
                     id: 4,
-                    name: 'eFeza',
-                    country: 'Bi'
+                    name: 'ShillingKenya',
+                    country: 'Ke',
+                    abbreviation: 'KES',
                 },
                 {
                     id: 5,
-                    name:'bgf',
-                    country: 'Bi'
+                    name:'Ugshilling',
+                    country: 'Ug',
+                    abbreviation: 'UGX',
                 },
                 {
                     id: 6,
-                    name: 'bcb',
-                    country: 'Bi'
+                    name: 'ShillingTanzania',
+                    country: 'Tz',
+                    abbreviation: 'Tsh',
                 },
                 {
                     id: 7,
-                    name: 'kcb',
-                    country: 'Bi'
+                    name: 'Kwacha',
+                    country: 'Zm',
+                    abbreviation: 'ZMW',
                 },
                 {
                     id: 8,
-                    name: 'Momo',
-                    country: 'Rw'
+                    name: 'Euro',
+                    country: 'International',
+                    abbreviation: 'EUR',
                 },
                 {
                     id: 9,
-                    name:'Tigo Cash',
-                    country: 'Rw'
+                    name:'USDT',
+                    country: 'Crypto',
+                    abbreviation: 'USDT',
                 },
                 {
                     id: 10,
-                    name: 'Airtel Money',
-                    country: 'RDC'
+                    name: 'TRX',
+                    country: 'Crypto',
+                    abbreviation: 'USD',
                 },
                 {
                     id: 11,
-                    name: 'Mpesa',
-                    country: 'RDC'
-                },
-                {
-                    id: 12,
-                    name: 'Airtel Money',
-                    country: 'Tz'
-                },
-                {
-                    id: 13,
-                    name:'Tigo Pesa',
-                    country: 'Tz'
-                },
-                {
-                    id: 14,
-                    name: 'Mpesa',
-                    country: 'Tz'
-                },
-                {
-                    id: 15,
-                    name: 'Mpsa',
-                    country: 'Ke'
-                },
-                {
-                    id: 16,
-                    name: 'Banque Misr',
-                    country: 'Egy'
-                },
-                {
-                    id: 17,
-                    name:'Arab African Int Bank',
-                    country: 'Egy',
-                },
-                {
-                    id: 18,
-                    name: 'Credit agricole',
-                    country: 'Fr'
-                },
-                {
-                    id: 19,
-                    name: 'BNP Paribas',
-                    country: 'Fr'
-                },
-                {
-                    id: 20,
-                    name: 'PayPal',
-                    country: 'Int'
-                },
-                {
-                    id: 21,
-                    name:'Eutheum',
-                    country: 'Int'
-                },
-                {
-                    id: 22,
-                    name: 'Bitcoin',
-                    country: 'Int'
-                },
-                {
-                    id: 23,
-                    name: 'Trust Wallet',
-                    country: 'Int'
+                    name: 'Lit Dinar',
+                    country: 'Principale',
+                    abbreviation: 'LID',
                 },
             ]
         //this finished will contain the compiled pay methods
-        let finished = []
+        const finished = ref([])
+        let currency = ref('')
+
+        function chunk(){
+            //Makes a set of TOP5 and all the number and make sure no double entry remains
+            var combiNEd = store.state.top5.concat(allElements)
+            // console.log("INVEST CHUNK: see the combined: ", combiNEd)
+            let uniqueValuesSet = new Set(combiNEd);
+            wanted = Array.from(uniqueValuesSet);
+            console.log("INVEST CHUNK: the wanted BEFORE action: ", wanted)
+            let nonZero = []
+            wanted.forEach((value)=>{
+                if(value !== 0){
+                    nonZero.push(value)
+                }
+            })
+            wanted = nonZero
+            console.log("INVEST CHUNK: the wanted AFTER action: ", wanted)
+        }
+        function construct(){
+            // This is for constructing the new object of options 
+            // according the wanted array
+            var fini = []
+            const max = wanted.length
+            //the array that contains the ordering in number
+            for (let i=0; i < max; i++){
+                payes.forEach((data)=>{
+                    if (wanted[i] == data.id){
+                        let jove = {
+                            'id' : data.id,
+                            'name' : data.name,
+                            'country' : data.country,
+                            'abbreviation': data.abbreviation,
+                        }
+                        fini.push(jove)
+                    }
+                })
+            }
+            finished.value = fini
+            console.log("INVESTED CONSTRUCT: finished has : ", finished.value)
+            // console.log("INVESTED CONSTRUCT: and Payes has : ", payes)
+        }
+        function updateTop5(){
+            // to add the newly selected options to be the first in TOP5
+            store.commit('addTop5', {value: selectedItem.value})
+        }
+        function downloadTop5(){
+            // to be called on exit or onBeforeunmounted
+            localStorage.setItem('top5', store.getters.getTop5)
+        }
+        function uploadTop5(){
+            // load the Top5 value stored locally and upload them to the store
+            // To BE CALLED on onMOunted
+            console.log("store Before upload :", store.getters.getTop5)
+            const storedTop5 = localStorage.getItem('top5')
+            store.dispatch('uploadTop5', storedTop5)
+            // this.$store.commit('uploadTop5', {'value': storedTop5})
+            console.log("store After upload :", store.getters.getTop5)
+        }
+        function updateOptions(){
+            // makes call of chunk() and construct, should begin by 
+            //by updating the top5
+            chunk()
+            construct()
+        }
+        function initFunctions(){
+            console.log("INVEST SETUP: START Initialization")
+            uploadTop5() //slightly
+            updateOptions()
+            console.log("INVEST SETUP: END Initialization")
+        }
+        initFunctions()
+        watch(selectedItem, (value)=>{
+            if(finished){
+                currency.value = payes[value - 1].abbreviation
+                console.log("Finished is available : ", currency.value)
+                console.log("Sel : ", selectedItem.value, " Val: ", value)
+                // updateTop5()
+            } else {
+                console.log("Finished is not available")
+            }
+        })
+        onBeforeUpdate(()=>{
+            console.log("INVEST onBeforeUpdate: Start")
+            updateTop5()
+            // showTop5()
+            updateOptions()
+            console.log("Here, the currency is : ", currency.value)
+            // console.log("INVEST onBeforeUpdate: Downloading...")
+            // downloadTop5()
+            console.log("INVEST onBeforeUpdate: End")
+        })
+        onBeforeUnmount(()=>{
+            console.log("INVEST: You are about to leave me, ONBEFOREUNMOUNT")
+            // updateTop5()
+            // showTop5()
+            console.log("INVEST: Now downloading, ONBEFOREUNMOUNT")
+            if(selectedItem.value){
+                updateTop5()//only if i want to find the last input in the next component
+                downloadTop5()
+                console.log("INVEST ONBEFOREUNMOUNT: have downloaded: ", selectedItem.value)
+            } else{
+                console.log("INVEST: didn't download, ONBEFOREUNMOUNT")
+            }
+            console.log("INVEST: END downloading, ONBEFOREUNMOUNT")
+        })
+        
+        //Ending of Things for Currencies
+
+
+
+
+
         const selectedPhoto = ref(null)
         const selectedImage = ref({})
         var temp = ''
@@ -228,39 +292,7 @@ export default {
         function selectFile(){
             let file = document.getElementById('fileInput').click();
         }
-        function chunk(){
-            var combiNEd = store.state.top5.concat(allElements)
-            let uniqueValuesSet = new Set(combiNEd);
-            // console.log("The set is : ", uniqueValuesSet)
-            wanted = Array.from(uniqueValuesSet);
-            // console.log("CHUNK, THe array is: ", wanted)
-        }
-        function construct(){
-            // This is for constructing the new object of options 
-            // according the wanted array
-            var fini = []
-            const max = wanted.length
-            //the array that contains the ordering in number
-            for (let i=0; i < max; i++){
-                payes.forEach((data)=>{
-                    if (wanted[i] == data.id){
-                        let jove = {
-                            'id' : data.id,
-                            'name' : data.name,
-                            'country' : data.country
-                        }
-                        fini.push(jove)
-                    }
-                })
-            }
-            finished = fini
-            // console.log("This is the results : ", finished)
-        }
-        function updateOptions(){
-            chunk()
-            construct()
-            //
-        }
+        
         async function uploadImage() {
             if (this.selected) {
                 const formData = new FormData();
@@ -285,7 +317,6 @@ export default {
                 console.log('No file selected');
             }
         }
-        updateOptions()
         function FileSelect(event, image='null') {
             URL.revokeObjectURL(selectedPhoto.value);
             let selectedFile = event.target.files[0];
@@ -367,9 +398,7 @@ export default {
                 store.commit('initPhotoNumber')
             }
         })
-        onBeforeUpdate(()=>{
-            updateOptions()
-        })
+        
         onMounted(() => {
             watch(
                 () => store.state.wantTakePhoto,
@@ -388,9 +417,6 @@ export default {
             console.log("THe value of type of image has changed to:", value)
             // selectedImage.value.src = URL.bind(selectedPhoto.value)
         })
-        // watch(emittedBlobUri, (value)=>{
-        //     //
-        // })
 
         return {
             paymethod, selectedItem, finished, payes, takenPhoto,

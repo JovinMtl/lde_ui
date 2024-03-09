@@ -7,9 +7,20 @@
                 </router-link>
         </template>
         <template v-slot:body-content>
-            <sol-de></sol-de> <br>
+            <div v-if="store.getters.getDevHeight < 600" id="soldeMarginTop">
+                <sol-de ></sol-de> <br>   
+            </div>
+            <div v-else>
+                <sol-de ></sol-de> <br> 
+            </div>
             <list-options></list-options><br>
-            <sign-ature></sign-ature>
+            <div v-if="store.getters.getDevHeight > 650">
+                <sign-ature></sign-ature>
+            </div>
+            
+            
+            <!-- <p  class="centered white">The Height of your screen is {{ store.getters.getDevHeight }} px.</p> -->
+            
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hop">
@@ -45,6 +56,8 @@ import {
     exitOutline,notificationsOutline,
     home, layers, wallet, personCircle,
 } from 'ionicons/icons'
+import { onMounted, onBeforeUpdate} from 'vue'
+import { useStore } from 'vuex'
 export default {
     components:{
         'base-menu' : baseMenu,
@@ -54,10 +67,33 @@ export default {
         IonIcon, IonLabel, IonButtons,
     },
     setup() {
+        const store = useStore()
+        function getHeight(){
+            const screenHeight = window.innerHeight
+
+            // console.log("HOME-OP SETUP getHeight: size = ", screenHeight)
+            store.commit("setDevHeight", {
+                value: screenHeight,
+            })
+
+        }
+        onMounted(()=>{
+            getHeight()
+        })
+
         return {
             exitOutline,notificationsOutline,
             home, layers, wallet, personCircle,
+            store,
         }
     },
 }
 </script>
+
+<style scoped>
+    #soldeMarginTop{
+        /* background-color: red; */
+        margin-top: -2vh;
+        margin-bottom: -11vh;
+    }
+</style>

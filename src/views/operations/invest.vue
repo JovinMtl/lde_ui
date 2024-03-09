@@ -49,7 +49,7 @@ import {
     IonSelect, IonSelectOption,
     IonLabel,
 } from '@ionic/vue'
-import { ref, watch, onMounted, onBeforeUpdate, computed, } from 'vue'
+import { ref, watch, onMounted, onBeforeUpdate,onBeforeUnmount, computed, } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components:{
@@ -60,6 +60,8 @@ export default {
         IonLabel,
     },
     setup() {
+
+        //Beginning of Things for Currencies
         const store = useStore()
         const paymethod = ref(null)
         const selectedItem = ref(null)
@@ -129,20 +131,29 @@ export default {
                 {
                     id: 11,
                     name: 'Lit Dinar',
-                    country: 'Main',
+                    country: 'Principale',
                     abbreviation: 'LID',
                 },
             ]
         //this finished will contain the compiled pay methods
-        let finished = []
+        const finished = ref([])
         let currency = ref('')
 
         function chunk(){
+            //Makes a set of TOP5 and all the number and make sure no double entry remains
             var combiNEd = store.state.top5.concat(allElements)
+            // console.log("INVEST CHUNK: see the combined: ", combiNEd)
             let uniqueValuesSet = new Set(combiNEd);
-            // console.log("The set is : ", uniqueValuesSet)
             wanted = Array.from(uniqueValuesSet);
-            // console.log("CHUNK, THe array is: ", wanted)
+            console.log("INVEST CHUNK: the wanted BEFORE action: ", wanted)
+            let nonZero = []
+            wanted.forEach((value)=>{
+                if(value !== 0){
+                    nonZero.push(value)
+                }
+            })
+            wanted = nonZero
+            console.log("INVEST CHUNK: the wanted AFTER action: ", wanted)
         }
         function construct(){
             // This is for constructing the new object of options 
@@ -163,17 +174,80 @@ export default {
                     }
                 })
             }
-            finished = fini
-            // console.log("This is the results : ", finished)
+            finished.value = fini
+            console.log("INVESTED CONSTRUCT: finished has : ", finished.value)
+            // console.log("INVESTED CONSTRUCT: and Payes has : ", payes)
+        }
+        function updateTop5(){
+            // to add the newly selected options to be the first in TOP5
+            store.commit('addTop5', {value: selectedItem.value})
+        }
+        function downloadTop5(){
+            // to be called on exit or onBeforeunmounted
+            localStorage.setItem('top5', store.getters.getTop5)
+        }
+        function uploadTop5(){
+            // load the Top5 value stored locally and upload them to the store
+            // To BE CALLED on onMOunted
+            console.log("store Before upload :", store.getters.getTop5)
+            const storedTop5 = localStorage.getItem('top5')
+            store.dispatch('uploadTop5', storedTop5)
+            // this.$store.commit('uploadTop5', {'value': storedTop5})
+            console.log("store After upload :", store.getters.getTop5)
         }
         function updateOptions(){
+            // makes call of chunk() and construct, should begin by 
+            //by updating the top5
             chunk()
             construct()
-            //
         }
-        updateOptions()
+        function initFunctions(){
+            console.log("INVEST SETUP: START Initialization")
+            uploadTop5() //slightly
+            updateOptions()
+            console.log("INVEST SETUP: END Initialization")
+        }
+        initFunctions()
+        watch(selectedItem, (value)=>{
+            if(finished){
+                currency.value = payes[value - 1].abbreviation
+                console.log("Finished is available : ", currency.value)
+                console.log("Sel : ", selectedItem.value, " Val: ", value)
+                // updateTop5()
+            } else {
+                console.log("Finished is not available")
+            }
+        })
+        onBeforeUpdate(()=>{
+            console.log("INVEST onBeforeUpdate: Start")
+            updateTop5()
+            // showTop5()
+            updateOptions()
+            console.log("Here, the currency is : ", currency.value)
+            // console.log("INVEST onBeforeUpdate: Downloading...")
+            // downloadTop5()
+            console.log("INVEST onBeforeUpdate: End")
+        })
+        onBeforeUnmount(()=>{
+            console.log("INVEST: You are about to leave me, ONBEFOREUNMOUNT")
+            // updateTop5()
+            // showTop5()
+            console.log("INVEST: Now downloading, ONBEFOREUNMOUNT")
+            if(selectedItem.value){
+                updateTop5() //only if i want to find the last input in the next component
+                downloadTop5()
+                console.log("INVEST ONBEFOREUNMOUNT: have downloaded: ", selectedItem.value)
+            } else{
+                console.log("INVEST: didn't download, ONBEFOREUNMOUNT")
+            }
+            console.log("INVEST: END downloading, ONBEFOREUNMOUNT")
+        })
+        
+        //Ending of Things for Currencies
 
+        //SPACE between to Features
 
+        //Beginning of Things for Investment Plan
         var taux = 0
         var duree = 0
         var interest = 0
@@ -250,23 +324,9 @@ export default {
         watch(capital, (value)=>{
             setResult(selectedPlan.value)
         })
-        watch(selectedItem, (value)=>{
-            if(finished){
-                // currency = finished[selectedItem].country 
-                currency.value = payes[value - 1].abbreviation
-                console.log("Finished is available : ", currency.value)
-                console.log("Sel : ", selectedItem.value, " Val: ", value)
-            } else {
-                console.log("Finished is not available")
-            }
-        })
-        // currency = computed(()=>{
-        //     return finished[selectedItem].country 
-        // })
-        onBeforeUpdate(()=>{
-            updateOptions()
-            console.log("Here, the currency is : ", currency.value)
-        })
+        //End of Things for Investment Plan
+        
+        
         return {
             selectedPlan, plans, capital, result, interest, periode,
             finished, selectedItem, currency

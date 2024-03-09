@@ -6,8 +6,7 @@ const store = createStore({
     state(){
         return {
             devWidth : 0,
-            devToolbarHeight: 0,
-            toolbarHeight: 0,
+            devHeight: 0,
             toobarTop : '',
             toobarBotom : '',
             hasTop5 : false,
@@ -48,6 +47,9 @@ const store = createStore({
         },
         initPhotoNumber(state){
             state.numberTaken = 0;
+        },
+        setDevHeight(state, devHeight){
+            state.devHeight = devHeight.value
         }
     },
     actions:{
@@ -72,6 +74,9 @@ const store = createStore({
         getNumberTaken(state){
             return state.numberTaken
         },
+        getDevHeight(state){
+            return state.devHeight
+        }
     }
 })
 
