@@ -4,7 +4,7 @@
         <div class="header">
             <signature-head></signature-head>
         </div>
-        <br><br><br>
+        <!-- <br><br><br> -->
         <div class="same">
             <div class="centered">
                 <h2>Se connecter</h2> <br>
@@ -54,8 +54,7 @@ export default {
 
 <style  scoped>
 .same{
-    margin-top: 50px;
-    /* background-color: red; */
+    margin-top: 20px;
 }
  .centered {
     width: 100%;
@@ -70,9 +69,7 @@ export default {
  .fields{
     height: 30px;
     border-radius: 15px;
-    color: green;
-    color: white;
-    /* background-color: green !important; */
+    padding-left: 10px;
   }
   .user {
     height: 150px;

@@ -23,7 +23,8 @@
         height: 40px;
         top: 5px;
         margin-right: 10px;
-        background-image: url('../../public/resources/logo/logo_home/Lit_Dinard_ON_ORANGE.png');
+        /* background-image: url('../../public/resources/logo/logo_home/Lit_Dinard_ON_ORANGE.png'); */
+        background-image: url('/Lit_Dinard_ON_BLACK.png');
         background-size: cover;
     }
     

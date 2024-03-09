@@ -35,16 +35,19 @@
                 </ion-item>
                 <ion-item>r
                     <ion-label>Nom  </ion-label>
+                    <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du deposant"
                         aria-label="Nom et prenom du destinataire"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Numero</ion-label>
+                    <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du deposant"
                         aria-label="du deposant"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Montant</ion-label>
+                    <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="de votre depot"
                         aria-label="du destinataire"></ion-input>
                 </ion-item>

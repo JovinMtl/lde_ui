@@ -15,12 +15,11 @@
             </div>
                 <form>
                     <div class="user">
-                        <input class="fields" placeholder="Your username" v/> <br>
-                        <input class="fields" placeholder="Your Email" v/> <br>
-                        <input class="fields" placeholder="Your Phone Number" v/> <br>
-                        <input class="fields" placeholder="Your Address" v/> <br>
-                        <input class="fields" type="password" placeholder="Your Password"/> <br>
-                        <input class="fields" type="password" placeholder="Your Password again"/> <br>
+                        <input class="fields" placeholder="Votre nom d'utilisateur"/> <br>
+                        <input class="fields" placeholder="Votre Email" type="email"/> <br>
+                        <input class="fields" placeholder="Votre Numéro de téléphone"/> <br>
+                        <input class="fields" type="password" placeholder="Tapez votre mot de passe"/> <br>
+                        <input class="fields" type="password" placeholder="Tapez encorevotre mot de passe"/> <br>
                         <div class="centered connexion"  >
                             <router-link to="/hop">
                                 <input class="fields send" type="button" value="S'inscrire" router-link="/hop"/>
@@ -72,9 +71,7 @@ export default {
  .fields{
     height: 30px;
     border-radius: 15px;
-    color: green;
-    color: white;
-    /* background-color: green !important; */
+    padding-left: 10px;
   }
   .user {
     height: 150px;

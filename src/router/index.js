@@ -15,6 +15,8 @@ import transfer from '../views/operations/transfer.vue'
 import retrait from '../views/operations/retrait.vue'
 import Lit from '../views/homelit.vue'
 import Histo from '../views/operations/historique.vue'
+import Convert from '../views/operations/conversion.vue'
+import invest from '../views/operations/invest.vue'
 
 const routes= [
   {
@@ -80,6 +82,14 @@ const routes= [
   {
     path : '/histo',
     component : Histo,
+  },
+  {
+    path : '/convert',
+    component : Convert
+  },
+  {
+    path : '/invest',
+    component : invest
   }
 ]
 

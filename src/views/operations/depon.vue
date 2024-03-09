@@ -15,18 +15,21 @@
 
                 <ion-item>
                     <ion-label>Nom  </ion-label>
-                    <ion-input color="primary" placeholder="  du deposant"
+                    <span style="margin-right: 1rem;">&nbsp;</span>
+                    <ion-input color="primary" placeholder="du déposant"
                         aria-label="Nom et prenom du destinataire"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Numero</ion-label>
-                    <ion-input color="primary" placeholder="  du deposant"
+                    <span style="margin-right: 1rem;">&nbsp;</span>
+                    <ion-input color="primary" placeholder="du déposant"
                         aria-label="du deposant"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Montant</ion-label>
-                    <ion-input color="primary" placeholder="  de votre depot"
-                        aria-label="du destinataire"></ion-input>
+                    <span style="margin-right: 1rem;">&nbsp;</span>
+                    <ion-input color="primary" placeholder="de votre dépot"
+                        aria-label="du destinataire" type="number"></ion-input>
                 </ion-item>
                 
                 <ion-button expand="block" v-if="paymethod == 'gallery' || this.$store.getters.getNumberTaken > 1 && paymethod != null "
@@ -37,7 +40,8 @@
                         <ion-select-option value="camera">From Camera</ion-select-option>
                     </ion-select>
                 </ion-item>
-                <ion-item v-show=" paymethod == 'gallery' || takenPhoto > 2">
+                <!-- <ion-item v-show=" paymethod == 'gallery' || takenPhoto > 2"> when we want to display that image taken -->
+                <ion-item v-show=" paymethod == 'gallery'">
                     <!-- <input type="file" @change="onFileChange" accept="image/*" /> -->
                     <input type="file" id="fileInput" style="display: none"
                     @change="FileSelect" accept="image/*" />
@@ -46,18 +50,18 @@
 
                 </ion-item>
                 <ion-item v-if=" paymethod == 'camera' ">
-                    <take-im @imageCaptured="receivePhoto" v-if="takenPhoto < 3"></take-im>
+                    <take-im @imageCaptured="receivePhoto" v-if="takenPhoto < 10"></take-im>
                 </ion-item>
 
-                <ion-item v-if=" paymethod == 'camera'">
-                    <img :src="emittedBlobUri" style="border-radius: 24px; background-color: red;">
+                <ion-item v-if=" paymethod == 'camera'" id="takenImage">
+                    <img  :src="emittedBlobUri" style="border-radius: 24px; background-color: red;">
                     <!-- <p>The value: {{ temp }}</p> -->
                 </ion-item>
                 
                 <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
 
-            </ion-list>   
-            <br>
+            </ion-list>  
+            <br><br><br>
             <ion-button id="confirmButton" expand="block">Confirmer</ion-button>
     </base-menu-app>
 </template>
@@ -72,7 +76,7 @@ import {
     IonSelect, IonSelectOption, IonImg,
     IonThumbnail, IonLabel,
 } from '@ionic/vue'
-import { ref, watch, onBeforeUpdate } from 'vue'
+import { ref, watch, onBeforeUpdate, onMounted } from 'vue'
 import { useStore} from 'vuex'
 export default {
     components:{
@@ -219,6 +223,7 @@ export default {
         function changeImage(){
             paymethod.value = null
             takenPhoto.value = 0
+            store.state.wantTakePhoto = true
         }
         function selectFile(){
             let file = document.getElementById('fileInput').click();
@@ -365,6 +370,20 @@ export default {
         onBeforeUpdate(()=>{
             updateOptions()
         })
+        onMounted(() => {
+            watch(
+                () => store.state.wantTakePhoto,
+                (newValue, oldValue) => {
+                // Your logic to handle the state property change
+                if(newValue == false){
+                    console.log("THe value of wantTakePhoto : ", newValue)
+                    const image = document.getElementById("takenImage")
+                    image.style.marginTop = "-60px"
+                }
+                
+                }
+            );
+        });
         watch(takenPhoto, (value)=>{
             console.log("THe value of type of image has changed to:", value)
             // selectedImage.value.src = URL.bind(selectedPhoto.value)

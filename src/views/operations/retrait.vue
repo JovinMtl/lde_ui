@@ -14,7 +14,7 @@
         <template v-slot:body-content>
             <sol-de></sol-de> <br>
             <retr-form></retr-form>
-            <sign-ature></sign-ature>
+            <!-- <sign-ature></sign-ature> -->
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hop">
@@ -44,9 +44,8 @@
 import baseMenu from '../../Layout/base-menu.vue';
 import retrForm from '../mains/retr-form.vue';
 import Solde from '../solde.vue'
-import signature from '../signature.vue';
 import { 
-    IonIcon, IonLabel, IonButtons, IonBackButton, 
+    IonIcon, IonLabel,
 } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
@@ -56,9 +55,8 @@ import {
 export default {
     components:{
         'base-menu' : baseMenu,
-        'sign-ature': signature,
         'sol-de': Solde,
-        IonIcon, IonLabel, IonButtons, IonBackButton,
+        IonIcon, IonLabel,
         retrForm,
     },
     setup() {

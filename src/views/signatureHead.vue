@@ -17,7 +17,6 @@
             height: 20px;
             justify-content: center;
             text-align: center;
-            /* font-size: 60px; */
         }
     #logolit{
         display: inline-block;
@@ -25,8 +24,7 @@
         width: 85px;
         height: 85px;
         top: 15px;
-        /* margin-right: 10px; */
-        background-image: url('../../public/resources/logo/logo_home/Lit_Dinard_ON_ORANGE.png');
+        background-image: url('/resources/logo/logo_home/Lit_Dinard_ON_ORANGE.png');
         background-size: cover;
     }
     #text{
@@ -34,7 +32,5 @@
         position: relative;
         color: black;
         font-size: 60px;
-        /* top: -50px; */
-        /* right: -5px; */
     }
 </style>

@@ -6,6 +6,12 @@
     align-items: center;
     margin-bottom: -50px;
   } */
+  .centered{
+    /* background-color: red; */
+    text-align: center;
+    margin-left: 3vw;
+    margin-right: 3vw;
+  }
   ion-content {
     --ion-background-color: #ab7400;
   }
@@ -24,6 +30,14 @@
     /* background-color: red; */
     font-family: var(--ion-font-family-base);
     font-size: 1.2rem;
+  }
+  .white{
+    background-color: black;
+    color : white;
+    border-radius: 6px;
+  }
+  .whiteOnly{
+    color : white;
   }
   #ico1{
     display: inline-flex;
@@ -44,7 +58,7 @@
   #ico2{
     display: inline-flex;
     position: fixed;
-    top: 5px;
+    top: 3px;
     /* top: 0vh; */
     /* bottom: 5; */
     left: 32vw;
@@ -99,6 +113,7 @@
     color : white;
     --background: black;
     top: 50px;
+    bottom: 1.6vh;
     /* bottom: 10px; */
   }
   #back{

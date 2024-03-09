@@ -4,7 +4,7 @@
                         <!-- justify = start, end, space-between -->
                         <ion-select label-placement="floating" 
                             justify="space-between" label="Retirer sur" 
-                            placeholder="votre methode de retrait" v-model="selectedItem">
+                            placeholder="votre méthode de retrait" v-model="selectedItem">
                             <ion-select-option class="jov" v-for="pay in finished" :value="pay.id"> 
                                 {{ pay.name }} ({{ pay.country }})
                             </ion-select-option>
@@ -14,25 +14,28 @@
                 
                 <ion-item>
                     <ion-label>Numero</ion-label>
-                    <ion-input color="primary" placeholder=" du Beneficiaire"
+                    <span style="margin-right: 1rem;">&nbsp;</span>
+                    <ion-input color="primary" placeholder="du bénéficiaire"
                         aria-label="du deposant"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                    <ion-label>Nom  </ion-label>
-                    <ion-input color="primary" placeholder=" du Beneficiaire"
-                        aria-label="Nom et prenom du destinataire"></ion-input>
+                    <ion-label>Nom</ion-label>
+                    <span style="margin-right: 1rem;">&nbsp;</span>
+                    <ion-input color="primary" placeholder="du bénéficiaire"
+                        aria-label="Nom et prenom du destinataire" type="text"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Montant</ion-label>
-                    <ion-input color="primary" placeholder=" de votre transfer"
-                        aria-label="du destinataire"></ion-input>
+                    <span style="margin-right: 1rem;">&nbsp;</span>
+                    <ion-input color="primary" placeholder="de votre transfert"
+                        aria-label="du destinataire" type="number"></ion-input>
                 </ion-item>
                 
                 <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
 
             </ion-list>   
-            <br>
+            <br><br><br>
             <ion-button id="confirmButton" expand="block">Confirmer</ion-button>
 </template>
 <script>

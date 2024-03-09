@@ -1,7 +1,7 @@
 
         <template>
             <!-- It is here that we're going to take a photo -->
-            <div id="camera-container">
+            <div id="camera-container" v-if="wantCamera">
                 <div class="camera-frame" v-if="wantCamera">
                 <video ref="videoElement" autoplay playsinline></video>
                 </div>
@@ -10,19 +10,19 @@
                         <ion-button ref="tAke" class="takePhoto" 
                                 @click="captureImage" 
                                 v-if="this.$store.getters.getNumberTaken  > 1">
-                            <ion-icon :icon="download"></ion-icon>
+                            <ion-icon :icon="downloadOutline" size="large"></ion-icon>
                         </ion-button>
                     </a>
                     
                     <ion-button ref="tAke" class="takePhoto" 
                             @click="captureImage" 
                             >
-                        <ion-icon :icon="camera"></ion-icon>
+                        <ion-icon :icon="camera" size="large"></ion-icon>
                     </ion-button>
                         <ion-button ref="tAke" class="takePhoto" 
                                 @click="hideContainer" 
                                 v-if="this.$store.getters.getNumberTaken  > 1">
-                        <ion-icon :icon="checkmark"></ion-icon>
+                        <ion-icon :icon="checkmark" size="large"></ion-icon>
                     </ion-button>
                     <!-- <sign-ature></sign-ature> -->
 
@@ -31,15 +31,12 @@
                 
                 <!-- <img v-if="capturedImage" :src="capturedImage" alt="Captured Image" /> -->
             </div>
-            <br><br><br>
-            <img v-if="imageData" :src="imageData" alt="Captured Image" />
-            <ion-button @click="uploadImage" v-if="imageData">Upload Image</ion-button>
         </template>
 
 <script>
 // import Menu from '../menu.vue'
 import signature from '../signature.vue'
-import { camera, add, checkmark, download } from 'ionicons/icons'
+import { camera, add, checkmark, downloadOutline} from 'ionicons/icons'
 import { IonButton, IonButtons, IonIcon } from '@ionic/vue'
 export default {
     components:{
@@ -54,7 +51,7 @@ export default {
     ],
     data(){
         return {
-            camera, add, checkmark, download,
+            camera, add, checkmark, downloadOutline,
             imageData: null,
             videoElement: null,
             capturedImage: '',
@@ -80,6 +77,7 @@ export default {
         hideContainer(){
             this.stopCamera()
             this.wantCamera = false
+            this.$store.state.wantTakePhoto = false
         },
         async captureImage() {
             try {
@@ -183,15 +181,21 @@ export default {
 
 <style scoped>
 #camera-container {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  width: 90vw;
+  height: 45vh;
   align-items: center;
 }
 
 .camera-frame {
+    display: inline-flex;
   position: relative;
-  width: 300px; /* Adjust the width and height as necessary */
+  /* width: 300px; Adjust the width and height as necessary */
   height: 200px;
+  width: 45vw;
+  /* height: calc(45vw * 1.2); */
+  height: 42vh;
   overflow: hidden;
   border: 6px solid #fff; /* Frame border style */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Frame shadow effect */

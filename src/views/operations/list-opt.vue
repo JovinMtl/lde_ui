@@ -26,13 +26,13 @@ export default {
                     borderRadius : '5px',
                     path : '/depot',
                 },
-                {
-                    logo : "url('../../resources/logo/logo_home/Transfe.png')",
-                    name : 'Transferer',
-                    color: 'orange',
-                    borderRadius : '10px',
-                    path : '/transfer',
-                },
+                // {
+                //     logo : "url('../../resources/logo/logo_home/Transfe.png')",
+                //     name : 'Transferer',
+                //     color: 'orange',
+                //     borderRadius : '10px',
+                //     path : '/transfer',
+                // },
                 {
                     logo : "url('resources/logo/logo_home/MoneyDown.png')",
                     name : 'Retirer',
@@ -41,19 +41,20 @@ export default {
                     path : '/retrait',
                 },
                 {
-                    logo : "url('resources/logo/logo_home/savine_.png')",
-                    name : 'Epargner',
-                    color: 'grey',
-                    borderRadius : '25px',
-                    path : '/depot',
-                },
-                {
                     logo : "url('resources/logo/logo_home/Currencies.png')",
                     name : 'Convertir',
                     color: 'yellow',
                     borderRadius : '5px',
-                    path : '/depot',
+                    path : '/convert',
                 },
+                {
+                    logo : "url('resources/logo/logo_home/savine_.png')",
+                    name : 'Investir',
+                    color: 'grey',
+                    borderRadius : '25px',
+                    path : '/invest',
+                },
+                
             ]
         return {
             apps,
@@ -102,7 +103,7 @@ export default {
         height: 20px;
         width: 90px;
         position : relative;
-        color: #ab7400;
+        /* color: #ab7400; */
         margin: 0;
         top : 85px;
         fill: blue;

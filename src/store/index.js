@@ -14,6 +14,7 @@ const store = createStore({
             top5 : [6, 9, 3, 8, 15],
             capturedImage : null,
             numberTaken : 0,
+            wantTakePhoto: true,
         }
     },
     mutations:{

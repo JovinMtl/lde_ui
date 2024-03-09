@@ -10,7 +10,7 @@
                 <div v-if="soldeVisible" class="visible">
                     <ion-icon :icon="eye"  @click="Invert" id="eye" size="large"></ion-icon> 
                     <p @click="Invert" 
-                    style="color: white;" class="segoe"><strong> {{ solde }} LiT </strong></p>
+                    style="color: white;" class="segoe"><strong> {{ solde }} LiD </strong></p>
                 </div>
             </div>
         </div>
@@ -43,8 +43,7 @@ export default {
 
 <style scoped>
     .same{
-        /* height: 100vh; */
-        background-color: #ab7400;;
+        /* background-color: #ab7400; */
         padding-top: 50px;
     }
     .shower{
