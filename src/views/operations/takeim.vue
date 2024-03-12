@@ -6,7 +6,7 @@
                 <video ref="videoElement" autoplay playsinline></video>
                 </div>
                 <div style="display: inline-block;"  v-if="wantCamera">
-                    <a :href="capturedImage" :download="`captured_photo_${this.$store.getters.getNumberTaken}_${new Date().toISOString().slice(0,9)}.jpg`">
+                    <a :href="capturedImage" :download="`Lid_photo_${this.$store.getters.getNumberTaken}_${new Date().toISOString().slice(0,9)}.jpg`">
                         <ion-button ref="tAke" class="takePhoto" 
                                 @click="captureImage" 
                                 v-if="this.$store.getters.getNumberTaken  > 1">

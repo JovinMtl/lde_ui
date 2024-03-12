@@ -1,6 +1,6 @@
 <template>
     <feui-lle>
-        <div class="master">
+        <div class="master" >
             <div class="welcome">
                 <!-- Home LIT -->
             </div>
@@ -27,7 +27,6 @@
         <br><br><br>
         <br><br><br>
         <br><br><br>
-        <br><br><br>
         
         <signature-vide></signature-vide>
         
@@ -50,6 +49,10 @@ export default {
 }
 </script>
 <style scoped>
+.master{
+    margin-left: 5vw;
+    margin-top: -2vh;
+}
 .welcome{
     display: inline-flex;
     width: 90vw;
@@ -75,7 +78,6 @@ export default {
 }
 .buto1{
     display: inline-flex;
-    /* background-color: red; */
     height: 100%;
     width: 50%;
     text-align: center;
@@ -84,34 +86,23 @@ export default {
 }
 .buto2{
     display: inline-flex;
-    /* background-color: green; */
     height: 100%;
     width: 50%;
     justify-content: center;
     text-align: center;
 }
 .butto1{
-    background-color: black;
-    width: 89%;
-    /* border-radius: 8px; */
     margin-top: 5px;
-    text-align: right;
     text-align: center;
 }
 .butto2{
-    background-color: black;
-    width: 89%;
-    /* border-radius: 8px; */
     margin-top: 5px;
     text-align: center;
 }
-button{
-    background-color: black;
-    justify-content: baseline;
-}
 .fields{
+    background-color: black;
     height: 30px;
-    width: 20vh;
+    width: 33vw;
     border-radius: 15px;
     color: white;
     font-size: .9em;

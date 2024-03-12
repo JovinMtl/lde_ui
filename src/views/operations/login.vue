@@ -6,30 +6,30 @@
         </div>
         <!-- <br><br><br> -->
         <div class="same">
-            <div class="centered">
-                <h2>Se connecter</h2> <br>
+            <div class="usere">
+                <h2 style="font-size: 5vh; margin-top: 22vh;">Se connecter</h2> <br>
                    
             </div>
             <div id="info">
-                <p>Veuillez remplir les informations ci-dessous pour vous connecter.</p>
+                <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous connecter.</p>
             </div>
                 <form>
-                    <div class="user">
+                    <div class="usere">
                     <input class="fields" placeholder="Votre nom d'utilisateur" v/> <br>
                     <input class="fields" type="password" placeholder="Votre mot de passe"/> <br>
                     </div>
                     <br>
-                    <div class="centered connexion"  >
+                    <div class="usere connexion"  >
                         <router-link to="/hop">
                             <input  type="button" value="Connexion" router-link="/hop"/>
                         </router-link>
                         
                     </div>
-                    <div class="centered">
-                        <p>Ou</p>
+                    <div class="usere">
+                        <p style="font-size: 3vh;">Ou</p>
                     </div>
-                    <div class="centered">
-                        <router-link to="/registration" style="color:white">créer un nouveau compte</router-link>
+                    <div class="usere">
+                        <router-link to="/registration" style="color:white">Créer un nouveau compte</router-link>
                     </div>
                     
                 </form>
@@ -53,30 +53,14 @@ export default {
 </script>
 
 <style  scoped>
-.same{
-    margin-top: 20px;
-}
- .centered {
-    width: 100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
   a input{
     background-color: black;
+    font-size: 4vh;
   }
+ 
 
- .fields{
-    height: 30px;
-    border-radius: 15px;
-    padding-left: 10px;
-  }
-  .user {
-    height: 150px;
-    display: block;
-    text-align: center;
-    text-align: center;
-    line-height: 60px;
-  }
+ 
+  
+  
   
 </style>

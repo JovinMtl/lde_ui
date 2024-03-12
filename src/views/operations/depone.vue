@@ -2,11 +2,10 @@
     <base-menu-app pageTitle ="Faites votre dépôt" baArrow="true">
         <!-- Here i have imported my baseMenuApps -->
         <sol-de></sol-de>
-        <!-- <p>1 Lid pour chaque 1000 Lid</p> -->
         <ion-list>
-                <ion-item v-if="!selectedItem">
+                <ion-item>
                         <!-- justify = start, end, space-between -->
-                        <ion-select label-placement="floating" justify="space-between" label="Recharger avec :" placeholder="votre methode de paiement" v-model="selectedItem">
+                        <ion-select label-placement="floating" justify="space-between" label="Recharger avec" placeholder="votre methode de paiement" v-model="selectedItem">
                             <ion-select-option class="jov" v-for="pay in finished" :value="pay.id"> 
                                 {{ pay.name }} ({{ pay.country }})
                             </ion-select-option>
@@ -14,19 +13,19 @@
                         
                 </ion-item>
 
-                <ion-item v-if="selectedItem">
+                <ion-item>
                     <ion-label>Nom  </ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du déposant"
                         aria-label="Nom et prenom du destinataire"></ion-input>
                 </ion-item>
-                <ion-item v-if="selectedItem">
+                <ion-item>
                     <ion-label>Numero</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du déposant"
                         aria-label="du deposant"></ion-input>
                 </ion-item>
-                <ion-item v-if="selectedItem">
+                <ion-item>
                     <ion-label>Montant</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="de votre dépot"
@@ -35,8 +34,8 @@
                 
                 <ion-button expand="block" v-if="paymethod == 'gallery' || this.$store.getters.getNumberTaken > 1 && paymethod != null "
                     @click="changeImage">Supprimer Image</ion-button>
-                <ion-item v-if="paymethod == null && selectedItem">
-                    <ion-select  aria-label="Fruit" interface="action-sheet" placeholder="Votre Bordereau" v-model="paymethod">
+                <ion-item v-if="paymethod == null">
+                    <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Votre Bordereau" v-model="paymethod">
                         <ion-select-option value="gallery">From Gallery</ion-select-option>
                         <ion-select-option value="camera">From Camera</ion-select-option>
                     </ion-select>
@@ -63,32 +62,7 @@
 
             </ion-list>  
             <br><br><br>
-            <div class="guide" v-if="true">
-                <div class="home">
-                <empty-modal @byeModal="toogleModal" :modalActive="infoModal" :beneficiaire="payee">
-                    <div class="modal-content">
-                        <h1 style="font-size: 3.5vh;">Pour votre information </h1>
-                        <div  v-if="payee">
-                            <p v-show="payee.currency !== 'Lit Dinar'">Veuillez transférer votre fonds à cette addresse: 
-                            <br><br>
-                            <span>
-                                Monnaie: {{payee.currency}} <br> 
-                                Méthode: {{ payee.description[0].paymethod }} <br>
-                                Compte cible : <strong>{{ payee.description[0].target }}</strong> <br>
-                                Opérateur: {{ payee.description[0].owner }} <br>
-                            </span>
-                            
-                            </p>
-                            <p v-show="payee.currency == 'Lit Dinar'">
-                                Cette méthode n'est pas disponible dans votre région.
-                            </p>
-                        </div>
-                        
-                    </div>
-                </empty-modal>
-            </div>
-            
-            </div>
+            <!-- <button @click="toogleModal" v-if="false">Toogle Modal</button> -->
             <div class="home">
                 <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
                     <div class="modal-content">
@@ -96,15 +70,11 @@
                         <p>Merci pour votre dépôt. Nous traitons votre demande et vous informerons dès qu'elle sera approuvée. 
                             <br>
                             Veuillez vérifier votre boîte de notifications pour les mises à jour.
-                            <br>
-                            <span style="font-size: 2.3vh; display:inline-flex; position: relative; margin-top: 3vh">
-                                Ceci pourra prendre au maximum 10 minutes.</span>
                         </p>
                     </div>
                 </empty-modal>
             </div>
-            <!-- <ion-button v-show="!modalActive && !infoModal" id="confirmButton" expand="block" @click="toogleModal">Confirmer</ion-button> -->
-            <ion-button v-show="!modalActive && !infoModal && selectedItem" id="confirmButton" expand="block" @click="toogleModal">Confirmer depot</ion-button>
+            <ion-button id="confirmButton" expand="block" @click="toogleModal">Confirmer</ion-button>
     </base-menu-app>
 </template>
 
@@ -117,10 +87,11 @@ import { IonIcon } from '@ionic/vue';
 import { 
     IonItem, IonInput, IonList, IonButton,
     IonSelect, IonSelectOption, IonImg,
-    IonThumbnail, IonLabel,
+    IonThumbnail, IonLabel, IonModal,
 } from '@ionic/vue'
-import { ref, watch, onBeforeUpdate, onBeforeUnmount, onMounted, reactive } from 'vue'
+import { ref, watch, onBeforeUpdate, onBeforeUnmount, onMounted, onBeforeMount } from 'vue'
 import { useStore} from 'vuex'
+
 export default {
     components:{
         'base-menu-app': baseMenuApps,
@@ -129,23 +100,17 @@ export default {
         'empty-modal' : emptyModalVue,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption, IonImg, IonIcon,
-        IonThumbnail, IonLabel,
+        IonThumbnail, IonLabel, IonModal,
     },
     setup() {
+
         //Start of MODAL
         const modalActive = ref(false)
-        const infoModal = ref(false)
         const toogleModal = ()=>{
-            if(infoModal.value){
-                infoModal.value = false
-                return 0
-            }
             modalActive.value = !modalActive.value
         }
-
         //End of Modal
-
-
+        
         //Beginning of Things for Currencies
         const store = useStore()
         const paymethod = ref(null)
@@ -302,32 +267,6 @@ export default {
             } else {
                 console.log("Finished is not available")
             }
-            if(value){
-                //pick in numbers the one that matches that value
-                console.log("You selected: ", value)
-                //value is and id
-                var methodName = payes[value-1].name
-                console.log("THe method name is : ", methodName)
-                var chosen = {
-                    currency : 'Fbuuu',
-                    description : 
-                        {
-                            paymethod: 'Lumicasheee',
-                            phone: "+257 61 96 68 9dfdf2",
-                            owner: 'owner-namdfdfe',
-                        },
-
-                }
-                payees.forEach((value)=>{
-                    // var i = 0;
-                    if(value.currency == methodName){
-                        chosen = value
-                        payee.value = value
-                        infoModal.value = true
-                    }
-                })
-                console.log("The method in CHOSEN is : ", chosen)
-            }
         })
         onBeforeUpdate(()=>{
             console.log("INVEST onBeforeUpdate: Start")
@@ -356,133 +295,6 @@ export default {
         
         //Ending of Things for Currencies
 
-        //Start of things of Pay numbers
-        const payee = ref(null)
-        const payees = [
-            {
-                currency : 'Fbu',
-                description : [
-                    {
-                        paymethod: 'Lumicash',
-                        target: "+257 61 96 68 92",
-                        owner: 'owner-name',
-                    },
-                ]
-
-            },
-            {
-                currency : 'US Dollar',
-                description : [
-                    {
-                        paymethod: 'PayPal',
-                        target: "lidfunds@lid.com",
-                        owner: 'userPay-name',
-                    },
-                ]
-
-            },
-            {
-                currency : 'Frw',
-                description : [
-                    {
-                        paymethod: 'Momo',
-                        target: "+257 61 96 68 92",
-                        owner: 'liDRwanda',
-                    },
-                ]
-
-            },
-            {
-                currency : 'ShillingKenya',
-                description : [
-                    {
-                        paymethod: 'Mpesa',
-                        target: "+254 323 3433 21",
-                        owner: 'ke-name',
-                    },
-                ]
-
-            },
-            {
-                currency : 'Ugshilling',
-                description : [
-                    {
-                        paymethod: 'Mpesa',
-                        target: "+254 323 3433 21",
-                        owner: 'agent-Ug',
-                    },
-                ]
-
-            },
-            {
-                currency : 'ShillingTanzania',
-                description : [
-                    {
-                        paymethod: 'Mpesa',
-                        target: "+254 323 3433 21",
-                        owner: 'mpesa-name',
-                    },
-                ]
-
-            },
-            {
-                currency : 'Kwacha',
-                description : [
-                    {
-                        paymethod: 'Momo',
-                        target: "+257 61 96 68 92",
-                        owner: 'liDRwanda',
-                    },
-                ]
-
-            },
-            {
-                currency : 'Euro',
-                description : [
-                    {
-                        paymethod: 'BNP Paribas',
-                        target: "+254 323 3433 21",
-                        owner: 'Lid-euro',
-                    },
-                ]
-
-            },
-            {
-                currency : 'USDT',
-                description : [
-                    {
-                        paymethod: 'Binance',
-                        target: "+257 61 96 68 92",
-                        owner: 'liDRwanda',
-                    },
-                ]
-
-            },
-            {
-                currency : 'TRX',
-                description : [
-                    {
-                        paymethod: 'Binance',
-                        target: "+254 323 3433 21",
-                        owner: 'Lid-euro',
-                    },
-                ]
-
-            },
-            {
-                currency : 'Lit Dinar',
-                description : [
-                    {
-                        paymethod: 'none',
-                        target: "none",
-                        owner: 'none',
-                    },
-                ]
-
-            },
-
-        ]
-        //End of things of Pay numbers
 
 
 
@@ -636,18 +448,45 @@ export default {
 
             modalActive,
             toogleModal,
-
-            payee,infoModal,
+            
         }
     },
 }
 </script>
 
-<style scoped>
-.modal-content{
-    font-size: 2.5vh;
+<!-- 
+<style lang="scss">
+.homes{
+    // background-color: rgba( 0,176, 236, 0.5);
+    height : 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    .modal-content{
+        display: flex;
+        // flex-direction: column;
+
+        .modalTitle{
+            background-color: red;
+        }
+
+        h1,p{
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 32px;
+        }
+        p{
+            font-size: 18px;
+        }
+    }
 }
-h1{
-    font-size: 4vh;
+</style> -->
+<style scoped>
+.modalTitle{
+    /* background-color: red; */
+    margin-top: -15%;
 }
 </style>

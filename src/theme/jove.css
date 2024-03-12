@@ -129,3 +129,21 @@
     text-align: center;
     color: white;
   }
+  .usere{
+    /* background-color: red; */
+    justify-content: center;
+    text-align: center;
+  }
+  .fields{
+    background-color: #ab7400;
+    color: black;
+    font-size: 3vh;
+    height: 30px;
+    margin: 1.6vh;
+    font-weight: bolder;
+    border-radius: 15px;
+    padding-left: 10px;
+  }
+  .fields::placeholder{
+    color: white;
+  }

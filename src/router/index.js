@@ -17,6 +17,8 @@ import Lit from '../views/homelit.vue'
 import Histo from '../views/operations/historique.vue'
 import Convert from '../views/operations/conversion.vue'
 import invest from '../views/operations/invest.vue'
+// import depone from '../views/operations/depone.vue'
+// import emptyModal from '../views/operations/emptyModal.vue'
 
 const routes= [
   {
@@ -90,7 +92,7 @@ const routes= [
   {
     path : '/invest',
     component : invest
-  }
+  },
 ]
 
 const router = createRouter({

@@ -18,7 +18,7 @@
             justify-content: center;
             text-align: center;
             /* font-size: 60px; */
-            bottom : 8.7vh;
+            bottom : 11.7vh;
         }
     #logolit{
         display: inline-block;

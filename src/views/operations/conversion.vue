@@ -44,9 +44,31 @@
                     <ion-label>Montant</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="à convertir"
-                        aria-label="Nom et prenom du destinataire" type="number"></ion-input>
+                        aria-label="Nom et prenom du destinataire" 
+                        type="number" v-model="montant"></ion-input>
                 </ion-item>
-
+                <input v-show="!showBalance && source" class="centered" 
+                    type="button" value="Afficher balance" 
+                    @click="turnBalance" style="background-color: white; border-radius: 12px;"/>
+                <input v-show="showBalance" class="centered" type="button" 
+                    value="Enlever balance" @click="turnBalance"
+                    style="background-color: white; border-radius: 12px;"/>
+                <div class="mother" v-show="showBalance">
+                    <div id="ch1">
+                        <!-- Source :  -->
+                        <span style="margin-right: .2rem;">&nbsp;</span> 
+                        <span style="font-size: 1.4em;margin-top: -3px;;">{{ sourceId }}</span> <span style="color: white;">{{ source }}</span>
+                    </div>
+                    <div id="ch2">
+                        <span style="font-size: 1.4em;margin-top: -3px;">{{ destinationId }}</span>  <span style="color: white;">{{ destination }} </span>  
+                        <span style="margin-right: .2rem;">&nbsp;</span>
+                        <!-- <span> Destination</span> -->
+                    </div>
+                </div>
+                <p v-if="montant && source" class="centered">Avec <span style="color: white;">{{ montant }} {{ source }}</span>, vous pouvez avoir 
+                    <span style="color: white;"><span v-show="source !== 'Lit'">{{ (montant / sourceId).toFixed(2) }}</span>
+                    <span v-show="source == 'Lit'">{{ (montant * destinationId).toFixed(2) }}</span> {{ destination }}</span>.</p>
+                
             </ion-list>   
             <br>
             <ion-button id="confirmButton" expand="block">Confirmer</ion-button>
@@ -62,7 +84,7 @@ import {
     IonSelect, IonSelectOption, IonImg,
     IonThumbnail, IonLabel, IonToggle,
 } from '@ionic/vue'
-import { ref, watch, onBeforeUpdate, onBeforeUnmount } from 'vue'
+import { ref, watch, onBeforeUpdate, onBeforeUnmount, computed } from 'vue'
 import { useStore} from 'vuex'
 export default {
     components:{
@@ -74,7 +96,7 @@ export default {
     },
     setup() {
         const source = ref('')
-        const destination = ref('Lit')
+        const destination = ref('Lid')
         const reserve = ref('')
 
         const check = ref(true)
@@ -262,7 +284,132 @@ export default {
         
         //Ending of Things for Currencies
 
+        //Start about Balance
+        var sourceId = ref(0)
+        var destinationId = ref(0)
+        const showBalance = ref(false)
+        const balances = [
+            // {
+            //     monnaie : id muri payes,
+            //     achat : ayo tuyimugirarako,
+            //     vente : ayo tuyimuherezako,
+            // },
+            {
+                monnaie : 1,
+                name:'US Dollar',
+                achat : 1,
+                vente : 1,
+            },
+            {
+                monnaie : 2,
+                name:'Fbu',
+                achat : 4200,
+                vente : 4400,
+            },
+            {
+                monnaie : 3,
+                name: 'Frw',
+                achat : 1100,
+                vente : 1250,
+            },
+            {
+                monnaie : 4,
+                name: 'ShillingKenya',
+                achat : 100,
+                vente : 102,
+            },
+            {
+                monnaie : 5,
+                name:'Ugshilling',
+                achat : 6050,
+                vente : 6300,
+            },
+            {
+                monnaie : 6,
+                name: 'ShillingTanzania',
+                achat : 3900,
+                vente : 4100,
+            },
+            {
+                monnaie : 7,
+                name: 'Kwacha',
+                achat : 4200,
+                vente : 4400,
+            },
+            {
+                monnaie : 8,
+                name: 'Euro',
+                achat : 0.9,
+                vente : 0.92,
+            },
+            {
+                monnaie : 9,
+                name:'USDT',
+                achat : 1,
+                vente : 1,
+            },
+            {
+                monnaie : 10,
+                name: 'TRX',
+                achat : 1,
+                vente : 1,
+            },
+            {
+                monnaie : 11,
+                name: 'Lit Dinar',
+                achat : 1,
+                vente : 1,
+            },
+            
+        ]
+        function turnBalance(){
+            showBalance.value = !showBalance.value
+            console.log("Now can show : ", showBalance.value)
+        }
+        watch(source, (value)=>{
+            var i = 1
+            payes.forEach((value)=>{
+                if(value.name == source.value){
+                    if(source.value !== 'LIT'){
+                        console.log("VOUS voulez LIT <>", source.value)
+                        console.log("La Source est : ", value.name, " destination : ", destination.value)
+                        sourceId.value = balances[i-1].vente
+                        destinationId.value = balances[10].vente
+                    } else{
+                        console.log("VOUS ne voulez pas LIT <>", source.value)
+                        console.log("La Source est : ", value.name, " destination : ", destination.value)
+                        sourceId.value = balances[i-1].achat
+                        destinationId.value = balances[10].achat
+                    }
+                        
 
+                }
+                i += 1
+            })
+        })
+        watch(destination, (value)=>{
+            var i = 1
+            payes.forEach((value)=>{
+                if(value.name == destination.value){
+                    if(destination == 'Lit'){
+                        console.log("VOUS VOULEZ LIT <> ", destination.value)
+                        console.log("La destination est : ", value.name, " Source: ", source.value)
+                        destinationId.value = balances[i-1].vente
+                        sourceId.value = balances[10].vente
+                    } else {
+                        console.log("VOUS NE VOULEZ PAS LIT <> ", destination.value)
+                        console.log("La destination est : ", value.name, " Source: ", source.value)
+                        destinationId.value = balances[i-1].achat
+                        sourceId.value = balances[10].achat
+                    }
+                    
+                }
+                i += 1
+            })
+        })
+
+
+        //End of Things of Balance
         
         function turnCheck(){
             check.value = !check.value
@@ -279,15 +426,54 @@ export default {
                 source.value = reserve.value
                 console.log("Vous utilisez LIT comme Destination")
             }
-            // console.log("CONVERSION check: destination is: ", destination.value)
-            // selectedItem.value = destination.value
         })
+        // General Things
+        const montant = ref(null)
+
+        // watch(montant, (value)=>{
+        //     //
+        // })
 
         return {
             paymethod, selectedItem, finished, payes, 
             check, source, destination, reserve,
+
+            balances, sourceId, destinationId,turnBalance,
+            showBalance,
+
+            montant,
+
             turnCheck,
         }
     },
 }
 </script>
+
+<style scoped>
+.mother{
+    display: inline-flex;
+    height: 6vh;
+    width: 80vw;
+    margin-left: 6%;
+    margin-top: 1em;
+    margin-bottom: -5rem;
+    /* background-color: red; */
+    padding: 0px;
+}
+#ch1{
+    display: inline-block;
+    width: 48%;
+    height: 100%;
+    /* background-color: green; */
+}
+#ch2{
+    display: inline-block;
+    width: 48%;
+    height: 100%;
+    margin-left: 4%;
+    /* background-color: yellow; */
+    justify-content: right;
+    text-align: right;
+    padding: 0px;
+}
+</style>
