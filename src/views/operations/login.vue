@@ -19,7 +19,7 @@
                     <input class="fields" type="password" placeholder="Votre mot de passe"/> <br>
                     </div>
                     <br>
-                    <div class="usere connexion"  >
+                    <div class="usere"  >
                         <router-link to="/hop">
                             <input  type="button" value="Connexion" router-link="/hop"/>
                         </router-link>

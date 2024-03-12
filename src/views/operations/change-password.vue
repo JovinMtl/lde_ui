@@ -1,26 +1,19 @@
 <template>
-    <base-menu pageTitle="Bienvenue sur LD">
+    <base-menu pageTitle="Changer votre Mot de passe">
+        <template v-slot:back-left>
+            <ion-icon :icon="chevronBack" slot="end" size="large">Back</ion-icon>
+            <!-- <ion-back-button text="Retour"></ion-back-button> -->
+        </template>
         <template v-slot:finish-right>
                 <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
                 <router-link to="/">
                     <ion-icon :icon="exitOutline" slot="end" size="large"></ion-icon>
                 </router-link>
+                
         </template>
         <template v-slot:body-content>
-            <div v-if="store.getters.getDevHeight < 600" id="soldeMarginTop">
-                <sol-de ></sol-de> <br>   
-            </div>
-            <div v-else>
-                <sol-de ></sol-de> <br> 
-            </div>
-            <list-options></list-options><br>
-            <div v-if="store.getters.getDevHeight > 650">
-                <sign-ature></sign-ature>
-            </div>
-            
-            
-            <!-- <p  class="centered white">The Height of your screen is {{ store.getters.getDevHeight }} px.</p> -->
-            
+            <ch-pw></ch-pw>
+            <!-- <sign-ature></sign-ature> -->
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hop">
@@ -32,7 +25,7 @@
             <router-link to="/depot">
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
             </router-link>
-            <router-link to="/profile">
+            <router-link to="/prof">
                 <ion-icon id="ico4" :icon="personCircle" size="large"></ion-icon>
             </router-link>
             
@@ -48,52 +41,29 @@
 
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
-import LisOp from '../operations/list-opt.vue'
-import Solde from '../solde.vue'
-import signature from '../signature.vue';
-import { IonIcon, IonLabel, IonButtons, } from '@ionic/vue'
+import changePassForm from '../mains/ch-pw.vue';
+// import Solde from '../solde.vue'
+import { 
+    IonIcon, IonLabel,
+} from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
     home, layers, wallet, personCircle,
+    chevronBack,
 } from 'ionicons/icons'
-import { onMounted, onBeforeUpdate} from 'vue'
-import { useStore } from 'vuex'
 export default {
     components:{
         'base-menu' : baseMenu,
-        'list-options' : LisOp,
-        'sign-ature': signature,
-        'sol-de': Solde,
-        IonIcon, IonLabel, IonButtons,
+        'ch-pw': changePassForm,
+        IonIcon, IonLabel,
+        // retrForm,
     },
     setup() {
-        const store = useStore()
-        function getHeight(){
-            const screenHeight = window.innerHeight
-
-            // console.log("HOME-OP SETUP getHeight: size = ", screenHeight)
-            store.commit("setDevHeight", {
-                value: screenHeight,
-            })
-
-        }
-        onMounted(()=>{
-            getHeight()
-        })
-
         return {
             exitOutline,notificationsOutline,
             home, layers, wallet, personCircle,
-            store,
+            chevronBack,
         }
     },
 }
 </script>
-
-<style scoped>
-    #soldeMarginTop{
-        /* background-color: red; */
-        margin-top: -2vh;
-        margin-bottom: -11vh;
-    }
-</style>

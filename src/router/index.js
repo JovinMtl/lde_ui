@@ -19,6 +19,9 @@ import Convert from '../views/operations/conversion.vue'
 import invest from '../views/operations/invest.vue'
 // import depone from '../views/operations/depone.vue'
 // import emptyModal from '../views/operations/emptyModal.vue'
+import profileMenu from '../views/profileMenu.vue'
+import profile from '../views/operations/profile.vue'
+import changePassword from '../views/operations/change-password.vue'
 
 const routes= [
   {
@@ -92,6 +95,18 @@ const routes= [
   {
     path : '/invest',
     component : invest
+  },
+  {
+    path : '/prof',
+    component : profileMenu
+  },
+  {
+    path : '/profile',
+    component: profile,
+  },
+  {
+    path : '/chpa',
+    component: changePassword
   },
 ]
 
