@@ -7,8 +7,6 @@ const store = createStore({
         return {
             devWidth : 0,
             devHeight: 0,
-            toobarTop : '',
-            toobarBotom : '',
             hasTop5 : false,
             top5 : [6, 9, 3, 8, 15],
             capturedImage : null,
