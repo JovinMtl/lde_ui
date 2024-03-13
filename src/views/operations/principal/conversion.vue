@@ -76,8 +76,8 @@
 </template>
 
 <script>
-import baseMenuApps from '../../Layout/base-menuApps.vue'
-import solde from '../solde.vue';
+import baseMenuApps from '../../../Layout/base-menuApps.vue'
+import solde from '../../solde.vue';
 import { IonIcon } from '@ionic/vue';
 import { 
     IonItem, IonInput, IonList, IonButton,

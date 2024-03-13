@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import baseMenuApps from '../../Layout/base-menuApps.vue'
-import solde from '../solde.vue';
+import baseMenuApps from '../../../Layout/base-menuApps.vue'
+import solde from '../../solde.vue';
 import { 
     IonItem, IonInput, IonList, IonButton,
     IonSelect, IonSelectOption,
