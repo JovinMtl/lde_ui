@@ -10,7 +10,7 @@
                 <div v-if="soldeVisible" class="visible">
                     <ion-icon :icon="eye"  @click="Invert" id="eye" size="large"></ion-icon> 
                     <p @click="Invert" 
-                    style="color: white;" class="segoe"><strong> {{ solde }} LiD </strong></p>
+                    style="color: white;" class="segoe"><strong> {{ solde }} USDT </strong></p>
                 </div>
             </div>
         </div>
