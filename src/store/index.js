@@ -80,6 +80,9 @@ const store = createStore({
         },
         getDevHeight(state){
             return state.devHeight
+        },
+        getUsername(state){
+            return state.username
         }
     }
 })

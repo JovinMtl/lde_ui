@@ -20,8 +20,8 @@
                     </div>
                     <br>
                     <div class="usere"  >
-                        <router-link to="/hope">
-                            <input  type="button" value="Connexion" router-link="/hope" @click="LogUser"/>
+                        <router-link to="#">
+                            <input  type="button" value="Connexion" @click="LogUser"/>
                         </router-link>
                         
                     </div>
@@ -44,6 +44,7 @@ import BackButton from '../../auxiliare/backButton.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import { ref} from 'vue'
 import { useStore } from 'vuex'
+import {useRouter} from 'vue-router'
 
 export default {
     components:{
@@ -53,6 +54,7 @@ export default {
     },
     setup() {
         const store = useStore()
+        const router = useRouter()
         const username = ref(null)
         const password = ref(null)
 
@@ -71,11 +73,13 @@ export default {
                 }),
             })
             if(response.ok){
-                console.log("OKK : ", response)
                 store.state.username = username.value
+                console.log("OKK : ", store.getters.getUsername)
                 const data = await response.json()
                 console.log("The data is : ", data)
                 store.state.user = data
+                router.push('/profile')
+
             } else{
                 console.log("BAD")
             }

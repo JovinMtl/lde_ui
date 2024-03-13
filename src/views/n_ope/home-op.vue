@@ -7,6 +7,34 @@
                 </router-link>
         </template>
         <template v-slot:body-content>
+            <!-- <p style="margin-bottom: -4vh; position: fixed; left: 80vw;">
+                <ion-icon :icon="personCircle" style="position:fixed ; font-size: 4vh; color:white"></ion-icon>
+                <span style="margin-right: 3vw; margin-left: 3vw;">&nbsp;</span>
+                &nbsp; &nbsp;&nbsp;
+                {{ store.getters.getUsername }}
+            </p> -->
+            <div style="text-align: center; margin-left: 45vw;">
+                <div style="display: inline-flex; width: 30vw;
+                height: 6vh; 
+                /* background-color: red; */
+                text-align: center;  line-height: 6vh;
+                position:absolute">
+                <div class="avatar" style="width: 50%;height: 100%;
+                    /* background-color: green; */
+                    text-align: right
+                    /* padding-left: 10vw; */
+                    ">
+                    <ion-icon :icon="personCircle" style="text-align: right; ; 
+                    font-size: 6vh; color:white"></ion-icon>
+                </div>
+                <div class="username" style="width: 50%;height: 100%;
+                    /* background-color: grey; */
+                    margin-left: -3vw; font-weight: bolder;">
+                    {{ store.getters.getUsername }}
+                </div>
+            </div>
+            </div>
+            
             <div v-if="store.getters.getDevHeight < 600" id="soldeMarginTop">
                 <sol-de ></sol-de> <br>   
             </div>
