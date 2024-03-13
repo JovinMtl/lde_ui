@@ -77,7 +77,7 @@
 
 <script>
 import baseMenuApps from '../../../Layout/base-menuApps.vue'
-import solde from '../../mains/solde.vue';
+import solde from '../../auxiliare/solde.vue';
 import { IonIcon } from '@ionic/vue';
 import { 
     IonItem, IonInput, IonList, IonButton,

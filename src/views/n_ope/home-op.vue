@@ -48,8 +48,8 @@
 
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
-import LisOp from '../operations/list-opt.vue'
-import Solde from '../mains/solde.vue'
+import LisOp from '../mains/list-opt.vue'
+import Solde from '../auxiliare/solde.vue'
 import signature from '../auxiliare/signature.vue';
 import { IonIcon, IonLabel, IonButtons, } from '@ionic/vue'
 import { 
