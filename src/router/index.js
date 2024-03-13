@@ -13,8 +13,13 @@ import Histo from '../views/operations/historique/historique.vue'
 import Convert from '../views/operations/principal/conversion.vue'
 import invest from '../views/operations/principal/invest.vue'
 import profile from '../views/operations/profile/profile.vue'
-import changePassword from '../views/operations/profile/change-password.vue'
+// import changePassword from '../views/operations/profile/change-password.vue'
 
+import { defineAsyncComponent} from 'vue'
+
+const changePassword = defineAsyncComponent({
+  loader: () => import('../views/operations/profile/change-password.vue'), // function that returns a Promise resolving to the component definition
+});
 
 const routes= [
   {
@@ -78,8 +83,8 @@ const routes= [
   },
   {
     path : '/chpa',
-    // component: changePassword,
-    
+    component: changePassword,
+
   },
   {
     path :'/signature',

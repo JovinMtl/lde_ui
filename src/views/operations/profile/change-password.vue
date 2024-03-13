@@ -41,8 +41,9 @@
 
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
-import changePassForm from '../../mains/ch-pw.vue';
-// import Solde from '../solde.vue'
+const changePassForm = defineAsyncComponent({
+  loader: () => import('../../mains/ch-pw.vue'), // function that returns a Promise resolving to the component definition
+});
 import { 
     IonIcon, IonLabel,
 } from '@ionic/vue'
