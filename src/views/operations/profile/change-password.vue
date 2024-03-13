@@ -1,5 +1,5 @@
 <template>
-    <base-menu pageTitle="Profile">
+    <base-menu pageTitle="Changer votre Mot de passe">
         <template v-slot:back-left>
             <ion-icon :icon="chevronBack" slot="end" size="large">Back</ion-icon>
             <!-- <ion-back-button text="Retour"></ion-back-button> -->
@@ -12,7 +12,7 @@
                 
         </template>
         <template v-slot:body-content>
-            <prof-content></prof-content>
+            <ch-pw></ch-pw>
             <!-- <sign-ature></sign-ature> -->
         </template>
         <template v-slot:Footer-menu>
@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import baseMenu from '../../Layout/base-menu.vue';
-import profContent from '../mains/prof-content.vue';
+import baseMenu from '../../../Layout/base-menu.vue';
+import changePassForm from '../../mains/ch-pw.vue';
 // import Solde from '../solde.vue'
 import { 
     IonIcon, IonLabel,
@@ -54,7 +54,7 @@ import {
 export default {
     components:{
         'base-menu' : baseMenu,
-        'prof-content': profContent,
+        'ch-pw': changePassForm,
         IonIcon, IonLabel,
         // retrForm,
     },

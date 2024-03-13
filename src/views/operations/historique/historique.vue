@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import baseMenu from '../../Layout/base-menu.vue';
-import histoRiqueVue from '../mains/histo-rique.vue'
+import baseMenu from '../../../Layout/base-menu.vue';
+import histoRiqueVue from '../../mains/histo-rique.vue'
 // import Solde from '../solde.vue'
 // import signature from '../signature.vue';
 import { 
