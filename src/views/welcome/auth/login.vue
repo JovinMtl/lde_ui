@@ -21,12 +21,12 @@
                     </div>
                     <br>
                     <div class="usere"  >
-                        <!-- <router-link to="/hope">
-                            <input  type="button" value="Connexion" @click="LogUser"/>
-                        </router-link> -->
-                        <router-link to="">
+                        <router-link to="/hope">
                             <input  type="button" value="Connexion" @click="LogUser"/>
                         </router-link>
+                        <!-- <router-link to="">
+                            <input  type="button" value="Connexion" @click="LogUser"/>
+                        </router-link> -->
                         
                     </div>
                     <div class="usere">
