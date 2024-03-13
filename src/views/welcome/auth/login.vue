@@ -12,6 +12,7 @@
             </div>
             <div id="info">
                 <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous connecter.</p>
+                <p v-if="failedLogin" style="color: #ab2800;">Vous avez utisé un nom d'utilisateur ou mot de passe <strong>incorrect</strong>.</p>
             </div>
                 <form>
                     <div class="usere">
@@ -20,7 +21,10 @@
                     </div>
                     <br>
                     <div class="usere"  >
-                        <router-link to="#">
+                        <!-- <router-link to="/hope">
+                            <input  type="button" value="Connexion" @click="LogUser"/>
+                        </router-link> -->
+                        <router-link to="">
                             <input  type="button" value="Connexion" @click="LogUser"/>
                         </router-link>
                         
@@ -57,6 +61,7 @@ export default {
         const router = useRouter()
         const username = ref(null)
         const password = ref(null)
+        const failedLogin = ref(false)
 
         var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
         var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
@@ -82,11 +87,12 @@ export default {
 
             } else{
                 console.log("BAD")
+                failedLogin.value = true
             }
             
         }
         return {
-            LogUser, username, password,
+            LogUser, username, password, failedLogin,
         }
     }
 }
