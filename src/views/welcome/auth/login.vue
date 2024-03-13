@@ -65,9 +65,10 @@ export default {
 
         var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
         var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
+        const baseURL = '//10.10.12.146:8000';
 
         async function LogUser(){
-            const response = await fetch("http://10.10.12.146:8000/jov/api/token/", {
+            const response = await fetch(`${baseURL}/jov/api/token/`, {
                 method:'POST',
                 headers: {
                     'Content-Type':'application/json',
