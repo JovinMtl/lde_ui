@@ -13,12 +13,10 @@ import Lit from '../views/welcome/homelit.vue'
 import Histo from '../views/operations/historique/historique.vue'
 import Convert from '../views/operations/principal/conversion.vue'
 import invest from '../views/operations/principal/invest.vue'
-import profileMenu from '../../tmp/profileMenu.vue'
+// import profileMenu from '../../tmp/profileMenu.vue'
 import profile from '../views/operations/profile/profile.vue'
 import changePassword from '../views/operations/profile/change-password.vue'
-//restructuring the components import globally or locally
-//Mar 13, 2024
-import LogUser from '../views/welcome/auth/login.vue'
+
 
 const routes= [
   {
@@ -26,24 +24,8 @@ const routes= [
     redirect: '/lit'
   },
   {
-    path :'/signature',
-    component : Signature
-  },
-  {
-    path: '/feuille',
-    component: Feuille,
-  },
-  {
-    path : '/base-menu',
-    component: BaseMenu,
-  },
-  {
-    path : '/hope',
-    component: HomP,
-  },
-  {
-    path : '/depot',
-    component: Depon
+    path : '/lit',
+    component : Lit
   },
   {
     path : '/logi',
@@ -54,6 +36,24 @@ const routes= [
     component : Registration,
   },
   {
+    path : '/hope',
+    component: HomP,
+  },
+  {
+    path: '/feuille',
+    component: Feuille,
+  },
+  {
+    path : '/base-menu',
+    component: BaseMenu,
+  },
+  
+  {
+    path : '/depot',
+    component: Depon
+  },
+  
+  {
     path : '/transfer',
     component : transfer,
   },
@@ -61,10 +61,7 @@ const routes= [
     path : '/retrait',
     component: retrait,
   },
-  {
-    path : '/lit',
-    component : Lit
-  },
+  
   {
     path : '/histo',
     component : Histo,
@@ -78,16 +75,16 @@ const routes= [
     component : invest
   },
   {
-    path : '/prof',
-    component : profileMenu
-  },
-  {
     path : '/profile',
     component: profile,
   },
   {
     path : '/chpa',
     component: changePassword
+  },
+  {
+    path :'/signature',
+    component : Signature
   },
 ]
 
