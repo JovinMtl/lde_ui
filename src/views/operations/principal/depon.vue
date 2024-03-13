@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import baseMenuApps from '../../../Layout/base-menuApps.vue'
+import baseMenuApps from '../../Layout/base-menuApps.vue';
 import solde from '../../auxiliare/solde.vue';
 import TakeIm from '../../mains/takeim.vue'
 import emptyModalVue from '../../mains/emptyModal.vue'

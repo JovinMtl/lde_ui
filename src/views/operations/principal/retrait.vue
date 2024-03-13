@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import baseMenu from '../../../Layout/base-menu.vue';
+import baseMenu from '../../Layout/base-menu.vue';
 import retrForm from '../../mains/retr-form.vue';
 import Solde from '../../auxiliare/solde.vue'
 import { 

@@ -1,47 +1,29 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router'
-import Conne from '../../tmp/conne.vue'
-import SignUp from '../../tmp/inscrire.vue'
-import Menu from '../../tmp/menu.vue'
 import Signature from '../views/auxiliare/signature.vue'
-//From a renewing, Feb 29, 2024
 import Feuille from '../views/Layout/feuille.vue'
 import BaseMenu from '../views/Layout/base-menu.vue'
-import Comp from '../views/n_ope/compo.vue'
+// import Comp from '../views/n_ope/compo.vue'
 import HomP from '../views/n_ope/home-op.vue'
 import Depon from '../views/operations/principal/depon.vue'
-// import Login from '../views/operations/auth/login.vue'
-import Regi from '../views/operations/auth/registr.vue'
+import Login from '../views/welcome/auth/login.vue'
+import Registration from '../views/welcome/auth/registr.vue'
 import transfer from '../views/operations/principal/transfer.vue'
 import retrait from '../views/operations/principal/retrait.vue'
 import Lit from '../views/welcome/homelit.vue'
 import Histo from '../views/operations/historique/historique.vue'
 import Convert from '../views/operations/principal/conversion.vue'
 import invest from '../views/operations/principal/invest.vue'
-// import depone from '../views/operations/depone.vue'
-// import emptyModal from '../views/operations/emptyModal.vue'
 import profileMenu from '../../tmp/profileMenu.vue'
 import profile from '../views/operations/profile/profile.vue'
 import changePassword from '../views/operations/profile/change-password.vue'
 //restructuring the components import globally or locally
 //Mar 13, 2024
-import LogUser from '../views/operations/auth/login.vue'
+import LogUser from '../views/welcome/auth/login.vue'
 
 const routes= [
   {
     path: '/',
     redirect: '/lit'
-  },
-  {
-    path: '/home',
-    component: Conne
-  },
-  {
-    path: '/signup',
-    component: SignUp,
-  },
-  {
-    path : '/menu',
-    component: Menu,
   },
   {
     path :'/signature',
@@ -60,10 +42,6 @@ const routes= [
     component: HomP,
   },
   {
-    path : '/compo',
-    component: Comp,
-  },
-  {
     path : '/depot',
     component: Depon
   },
@@ -73,7 +51,7 @@ const routes= [
   },
   {
     path :'/registration',
-    component : Regi,
+    component : Registration,
   },
   {
     path : '/transfer',

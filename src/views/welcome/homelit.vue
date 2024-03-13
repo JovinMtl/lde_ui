@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import feuilleVue from '../../Layout/feuille.vue'
+import feuille from '../Layout/feuille.vue';
 import signatureVide from '../auxiliare/signature-vide.vue';
 import { IonButton, } from '@ionic/vue'
 export default {
     components: {
-        'feui-lle': feuilleVue,
+        'feui-lle': feuille,
         'signature-vide': signatureVide,
         IonButton,
     },

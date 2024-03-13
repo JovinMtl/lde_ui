@@ -47,7 +47,8 @@
 </template>
 
 <script>
-import baseMenu from '../../Layout/base-menu.vue';
+// import baseMenu from '../../Layout/base-menu.vue';
+import baseMenu from '../Layout/base-menu.vue';
 import LisOp from '../mains/list-opt.vue'
 import Solde from '../auxiliare/solde.vue'
 import signature from '../auxiliare/signature.vue';

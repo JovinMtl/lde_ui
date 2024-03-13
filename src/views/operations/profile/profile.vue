@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import baseMenu from '../../../Layout/base-menu.vue';
+import baseMenu from '../../Layout/base-menu.vue';
 import profContent from '../../mains/prof-content.vue';
 // import Solde from '../solde.vue'
 import { 

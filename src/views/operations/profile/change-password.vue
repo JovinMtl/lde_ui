@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import baseMenu from '../../../Layout/base-menu.vue';
+import baseMenu from '../../Layout/base-menu.vue';
 import changePassForm from '../../mains/ch-pw.vue';
 // import Solde from '../solde.vue'
 import { 

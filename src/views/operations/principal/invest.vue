@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import baseMenuApps from '../../../Layout/base-menuApps.vue'
+import baseMenuApps from '../../Layout/base-menuApps.vue'
 import solde from '../../auxiliare/solde.vue';
 import { 
     IonItem, IonInput, IonList, IonButton,
