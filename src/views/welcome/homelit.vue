@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import feuilleVue from '../Layout/feuille.vue'
-import signatureVide from './auxiliare/signature-vide.vue';
+import feuilleVue from '../../Layout/feuille.vue'
+import signatureVide from '../auxiliare/signature-vide.vue';
 import { IonButton, } from '@ionic/vue'
 export default {
     components: {
