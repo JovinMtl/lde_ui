@@ -13,13 +13,13 @@
         <div class="jove">
             <div class="buto1">
                 <router-link to="/logi">
-                    <input class="fields butto1" type="button" value="Se Connecter" router-link="/hop"/>
+                    <input class="fields butto1" type="button" value="Se Connecter" router-link="/hope"/>
                 </router-link>
                 
             </div>
             <div class="buto2">
                 <router-link to="/registration">
-                    <input class="fields butto2" type="button" value="S'inscrire" router-link="/hop"/>
+                    <input class="fields butto2" type="button" value="S'inscrire" router-link="/hope"/>
                 </router-link>
                 
             </div>   

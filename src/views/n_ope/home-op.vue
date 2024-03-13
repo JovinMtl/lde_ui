@@ -23,7 +23,7 @@
             
         </template>
         <template v-slot:Footer-menu>
-            <router-link to="/hop">
+            <router-link to="/hope">
                 <ion-icon id="ico1" :icon="home" size="large"></ion-icon>
             </router-link>
             <router-link to="/histo">

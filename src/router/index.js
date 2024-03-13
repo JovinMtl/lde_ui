@@ -38,7 +38,7 @@ const routes= [
     component: BaseMenu,
   },
   {
-    path : '/hop',
+    path : '/hope',
     component: HomP,
   },
   {

@@ -21,8 +21,8 @@
                         <input class="fields" type="password" placeholder="Tapez votre mot de passe"/> <br>
                         <input class="fields" type="password" placeholder="Retapez votre mot de passe"/> <br>
                         <div class="usere connexion"  >
-                            <router-link to="/hop">
-                            <input  type="button" value="S'inscrire" router-link="/hop"/>
+                            <router-link to="/hope">
+                            <input  type="button" value="S'inscrire" router-link="/hope"/>
                         </router-link>
                             
                         </div>

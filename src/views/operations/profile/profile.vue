@@ -16,7 +16,7 @@
             <!-- <sign-ature></sign-ature> -->
         </template>
         <template v-slot:Footer-menu>
-            <router-link to="/hop">
+            <router-link to="/hope">
                 <ion-icon id="ico1" :icon="home" size="large"></ion-icon>
             </router-link>
             <router-link to="/histo">
@@ -25,7 +25,7 @@
             <router-link to="/depot">
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
             </router-link>
-            <router-link to="/prof">
+            <router-link to="/profile">
                 <ion-icon id="ico4" :icon="personCircle" size="large"></ion-icon>
             </router-link>
             
