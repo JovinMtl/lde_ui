@@ -38,9 +38,11 @@
 </template>
 
 <script>
+// import feuille from '@views/Layout/feuille.vue';
 import feuille from '../../Layout/feuille.vue';
-import signatureHeadVue from '../signatureHead.vue';
-import BackButton from '../auxiliare/backButton.vue'
+// import signatureHeadVue from '@views/signatureHead.vue';
+import BackButton from '@views/auxiliare/backButton.vue'
+import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 export default {
     components:{
         'feui-lle': feuille,

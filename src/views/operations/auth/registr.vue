@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import feuille from '../../Layout/feuille.vue';
-import signatureHeadVue from '../signatureHead.vue';
-import signaturevide from '../signature-vide.vue'
-import BackButton from '../auxiliare/backButton.vue'
+import feuille from '../../../Layout/feuille.vue';
+import signatureHeadVue from '../../auxiliare/signatureHead.vue';
+import signaturevide from '../../auxiliare/signature-vide.vue'
+import BackButton from '../../auxiliare/backButton.vue'
 export default {
     components:{
         'feui-lle': feuille,

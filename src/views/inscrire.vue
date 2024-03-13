@@ -34,7 +34,7 @@ import { IonBackButton,  } from '@ionic/vue'
 // import { return-up-back } from 'ionicons/icons'
 import { add } from 'ionicons/icons'
 import { heart, returnUpBack, arrowBack, home} from 'ionicons/icons';
-import Signature from './signature.vue'
+import Signature from './auxiliare/signature.vue'
 
 export default {
   components: {

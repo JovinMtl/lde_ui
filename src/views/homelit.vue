@@ -35,7 +35,7 @@
 
 <script>
 import feuilleVue from '../Layout/feuille.vue'
-import signatureVide from './signature-vide.vue';
+import signatureVide from './auxiliare/signature-vide.vue';
 import { IonButton, } from '@ionic/vue'
 export default {
     components: {

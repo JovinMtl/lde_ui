@@ -35,7 +35,7 @@
 
 <script>
 // import Menu from '../menu.vue'
-import signature from '../signature.vue'
+import signature from '../auxiliare/signature.vue'
 import { camera, add, checkmark, downloadOutline} from 'ionicons/icons'
 import { IonButton, IonButtons, IonIcon } from '@ionic/vue'
 export default {

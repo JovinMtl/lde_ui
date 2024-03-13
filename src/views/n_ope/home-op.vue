@@ -50,7 +50,7 @@
 import baseMenu from '../../Layout/base-menu.vue';
 import LisOp from '../operations/list-opt.vue'
 import Solde from '../solde.vue'
-import signature from '../signature.vue';
+import signature from '../auxiliare/signature.vue';
 import { IonIcon, IonLabel, IonButtons, } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,

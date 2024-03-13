@@ -2,15 +2,15 @@ import { createRouter, createWebHistory } from '@ionic/vue-router'
 import Conne from '../views/conne.vue'
 import SignUp from '../views/inscrire.vue'
 import Menu from '../views/menu.vue'
-import Signature from '../views/signature.vue'
+import Signature from '../views/auxiliare/signature.vue'
 //From a renewing, Feb 29, 2024
-import Feuille from '../Layout/feuille.vue'
-import BaseMenu from '../Layout/base-menu.vue'
+import Feuille from '../views/Layout/feuille.vue'
+import BaseMenu from '../views/Layout/base-menu.vue'
 import Comp from '../views/n_ope/compo.vue'
 import HomP from '../views/n_ope/home-op.vue'
 import Depon from '../views/operations/depon.vue'
-import Login from '../views/operations/login.vue'
-import Regi from '../views/operations/registr.vue'
+// import Login from '../views/operations/auth/login.vue'
+import Regi from '../views/operations/auth/registr.vue'
 import transfer from '../views/operations/transfer.vue'
 import retrait from '../views/operations/retrait.vue'
 import Lit from '../views/homelit.vue'
@@ -22,6 +22,9 @@ import invest from '../views/operations/invest.vue'
 import profileMenu from '../views/profileMenu.vue'
 import profile from '../views/operations/profile.vue'
 import changePassword from '../views/operations/change-password.vue'
+//restructuring the components import globally or locally
+//Mar 13, 2024
+import LogUser from '../views/operations/auth/login.vue'
 
 const routes= [
   {

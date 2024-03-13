@@ -26,7 +26,8 @@ import './theme/jove.css'
 // import './theme/global.scss'
 
 
-import Base from './Layout/base.vue'
+// import Base from 'views/Layout/base.vue'
+import Base from './views/Layout/base.vue'
 import store from './store/index.js'
 
 const app = createApp(App)

@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import signature from './signature.vue'
+import signature from './auxiliare/signature.vue'
 import { IonPage, IonContent, IonImg, IonButton} from '@ionic/vue'
-import signatureVue from './signature.vue'
+import signatureVue from './auxiliare/signature.vue'
 export default {
     components: {
         'signa-ture': signature,
