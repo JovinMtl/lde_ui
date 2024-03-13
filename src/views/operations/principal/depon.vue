@@ -110,7 +110,7 @@
 
 <script>
 import baseMenuApps from '../../../Layout/base-menuApps.vue'
-import solde from '../../solde.vue';
+import solde from '../../mains/solde.vue';
 import TakeIm from '../takeim.vue'
 import emptyModalVue from '../emptyModal.vue'
 import { IonIcon } from '@ionic/vue';

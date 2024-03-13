@@ -43,7 +43,7 @@
 <script>
 import baseMenu from '../../../Layout/base-menu.vue';
 import retrForm from '../../mains/retr-form.vue';
-import Solde from '../../solde.vue'
+import Solde from '../../mains/solde.vue'
 import { 
     IonIcon, IonLabel,
 } from '@ionic/vue'
