@@ -56,33 +56,11 @@ export default {
         const username = ref(null)
         const password = ref(null)
 
-        // async function LogUser(){
-        //     store.state.username = username.value
-        //     store.state.password = password.value
-        //     console.log("You want to connect: ", username.value, ":", password.value)
-        //     fetch("http://127.0.0.1:8000/jov/api/token/", {
-        //         method:'POST',
-        //         headers: {
-        //             'Content-Type':'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             username : username.value,
-        //             password : password.value,
-        //         }),
-        //     }).then((response)=>{
-        //         if (!response.ok){
-        //           store.state.isLoggedIn = false
-        //           return new Error("Server not reached")
-        //         //   throw new Error('Network response was not ok');
-        //         } else{
-        //           store.state.isLoggedIn = true
-        //           return response.json()
-        //     }
-        // })
+        var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
+        var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
 
-        // }
         async function LogUser(){
-            const response = await fetch("http://127.0.0.1:8000/jov/api/token/", {
+            const response = await fetch("http://10.10.12.146:8000/jov/api/token/", {
                 method:'POST',
                 headers: {
                     'Content-Type':'application/json',
@@ -93,11 +71,15 @@ export default {
                 }),
             })
             if(response.ok){
-                console.log("OKK")
+                console.log("OKK : ", response)
                 store.state.username = username.value
+                const data = await response.json()
+                console.log("The data is : ", data)
+                store.state.user = data
             } else{
                 console.log("BAD")
             }
+            
         }
         return {
             LogUser, username, password,
