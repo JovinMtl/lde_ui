@@ -22,6 +22,7 @@
 <script>
 import { IonList, IonItem, IonLabel, IonInput, IonButton, } from '@ionic/vue'
 export default {
+    name: 'ChangePassword',
     components:{
         IonList, IonItem, IonLabel, IonInput, IonButton,
     },

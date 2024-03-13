@@ -41,9 +41,7 @@
 
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
-const changePassForm = defineAsyncComponent({
-  loader: () => import('../../mains/ch-pw.vue'), // function that returns a Promise resolving to the component definition
-});
+import changePassword from '../../mains/ch-pw.vue'
 import { 
     IonIcon, IonLabel,
 } from '@ionic/vue'
@@ -55,7 +53,7 @@ import {
 export default {
     components:{
         'base-menu' : baseMenu,
-        'ch-pw': changePassForm,
+        'ch-pw': changePassword,
         IonIcon, IonLabel,
         // retrForm,
     },
