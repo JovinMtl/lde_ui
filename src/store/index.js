@@ -12,6 +12,12 @@ const store = createStore({
             capturedImage : null,
             numberTaken : 0,
             wantTakePhoto: true,
+
+
+            username : 'null',
+            password : 'bbb',
+            user : 'null',
+            isLoggedIn : false,
         }
     },
     mutations:{

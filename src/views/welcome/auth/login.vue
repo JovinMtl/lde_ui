@@ -94,6 +94,7 @@ export default {
             })
             if(response.ok){
                 console.log("OKK")
+                store.state.username = username.value
             } else{
                 console.log("BAD")
             }
