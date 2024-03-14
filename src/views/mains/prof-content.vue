@@ -24,7 +24,7 @@
         </div> 
     </router-link>
     <br><br>
-    <a href="https://wa.me/+971563970168" style="text-decoration: none;">
+    <a href="https://t.me/adas40" previewlistener="true" style="text-decoration: none;">
         <div style="background-color: black; 
         height: 7.5vh; width: 80vw; padding-top: 1vh;
         border-radius: 12px; padding-left: 6vw; margin-left: 6vw; color: white;">
@@ -37,26 +37,7 @@
                 left: 77vw; font-size: 5vh; color: orange;"></ion-icon>
         </div> 
     </a>
-    <div>
-        <!-- Callback mode -->
-        <span v-if="!isLoaded">Loading...</span>
-        <telegram-login-temp
-        mode="callback"
-        telegram-login="lid111bot"
-        @loaded='telegramLoadedCallbackFunc'
-        @callback="yourCallbackFunction"
-        />
     
-        <!-- Redirect mode -->
-        <telegram-login-temp
-        mode="redirect"
-        telegram-login="lid111bot"
-        @loaded='telegramLoadedCallbackFunc'
-        redirect-url="https://your-website.io"
-        />
-    </div>
-
-
 </template>
 <script>
 import {  IonList, IonItem, IonIcon } from '@ionic/vue'
@@ -66,13 +47,32 @@ import {
 } from 'ionicons/icons'
 import VueTelegramLogin from 'vue-telegram-login';
 import { telegramLoginTemp } from 'vue3-telegram-login'
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUpdate } from 'vue'
+
 export default {
     components:{
         IonList, IonItem, IonIcon,
         VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
+        //another approach
+        const telegramLogin = ref(null);
+
+        onMounted(() => {
+            const telegramScript = document.createElement('script');
+            telegramScript.src = 'https://telegram.org/js/telegram-widget.js?22';
+            telegramScript.setAttribute('data-telegram-login', 'lid111bot');
+            telegramScript.setAttribute('data-size', 'large');
+            telegramScript.setAttribute('data-request-access', 'write');
+            document.head.appendChild(telegramScript);
+
+            window.onTelegramAuth = function(user) {
+                alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+            };
+
+            telegramLogin.value.appendChild(telegramScript);
+        });
+        //end of another approach
         const openLogin = (user)=>{
             console.log("Vous etes: ", user)
         }
@@ -100,6 +100,8 @@ export default {
             handleTelegramLogin, openLogin,
             telegramLoadedCallbackFunc, yourCallbackFunction,
             isLoaded,
+
+            telegramLogin,
         }
     },
 }

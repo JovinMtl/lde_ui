@@ -1,37 +1,31 @@
 <template>
-    <!-- Callback mode -->
-    <span v-if="!isLoaded">Loading...</span>
-    <telegram-login-temp
-      mode="callback"
-      telegram-login="lid111bot"
-      @loaded='telegramLoadedCallbackFunc'
-      @callback="yourCallbackFunction"
-    />
-  
-    <!-- Redirect mode -->
-    <telegram-login-temp
-      mode="redirect"
-      telegram-login="lid111bot"
-      @loaded='telegramLoadedCallbackFunc'
-      redirect-url="https://your-website.io"
-    />
+    <div ref="telegramLogin"></div>
   </template>
   
-  <script setup>
-  import { telegramLoginTemp } from 'vue3-telegram-login'
-  import { ref } from 'vue'
+  <script>
+  import { onMounted, ref } from 'vue';
   
-  const isLoaded = ref(false)
+  export default {
+    setup() {
+      const telegramLogin = ref(null);
   
-  function telegramLoadedCallbackFunc () {
-    console.log('script is loaded')
-    isLoaded.value = true
-  }
+      onMounted(() => {
+        const telegramScript = document.createElement('script');
+        telegramScript.src = 'https://telegram.org/js/telegram-widget.js?22';
+        telegramScript.setAttribute('data-telegram-login', 'lid111bot');
+        telegramScript.setAttribute('data-size', 'large');
+        telegramScript.setAttribute('data-request-access', 'write');
+        document.head.appendChild(telegramScript);
   
-  function yourCallbackFunction (user) {
-    // gets user as an input
-    // id, first_name, last_name, username,
-    // photo_url, auth_date and hash
-    console.log(user)
-  }
+        window.onTelegramAuth = function(user) {
+          alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+        };
+  
+        telegramLogin.value.appendChild(telegramScript);
+      });
+  
+      return { telegramLogin };
+    },
+  };
   </script>
+  
