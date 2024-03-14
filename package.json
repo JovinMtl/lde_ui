@@ -25,6 +25,7 @@
     "ionicons": "^7.0.0",
     "vue": "^3.3.0",
     "vue-router": "^4.2.0",
+    "vue-telegram-login": "^2.1.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

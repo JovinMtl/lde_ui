@@ -37,21 +37,37 @@
                 left: 77vw; font-size: 5vh; color: orange;"></ion-icon>
         </div> 
     </a>
+    <div>
+        Here about Telegram
+        <vue-telegram-login
+            size="large"
+            corner="round"
+            @login="handleTelegramLogin"/>
+    </div>
 </template>
 <script>
+import { defineComponent } from 'vue';
 import {  IonList, IonItem, IonIcon } from '@ionic/vue'
 import { 
     settings, fingerPrint, logoWhatsapp, personCircle, 
     chevronForward,
 } from 'ionicons/icons'
+import VueTelegramLogin from 'vue-telegram-login';
 export default {
     components:{
         IonList, IonItem, IonIcon,
+        VueTelegramLogin
     },
     setup() {
+        function handleTelegramLogin(user) {
+            // Handle the Telegram user data here
+            console.log(user);
+        }
         return {
             settings, fingerPrint, logoWhatsapp, personCircle,
             chevronForward,
+
+            handleTelegramLogin,
         }
     },
 }
