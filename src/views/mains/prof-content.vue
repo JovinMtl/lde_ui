@@ -28,7 +28,7 @@
         <div style="background-color: black; 
         height: 7.5vh; width: 80vw; padding-top: 1vh;
         border-radius: 12px; padding-left: 6vw; margin-left: 6vw; color: white;">
-            <ion-icon :icon="logoWhatsapp" style="color: orange; font-size: 5vh;"></ion-icon>
+            <ion-icon :src="telegramLogo" style="color: orange; font-size: 5vh;"></ion-icon>
             <span style="margin-right: .2rem;">&nbsp;</span> 
             <span style="position: relative; bottom: 1.6vh; text-align: center; font-weight: bold;">
                 Nous contacter</span> 
@@ -37,7 +37,6 @@
                 left: 77vw; font-size: 5vh; color: orange;"></ion-icon>
         </div> 
     </a>
-    <ion-icon :src="telegramLogo" style="color:red"></ion-icon>
     
 </template>
 <script>
