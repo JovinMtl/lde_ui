@@ -42,12 +42,11 @@
 <script>
 import {  IonList, IonItem, IonIcon } from '@ionic/vue'
 import { 
-    settings, fingerPrint, logoWhatsapp, personCircle, 
+    fingerPrint, personCircle, 
     chevronForward,
 } from 'ionicons/icons'
 import VueTelegramLogin from 'vue-telegram-login';
 import { telegramLoginTemp } from 'vue3-telegram-login'
-import { ref, onMounted, onBeforeUpdate } from 'vue'
 
 export default {
     components:{
@@ -58,8 +57,7 @@ export default {
         const telegramLogo = '/resources/logo/logo_home/telegram.svg'
         
         return {
-            settings, fingerPrint, logoWhatsapp, personCircle,
-            chevronForward,
+            fingerPrint, personCircle, chevronForward,
             telegramLogo,
         }
     },
