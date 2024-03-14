@@ -1,5 +1,6 @@
 :root {
-	--ion-color-primary: #ab7400;
+	/* --ion-color-primary: #ab7400; */
+	--ion-color-primary: #fff;
 	--ion-color-primary-rgb: 171,116,0;
 	--ion-color-primary-contrast: #000000;
 	--ion-color-primary-contrast-rgb: 0,0,0;

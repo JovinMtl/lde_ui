@@ -40,13 +40,13 @@ export default {
                     borderRadius : '7px',
                     path : '/retrait',
                 },
-                {
-                    logo : "url('resources/logo/logo_home/Currencies.png')",
-                    name : 'Convertir',
-                    color: 'yellow',
-                    borderRadius : '5px',
-                    path : '/convert',
-                },
+                // {
+                //     logo : "url('resources/logo/logo_home/Currencies.png')",
+                //     name : 'Convertir',
+                //     color: 'yellow',
+                //     borderRadius : '5px',
+                //     path : '/convert',
+                // },
                 {
                     logo : "url('resources/logo/logo_home/savine_.png')",
                     name : 'Investir',
@@ -79,7 +79,7 @@ export default {
         /* background-color: red; */
         justify-content: center; 
         text-align: center;
-        margin-top: -40px;
+        margin-top: -10px;
     }
     .opti1{
         display: inline-block;
@@ -111,6 +111,6 @@ export default {
     }
     .haut{
         /* background-color: red; */
-        margin-top: -20px;
+        margin-top: -10px;
     }
 </style>

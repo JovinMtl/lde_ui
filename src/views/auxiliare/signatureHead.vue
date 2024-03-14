@@ -24,14 +24,12 @@
     #logolit{
         display: inline-block;
         position: relative;
-        /* width: 85px; */
         width: 16vh;
         height: 16vh;
         margin-top: 1.2vh;
-        /* height: 85px; */
-        /* top: 15px; */
 
-        background-image: url('/resources/logo/logo_home/Lit_Dinard_ON_ORANGE.png');
+        /* background-image: url('/resources/logo/logo_home/Lit_Dinard_ON_ORANGE.png'); */
+        background-image: url('/Lit_Dinard_ON_GRAY.png');
         background-size: cover;
     }
     #text{

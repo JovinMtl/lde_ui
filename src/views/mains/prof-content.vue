@@ -14,7 +14,7 @@
     <router-link to="/chpa" style="text-decoration: none;">
         <div style="background-color: black; 
         height: 7.5vh; width: 80vw; padding-top: 1vh;
-        border-radius: 12px; padding-left: 6vw; margin-left: 6vw; color: white;">
+        border-radius: 12px; padding-left: 6vw; margin-left: 6vw;">
             <ion-icon :icon="fingerPrint" style="color: orange; font-size: 5vh;"></ion-icon>
             <span style="margin-right: .2rem;">&nbsp;</span> 
             <span style="position: absolute;margin-top: .9vh; font-weight: bold;">Changer le mot de passe</span> 
@@ -55,53 +55,11 @@ export default {
         VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
-        //another approach
-        const telegramLogin = ref(null);
-
-        onMounted(() => {
-            const telegramScript = document.createElement('script');
-            telegramScript.src = 'https://telegram.org/js/telegram-widget.js?22';
-            telegramScript.setAttribute('data-telegram-login', 'lid111bot');
-            telegramScript.setAttribute('data-size', 'large');
-            telegramScript.setAttribute('data-request-access', 'write');
-            document.head.appendChild(telegramScript);
-
-            window.onTelegramAuth = function(user) {
-                alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
-            };
-
-            telegramLogin.value.appendChild(telegramScript);
-        });
-        //end of another approach
-        const openLogin = (user)=>{
-            console.log("Vous etes: ", user)
-        }
-        function handleTelegramLogin(user) {
-            // Handle the Telegram user data here
-            console.log(user);
-        }
-        const isLoaded = ref(false)
-  
-        function telegramLoadedCallbackFunc () {
-            console.log('script is loaded')
-            isLoaded.value = true
-        }
         
-        function yourCallbackFunction (user) {
-            // gets user as an input
-            // id, first_name, last_name, username,
-            // photo_url, auth_date and hash
-            console.log(user)
-        }
+        
         return {
             settings, fingerPrint, logoWhatsapp, personCircle,
             chevronForward,
-
-            handleTelegramLogin, openLogin,
-            telegramLoadedCallbackFunc, yourCallbackFunction,
-            isLoaded,
-
-            telegramLogin,
         }
     },
 }

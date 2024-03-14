@@ -13,12 +13,14 @@
     margin-right: 3vw;
   }
   ion-content {
-    --ion-background-color: #ab7400;
+    /* --ion-background-color: #ab7400; */
+    /* --ion-background-color:rgb(70, 67, 67) */
   }
   ion-toolbar{
     /* --background: rgba(171, 116, 0, 0.3) ; */
     --background: black;
     color : white;
+    /* color: red; */
     /* color : #ab7400; */
   }
   html {
@@ -34,10 +36,12 @@
   .white{
     background-color: black;
     color : white;
+    color: red;
     border-radius: 6px;
   }
   .whiteOnly{
     color : white;
+    color: red;
   }
   #ico1{
     display: inline-flex;
@@ -127,7 +131,7 @@
     margin-left: 8%;
     margin-right: 8%;
     text-align: center;
-    color: white;
+    /* color: white; */
   }
   .usere{
     /* background-color: red; */

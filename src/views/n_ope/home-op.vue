@@ -25,7 +25,7 @@
                     /* padding-left: 10vw; */
                     ">
                     <ion-icon :icon="personCircle" style="text-align: right; ; 
-                    font-size: 6vh; color:white"></ion-icon>
+                    font-size: 6vh; color:black"></ion-icon>
                 </div>
                 <div class="username" style="width: 50%;height: 100%;
                     /* background-color: grey; */
