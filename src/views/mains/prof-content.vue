@@ -38,36 +38,68 @@
         </div> 
     </a>
     <div>
-        Here about Telegram
-        <vue-telegram-login
-            size="large"
-            corner="round"
-            @login="handleTelegramLogin"/>
+        <!-- Callback mode -->
+        <span v-if="!isLoaded">Loading...</span>
+        <telegram-login-temp
+        mode="callback"
+        telegram-login="lid111bot"
+        @loaded='telegramLoadedCallbackFunc'
+        @callback="yourCallbackFunction"
+        />
+    
+        <!-- Redirect mode -->
+        <telegram-login-temp
+        mode="redirect"
+        telegram-login="lid111bot"
+        @loaded='telegramLoadedCallbackFunc'
+        redirect-url="https://your-website.io"
+        />
     </div>
+
+
 </template>
 <script>
-import { defineComponent } from 'vue';
 import {  IonList, IonItem, IonIcon } from '@ionic/vue'
 import { 
     settings, fingerPrint, logoWhatsapp, personCircle, 
     chevronForward,
 } from 'ionicons/icons'
 import VueTelegramLogin from 'vue-telegram-login';
+import { telegramLoginTemp } from 'vue3-telegram-login'
+import { ref } from 'vue'
 export default {
     components:{
         IonList, IonItem, IonIcon,
-        VueTelegramLogin
+        VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
+        const openLogin = (user)=>{
+            console.log("Vous etes: ", user)
+        }
         function handleTelegramLogin(user) {
             // Handle the Telegram user data here
             console.log(user);
+        }
+        const isLoaded = ref(false)
+  
+        function telegramLoadedCallbackFunc () {
+            console.log('script is loaded')
+            isLoaded.value = true
+        }
+        
+        function yourCallbackFunction (user) {
+            // gets user as an input
+            // id, first_name, last_name, username,
+            // photo_url, auth_date and hash
+            console.log(user)
         }
         return {
             settings, fingerPrint, logoWhatsapp, personCircle,
             chevronForward,
 
-            handleTelegramLogin,
+            handleTelegramLogin, openLogin,
+            telegramLoadedCallbackFunc, yourCallbackFunction,
+            isLoaded,
         }
     },
 }
