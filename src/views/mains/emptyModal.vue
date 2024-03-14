@@ -62,8 +62,10 @@ buttoni{
         width: 100%;
         height: 42%;
         margin: 20px;
-        box-shadow: 3 3px #fff;
+        // box-shadow: 3 3px #fff;
         background-color: #fff;
+        // background-color: red;
+        box-shadow: 0 0 35px #ab7400;
         // padding: 15px;
         padding-top: -5vh;
         padding-right: 5vw;
@@ -83,8 +85,6 @@ buttoni{
             border-radius: 5px;
             // box-shadow: 0 6px 10px #ab7400;
             box-shadow: 0 0 30px orange;
-            // $shadow-light: 0 1px 3px rgba(#000, 0.1), 0 1px 2px rgba(#000, 0.1);
-            // box-shadow: 5px 5px 10px #ccc, -5px -5px 10px #fff;
             font-size: 3vh;
         }
     }

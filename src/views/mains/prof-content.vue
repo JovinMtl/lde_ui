@@ -37,6 +37,7 @@
                 left: 77vw; font-size: 5vh; color: orange;"></ion-icon>
         </div> 
     </a>
+    <ion-icon :src="telegramLogo" style="color:red"></ion-icon>
     
 </template>
 <script>
@@ -55,11 +56,12 @@ export default {
         VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
-        
+        const telegramLogo = '/resources/logo/logo_home/telegram.svg'
         
         return {
             settings, fingerPrint, logoWhatsapp, personCircle,
             chevronForward,
+            telegramLogo,
         }
     },
 }
