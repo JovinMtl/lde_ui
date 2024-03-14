@@ -54,7 +54,7 @@ export default {
         VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
-        const telegramLogo = '/resources/logo/logo_home/telegram.svg'
+        const telegramLogo = '/resources/logo/logo_home/telegrame.svg'
         
         return {
             fingerPrint, personCircle, chevronForward,
