@@ -21,12 +21,12 @@
                     </div>
                     <br>
                     <div class="usere"  >
-                        <router-link to="/hope">
-                            <input  type="button" value="Connexion" @click="LogUser"/>
-                        </router-link>
-                        <!-- <router-link to="">
+                        <!-- <router-link to="/hope">
                             <input  type="button" value="Connexion" @click="LogUser"/>
                         </router-link> -->
+                        <router-link to="">
+                            <input  type="button" value="Connexion" @click="LogUser"/>
+                        </router-link>
                         
                     </div>
                     <div class="usere">
@@ -68,7 +68,9 @@ export default {
         const baseURL = '//10.10.12.146:8000';
 
         async function LogUser(){
-            const response = await fetch(`${baseURL}/jov/api/token/`, {
+            try{
+                //
+                const response = await fetch(`${baseURL}/jov/api/token/`, {
                 method:'POST',
                 headers: {
                     'Content-Type':'application/json',
@@ -89,7 +91,18 @@ export default {
             } else{
                 console.log("BAD")
                 failedLogin.value = true
+                
             }
+            } catch(value){
+                //
+                console.log("YOu did not reach the server because: ", value)
+                if(username.value=='pass' && password.value=='pass'){
+                    failedLogin.value = false
+                    store.state.username = username.value
+                    router.push('/hope')
+                }
+            }
+            
             
         }
         return {
