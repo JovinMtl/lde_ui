@@ -15,7 +15,7 @@
         *{
             margin: 0;
             padding: 0;
-            background-color: rgb(70, 67, 67);
+            /* background-color: rgb(70, 67, 67); */
         }
         /* body{
             position: relative;
@@ -23,10 +23,12 @@
             height: 100vh;
         } */
         .container-processing{
-            position: absolute;
+            /* position: absolute; */
+            position: relative;
             height: 20vh;
             width: 50vw;
-            background-color: white;
+            /* background-color: white; */
+            background-color: transparent;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);

@@ -63,7 +63,10 @@
 
             </ion-list>  
             <br><br><br>
-            <div class="loader" v-if="waiter">
+            <div class="loader" v-if="waiter" 
+                style="background-color: transparent; position:fixed; 
+                top: 60%; left: 50%; transform: translate(-50%, -50%);"
+                >
                 <loa-der></loa-der>
             </div>
             <div class="guide" v-if="true">
@@ -107,7 +110,7 @@
                 </empty-modal>
             </div>
             <!-- <ion-button v-show="!modalActive && !infoModal" id="confirmButton" expand="block" @click="toogleModal">Confirmer</ion-button> -->
-            <ion-button v-show="!modalActive && !infoModal && selectedItem" id="confirmButton" expand="block" @click="toogleModal">Confirmer depot</ion-button>
+            <ion-button v-show="!modalActive && !infoModal && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer depot</ion-button>
     </base-menu-app>
 </template>
 
