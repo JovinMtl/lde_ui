@@ -56,6 +56,7 @@ buttoni{
     top: 0;
     left: 0;
     background-color: rgba(255, 255, 255, 0.3);
+    z-index: 10;
 
     .modal-inner{
         position: relative;
@@ -73,6 +74,7 @@ buttoni{
         justify-content: center;
         text-align: center;
         border-radius: 15px;
+        z-index: 8;
 
         .fermer{
             position: sticky;

@@ -70,7 +70,7 @@
                 >
                 <loa-der></loa-der>
             </div>
-            <div class="guide" v-if="true">
+            <div class="guide" v-if="true" style="z-index: 6;">
                 <div class="home">
                 <empty-modal @byeModal="toogleModal" :modalActive="infoModal" :beneficiaire="payee">
                     <div class="modal-content">
