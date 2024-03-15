@@ -63,7 +63,7 @@
 
             </ion-list>  
             <br><br><br>
-            <div class="loader" v-if="selectedItem">
+            <div class="loader" v-if="waiter">
                 <loa-der></loa-der>
             </div>
             <div class="guide" v-if="true">
@@ -141,14 +141,20 @@ export default {
         const modalActive = ref(false)
         const infoModal = ref(false)
         const toogleModal = ()=>{
-            waiter.value = !waiter.value
-            setTimeout(()=>{
-                if(infoModal.value){
-                    infoModal.value = false
-                    return 0
-                }
+            if(infoModal.value){
+                infoModal.value = false
+                return 0
+            }
+            if(!waiter.value){
+                waiter.value = true
+                setTimeout(()=>{
+                    modalActive.value = !modalActive.value
+                }, 5000)
+            } else {
+                waiter.value = false
                 modalActive.value = !modalActive.value
-                }, 5)
+            }
+            
             
         }
 
@@ -651,6 +657,8 @@ export default {
             toogleModal,
 
             payee,infoModal,
+
+            waiter,
         }
     },
 }
