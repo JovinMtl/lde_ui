@@ -96,9 +96,7 @@
             </div>
             
             </div>
-            <div class="home" style="background-color: transparent; position:fixed; 
-                top: 60%; left: 50%; transform: translate(-50%, -50%);
-                z-index: 8;">
+            <div class="home">
                 <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
                     <div class="modal-content">
                         <h1 >Confirmation </h1>
