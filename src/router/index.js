@@ -14,7 +14,8 @@ import Convert from '../views/operations/principal/conversion.vue'
 import invest from '../views/operations/principal/invest.vue'
 import profile from '../views/operations/profile/profile.vue'
 import changePassword from '../views/operations/profile/change-password.vue'
-
+// import Loader from '..views/auxiliare/processing/processing1.vue'
+import Loader from '../views/auxiliare/processing/processing1.vue'
 // import { defineAsyncComponent} from 'vue'
 
 // const changePassword = defineAsyncComponent({
@@ -89,6 +90,10 @@ const routes= [
   {
     path :'/signature',
     component : Signature
+  },
+  {
+    path : '/loader',
+    component : Loader
   }
 ]
 
