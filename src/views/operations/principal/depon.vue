@@ -63,7 +63,9 @@
 
             </ion-list>  
             <br><br><br>
-            <div class="loader"></div>
+            <div class="loader">
+                <loa-der></loa-der>
+            </div>
             <div class="guide" v-if="true">
                 <div class="home">
                 <empty-modal @byeModal="toogleModal" :modalActive="infoModal" :beneficiaire="payee">
@@ -114,6 +116,7 @@ import baseMenuApps from '../../Layout/base-menuApps.vue';
 import solde from '../../auxiliare/solde.vue';
 import TakeIm from '../../mains/takeim.vue'
 import emptyModalVue from '../../mains/emptyModal.vue'
+import Loader from '../../auxiliare/processing/processing1.vue'
 import { IonIcon } from '@ionic/vue';
 import { 
     IonItem, IonInput, IonList, IonButton,
@@ -128,6 +131,7 @@ export default {
         'take-im' : TakeIm,
         'sol-de' : solde,
         'empty-modal' : emptyModalVue,
+        'loa-der': Loader,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption, IonImg, IonIcon,
         IonThumbnail, IonLabel,
