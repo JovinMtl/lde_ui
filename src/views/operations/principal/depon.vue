@@ -65,7 +65,8 @@
             <br><br><br>
             <div class="loader" v-if="waiter" 
                 style="background-color: transparent; position:fixed; 
-                top: 60%; left: 50%; transform: translate(-50%, -50%);"
+                top: 60%; left: 50%; transform: translate(-50%, -50%);
+                z-index: 5;"
                 >
                 <loa-der></loa-der>
             </div>
