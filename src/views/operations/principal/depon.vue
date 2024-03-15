@@ -63,6 +63,7 @@
 
             </ion-list>  
             <br><br><br>
+            <div class="loader"></div>
             <div class="guide" v-if="true">
                 <div class="home">
                 <empty-modal @byeModal="toogleModal" :modalActive="infoModal" :beneficiaire="payee">
