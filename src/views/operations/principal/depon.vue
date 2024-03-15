@@ -63,7 +63,7 @@
 
             </ion-list>  
             <br><br><br>
-            <div class="loader">
+            <div class="loader" v-if="selectedItem">
                 <loa-der></loa-der>
             </div>
             <div class="guide" v-if="true">
@@ -149,6 +149,10 @@ export default {
         }
 
         //End of Modal
+
+        //Begin of Managing the waiter
+        const waiter = ref(false)
+        //Ending of Managing the waiter
 
 
         //Beginning of Things for Currencies

@@ -26,7 +26,7 @@
             position: absolute;
             height: 20vh;
             width: 50vw;
-            background-color: black;
+            background-color: white;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
