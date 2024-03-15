@@ -141,11 +141,15 @@ export default {
         const modalActive = ref(false)
         const infoModal = ref(false)
         const toogleModal = ()=>{
-            if(infoModal.value){
-                infoModal.value = false
-                return 0
-            }
-            modalActive.value = !modalActive.value
+            waiter.value = !waiter.value
+            setTimeout(()=>{
+                if(infoModal.value){
+                    infoModal.value = false
+                    return 0
+                }
+                modalActive.value = !modalActive.value
+                }, 5)
+            
         }
 
         //End of Modal
