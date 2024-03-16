@@ -159,12 +159,13 @@ export default {
             const formToBeSent = new FormData()
             formToBeSent.append('currency', 'BIF')
             if(emittedBlobUri.value){
+                //
                 // Convert the emittedBlobUri to a Blob
                 const respons = await fetch(emittedBlobUri.value);
                 const blob = await respons.blob();
                 
                 // Create a File object from the Blob
-                const imageFile = new File([blob], 'image.png');
+                const imageFile = new File([blob], 'image.jpeg');
                 
                 // Append the image file to the FormData object
                 formToBeSent.append('bordereau', imageFile);
