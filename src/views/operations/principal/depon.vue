@@ -156,13 +156,19 @@ export default {
         const baseURL = '//127.0.0.1:8002'
         async function kurungika(){
             //
-            formData.value.bordereau = emittedBlobUri
             const formToBeSent = new FormData()
-            formToBeSent.append('currency', selectedItem)
+            formToBeSent.append('currency', 'BIF')
             if(emittedBlobUri){
-                const imageFile = new File([emittedBlobUri], 'image.png')
-                formToBeSent.append('bordereau', imageFile)
-            }
+                // Convert the emittedBlobUri to a Blob
+                const respons = await fetch(emittedBlobUri);
+                const blob = await respons.blob();
+                
+                // Create a File object from the Blob
+                const imageFile = new File([blob], 'image.png');
+                
+                // Append the image file to the FormData object
+                formToBeSent.append('bordereau', imageFile);
+                        }
             try{
                 const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
                     method:'POST',
@@ -584,7 +590,7 @@ export default {
             }
             selectedPhoto.value = URL.createObjectURL(selectedFile)
             selectedImage.value.src = URL.createObjectURL(selectedFile)
-            // emittedBlobUri = URL.createObjectURL(selectedFile)
+            emittedBlobUri = URL.createObjectURL(selectedFile)
         }
         function receivePhoto(data){
             // selectedPhoto.value = data.capturedImage
