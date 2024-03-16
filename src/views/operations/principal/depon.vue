@@ -158,9 +158,9 @@ export default {
             //
             const formToBeSent = new FormData()
             formToBeSent.append('currency', 'BIF')
-            if(emittedBlobUri){
+            if(emittedBlobUri.value){
                 // Convert the emittedBlobUri to a Blob
-                const respons = await fetch(emittedBlobUri);
+                const respons = await fetch(emittedBlobUri.value);
                 const blob = await respons.blob();
                 
                 // Create a File object from the Blob
@@ -590,7 +590,7 @@ export default {
             }
             selectedPhoto.value = URL.createObjectURL(selectedFile)
             selectedImage.value.src = URL.createObjectURL(selectedFile)
-            emittedBlobUri = URL.createObjectURL(selectedFile)
+            emittedBlobUri.value = URL.createObjectURL(selectedFile)
         }
         function receivePhoto(data){
             // selectedPhoto.value = data.capturedImage
