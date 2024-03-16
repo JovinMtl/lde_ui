@@ -49,10 +49,10 @@ export default {
         const password = ref(null)
         const failedLogin = ref(false)
 
-        var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
-        var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
-        // const baseURL = '//10.10.12.146:8000';
-        const baseURL = '//192.168.43.156:8002';
+        // var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
+        // var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
+        const baseURL = '//10.10.12.146:8002';
+        // const baseURL = '//192.168.43.156:8002';
 
         async function LogUser(){
             try{
@@ -73,7 +73,7 @@ export default {
                 const data = await response.json()
                 console.log("The data is : ", data)
                 store.state.user = data
-                router.push('/profile')
+                router.push('/hope')
 
             } else{
                 console.log("BAD")

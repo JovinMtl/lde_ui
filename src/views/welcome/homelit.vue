@@ -7,10 +7,18 @@
         </div>
 
         <h2 id="cent">Bienvenue</h2>
-        <p class="centi">Envoyez de l'argent, epargnez votre argent, Retirer votre argent,
+        <div class="centi">Envoyez de l'argent, epargnez votre argent, Retirer votre argent,
             et bien plus de fonctionnalité.
-        </p>
-        <div class="jove">
+        </div>
+        <div class="homeButton">
+            <ion-button expand="block" size="small" router-link="/logi">
+                Se connecter
+            </ion-button>
+            <ion-button expand="block" size="small" fill="outline" router-link="/registration">
+                S'inscrire
+            </ion-button>
+        </div>
+        <!-- <div class="jove">
             <div class="buto1">
                 <router-link to="/logi">
                     <input class="fields butto1" type="button" value="Se Connecter" router-link="/hope"/>
@@ -23,10 +31,7 @@
                 </router-link>
                 
             </div>   
-        </div>
-        <br><br><br>
-        <br><br><br>
-        <br><br><br>
+        </div> -->
         
         <signature-vide></signature-vide>
         
@@ -68,8 +73,9 @@ export default {
 }
 .centi{
     text-align: center;
-    margin-left: 15px;
-    margin-right: 15px;
+    /* margin-left: 15px;
+    margin-right: 15px; */
+    padding: 30px 5vw;
 }
 .jove{
     margin-left: 10vw;
@@ -107,4 +113,13 @@ export default {
     color: white;
     font-size: .9em;
   }
+.homeButton{
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+ion-button{
+    height: 40px;
+}
 </style>

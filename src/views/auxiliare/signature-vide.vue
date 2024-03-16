@@ -12,7 +12,6 @@
 <style scoped>
     #endPag{
             display: inline-block;
-            position: fixed;
             width: 100%;
             height: 20px;
             justify-content: center;
