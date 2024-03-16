@@ -141,6 +141,11 @@ export default {
         IonThumbnail, IonLabel,
     },
     setup() {
+        //Start of things of submitting the form
+        async function kurungika(){
+            //
+        }
+        //End of things of submitting the form
         //Start of MODAL
         const modalActive = ref(false)
         const infoModal = ref(false)
