@@ -145,11 +145,41 @@ export default {
         //Start of things of submitting the form
         const formData = ref({
             currency : '',
-            deposant : store.state.getUsername
+            deposant : store.getters.getUsername,
+            numero : '',
+            montant : '',
+            bordereau : 'emittedBlobUri',
+            owner: '',
+            date: Date.UTC,
         })
+        const depotUrl = 'http://127.0.0.1:8002/jov/api/principal/receiveDepot/'
+        const baseURL = '//127.0.0.1:8002'
         async function kurungika(){
             //
-            const form = 0;
+            formData.value.bordereau = emittedBlobUri
+            const formToBeSent = new FormData()
+            formToBeSent.append('currency', 'Bif')
+            if(emittedBlobUri){
+                const imageFile = new File([emittedBlobUri], 'image.png')
+                formToBeSent.append('bordereau', imageFile)
+            }
+            try{
+                const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
+                    method:'POST',
+                    // headers: {
+                    //     'Content-Type':'application/json',
+                    //     'Content-Type':'application/octet-stream' //when file
+                    // },
+                    body: formToBeSent,
+                })
+                if(response.ok){
+                    console.log("La reponse est bien: ", response)
+                } else{
+                    console.log("La reponse n'est pas bon")
+                }
+            }catch(value){
+                console.log("VOus avez rencontre une erreur supprenant : ", value)
+            }
         }
         //End of things of submitting the form
         //Start of MODAL
@@ -162,6 +192,9 @@ export default {
             }
             if(!waiter.value){
                 waiter.value = true
+                console.log("START SENDING ...")
+                kurungika()
+                console.log("END SENDING")
                 setTimeout(()=>{
                     modalActive.value = !modalActive.value
                 }, 5000)
@@ -537,30 +570,6 @@ export default {
             let file = document.getElementById('fileInput').click();
         }
         
-        async function uploadImage() {
-            if (this.selected) {
-                const formData = new FormData();
-                formData.append('image', this.selected);
-
-                try {
-                const response = await fetch('your-upload-api-endpoint', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    console.log('File uploaded successfully');
-                    // You can handle the server's response here if needed
-                } else {
-                    console.error('File upload failed');
-                }
-                } catch (error) {
-                console.error('An error occurred while uploading the file:', error);
-                }
-            } else {
-                console.log('No file selected');
-            }
-        }
         function FileSelect(event, image='null') {
             URL.revokeObjectURL(selectedPhoto.value);
             let selectedFile = event.target.files[0];
@@ -575,6 +584,7 @@ export default {
             }
             selectedPhoto.value = URL.createObjectURL(selectedFile)
             selectedImage.value.src = URL.createObjectURL(selectedFile)
+            // emittedBlobUri = URL.createObjectURL(selectedFile)
         }
         function receivePhoto(data){
             // selectedPhoto.value = data.capturedImage
