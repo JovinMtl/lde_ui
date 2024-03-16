@@ -141,9 +141,15 @@ export default {
         IonThumbnail, IonLabel,
     },
     setup() {
+        const store = useStore()
         //Start of things of submitting the form
+        const formData = ref({
+            currency : '',
+            deposant : store.state.getUsername
+        })
         async function kurungika(){
             //
+            const form = 0;
         }
         //End of things of submitting the form
         //Start of MODAL
@@ -175,7 +181,6 @@ export default {
 
 
         //Beginning of Things for Currencies
-        const store = useStore()
         const paymethod = ref(null)
         const selectedItem = ref(null)
         const allElements = [ 1,2,3,4,5,6,7,8,9,10,11]
