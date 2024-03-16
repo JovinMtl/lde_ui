@@ -1,54 +1,40 @@
 <template>
     <feui-lle>
         <back-button></back-button>
-        <div class="header">
-            <signature-head></signature-head>
-        </div>
-        <!-- <br><br><br> -->
-        <div class="same">
-            <div class="usere">
-                <h2 style="font-size: 5vh; margin-top: 22vh;">Se connecter</h2> <br>
-                   
+        <div class="loginPage" style="padding: 60px 0;">
+            <div class="header">
+                <signature-head></signature-head>
             </div>
-            <div id="info">
-                <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous connecter.</p>
-                <p v-if="failedLogin" style="color: #ab2800;">Vous avez utisé un nom d'utilisateur ou mot de passe <strong>incorrect</strong>.</p>
+            <div class="same">
+                <h2 style="text-align: center;">Se connecter</h2> <br>
+                <div id="info">
+                    <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous connecter.</p>
+                    <p v-if="failedLogin" style="color: #ab2800;">Vous avez utisé un nom d'utilisateur ou mot de passe <strong>incorrect</strong>.</p>
+                </div>
+                    <div>
+                        <div class="usere fields">
+                            <input placeholder="Votre nom d'utilisateur" v-model="username"/> <br>
+                            <input type="password" placeholder="Votre mot de passe" v-model="password"/> <br>
+                            <button  @click="LogUser">Connexion</button>
+                        </div>
+                        <div class="ou">
+                            <div>Ou</div>
+                            <router-link to="/registration">Créer un nouveau compte</router-link>
+                        </div>
+                    </div>
             </div>
-                <form>
-                    <div class="usere">
-                    <input class="fields" placeholder="Votre nom d'utilisateur" v-model="username"/> <br>
-                    <input class="fields" type="password" placeholder="Votre mot de passe" v-model="password"/> <br>
-                    </div>
-                    <br>
-                    <div class="usere"  >
-                        <!-- <router-link to="/hope">
-                            <input  type="button" value="Connexion" @click="LogUser"/>
-                        </router-link> -->
-                        <router-link to="">
-                            <input  type="button" value="Connexion" @click="LogUser"/>
-                        </router-link>
-                        
-                    </div>
-                    <div class="usere">
-                        <p style="font-size: 3vh;">Ou</p>
-                    </div>
-                    <div class="usere">
-                        <router-link to="/registration">Créer un nouveau compte</router-link>
-                    </div>
-                    
-                </form>
         </div>
+        
     </feui-lle>
 </template>
 
 <script>
-import { logIn } from 'ionicons/icons';
 import feuille from '../../Layout/feuille.vue';
 import BackButton from '../../auxiliare/backButton.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import { ref} from 'vue'
 import { useStore } from 'vuex'
-import {useRouter} from 'vue-router'
+import { useRouter } from 'vue-router'
 
 export default {
     components:{
@@ -118,8 +104,12 @@ export default {
     background-color: black;
     font-size: 4vh;
   }
- 
-
+.ou{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
  
   
   

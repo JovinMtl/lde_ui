@@ -133,24 +133,28 @@
     text-align: center;
     /* color: white; */
   }
-  .usere{
-    /* background-color: red; */
-    justify-content: center;
-    text-align: center;
+  .fields>input{
+    background-color: #fff;
+    padding: 10px 20px;
+    color: black;
+    border-radius: 5px;
+    border: 2px solid #ab7500b0;
+  }
+  .fields>button:hover{
+    border-color: #fa5;
+  }
+  .fields>button{
+    background-color: #ab7500;
+    padding: 15px 20px;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 300;
   }
   .fields{
-    background-color: #ab7400;
-    /* background-color: #ffa500; */
-    color: black;
-    font-size: 3vh;
-    height: 30px;
-    margin: 1.6vh;
-    font-weight: bolder;
-    border-radius: 15px;
-    padding-left: 10px;
-  }
-  .fields::placeholder{
-    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
   }
   .alert-button{
     color: black;
