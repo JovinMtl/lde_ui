@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
   // webDir: 'public',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http'
   }
 };
 
