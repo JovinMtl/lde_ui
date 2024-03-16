@@ -33,7 +33,7 @@
                         <p style="font-size: 3vh;">Ou</p>
                     </div>
                     <div class="usere">
-                        <router-link to="/registration" style="color:white">Créer un nouveau compte</router-link>
+                        <router-link to="/registration">Créer un nouveau compte</router-link>
                     </div>
                     
                 </form>
@@ -65,7 +65,8 @@ export default {
 
         var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
         var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
-        const baseURL = '//10.10.12.146:8000';
+        // const baseURL = '//10.10.12.146:8000';
+        const baseURL = '//192.168.43.156:8002';
 
         async function LogUser(){
             try{
