@@ -158,7 +158,7 @@ export default {
             //
             formData.value.bordereau = emittedBlobUri
             const formToBeSent = new FormData()
-            formToBeSent.append('currency', 'Bif')
+            formToBeSent.append('currency', selectedItem)
             if(emittedBlobUri){
                 const imageFile = new File([emittedBlobUri], 'image.png')
                 formToBeSent.append('bordereau', imageFile)
