@@ -43,11 +43,12 @@
     color : white;
     color: red;
   }
+
+  
   #ico1{
     display: inline-flex;
     position: fixed;
     top: 3px;
-    /* top: -5px; */
     bottom: 5%;
     left: 9%
   }
@@ -56,58 +57,85 @@
     position: fixed;
     bottom: 0px;
     font-size: 12px;
-    /* top : 2px; */
-    left: 8.8%;
+    left: 8.2%;
   }
   #ico2{
     display: inline-flex;
     position: fixed;
     top: 3px;
-    /* top: 0vh; */
-    /* bottom: 5; */
-    left: 32vw;
+    left: 46vw;
   }
   #lab2{
     display: inline-flex;
     position: fixed;
     bottom: 1px;
-    font-size: 0.69rem;
-    /* top : 3px; */
-    left: 29vw
-  }
-  #ico3{
-    display: inline-flex;
-    position: fixed;
-    /* bottom: px; */
-    /* top: 0px; */
-    top: 3px;
-    /* bottom: 5%; */
-    left: 58vw;
-  }
-  #lab3{
-    display: inline-flex;
-    position: fixed;
-    bottom: 2px;
-    font-size: 0.69rem;
-    /* top : 2px; */
-    left: 55.6vw
+    font-size: 0.79rem;
+    left: 43vw
   }
   #ico4{
     display: inline-flex;
     position: fixed;
-    /* top: 0px; */
     top: 3px;
-    /* bottom: 5%; */
-    left: 79vw;
+    left: 83vw;
   }
   #lab4{
     display: inline-flex;
     position: fixed;
     bottom: 1px;
     font-size: 12px;
-    /* top : 2px; */
-    left: 79%
+    left: 82.5vw;
   }
+  @media screen and (min-width: 600px) {
+    #lab1{
+      display: inline-flex;
+      position: fixed;
+      bottom: 0px;
+      font-size: 12px;
+      left: 8.7%;
+      color: green;
+    }
+    #lab2{
+      display: flex;
+      position: fixed;
+      bottom: 1px;
+      font-size: 0.8rem;
+      left: 44.9vw;
+      color: green;
+    }
+    #lab4{
+      display: inline-flex;
+      position: fixed;
+      bottom: 1px;
+      font-size: 12px;
+      left: 82.8vw;
+      color: green;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    /* #lab2{
+      display: flex;
+      position: fixed;
+      bottom: 1px;
+      font-size: 0.8rem;
+      left: 43vw;
+      color: red;
+    } */
+  }
+  
+  /* #ico3{
+    display: inline-flex;
+    position: fixed;
+    top: 3px;
+    left: 58vw;
+  } */
+  /* #lab3{
+    display: inline-flex;
+    position: fixed;
+    bottom: 2px;
+    font-size: 0.69rem;
+    left: 55.6vw
+  } */
+  
   #selectedFile{
     border: 4px black solid;
     border-radius: 35px;

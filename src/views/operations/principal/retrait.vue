@@ -23,9 +23,9 @@
             <router-link to="/histo">
                 <ion-icon id="ico2" :icon="layers" size="large"></ion-icon>
             </router-link>
-            <router-link to="/depot">
+            <!-- <router-link to="/depot">
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
-            </router-link>
+            </router-link> -->
             <router-link to="/profile">
                 <ion-icon id="ico4" :icon="personCircle" size="large"></ion-icon>
             </router-link>
@@ -33,7 +33,7 @@
 
             <ion-label id="lab1">Accueil</ion-label>
             <ion-label id="lab2">Historique</ion-label>
-            <ion-label id="lab3">Portefeuille</ion-label>
+            <!-- <ion-label id="lab3">Portefeuille</ion-label> -->
             <ion-label id="lab4">Profile</ion-label>
         </template>
             

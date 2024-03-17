@@ -67,7 +67,7 @@
 
             <ion-label id="lab1">Accueil</ion-label>
             <ion-label id="lab2">Historique</ion-label>
-            <ion-label id="lab3">Portefeuille</ion-label>
+            <!-- <ion-label id="lab3">Portefeuille</ion-label> -->
             <ion-label id="lab4">Profile</ion-label>
         </template>
             
