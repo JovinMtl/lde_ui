@@ -57,9 +57,9 @@
             <router-link to="/histo">
                 <ion-icon id="ico2" :icon="layers" size="large"></ion-icon>
             </router-link>
-            <router-link to="/depot">
+            <!-- <router-link to="/depot">
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
-            </router-link>
+            </router-link> -->
             <router-link to="/profile">
                 <ion-icon id="ico4" :icon="personCircle" size="large"></ion-icon>
             </router-link>
