@@ -58,7 +58,7 @@
             </div>
             <br><br><br>
             <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
-            <ion-button v-show="!modalActive && !infoModal && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer depot</ion-button>
+            <ion-button v-show="!modalActive && !infoModal && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer retrait</ion-button>
 </template>
 <script>
 import { 
