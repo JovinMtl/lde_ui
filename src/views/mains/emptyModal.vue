@@ -91,7 +91,8 @@ buttoni{
         }
         .erreurCas{
              position: relative;
-             top : 20px   
+             top : 20px;
+             background-color: green;
         }
         @media screen and (max-height:390px) {
             .fermer{
