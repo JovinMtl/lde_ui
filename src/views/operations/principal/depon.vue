@@ -72,7 +72,7 @@
             </div>
             <div class="guide" v-if="true" >
                 <div class="home">
-                <empty-modal @byeModal="toogleModal" :modalActive="infoModal" :beneficiaire="payee">
+                <empty-modal @byeModal="toogleModal" :modalActive="infoModal" :beneficiaire="payee" erreur="false">
                     <div class="modal-content">
                         <h1 style="font-size: 3.5vh;">Pour votre information </h1>
                         <div  v-if="payee">
@@ -97,7 +97,7 @@
             
             </div>
             <div class="home">
-                <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
+                <empty-modal @byeModal="toogleModal" :modalActive="modalActive" erreur="false">
                     <div class="modal-content">
                         <h1 >Confirmation </h1>
                         <p>Merci pour votre dépôt. Nous traitons votre demande et vous informerons dès qu'elle sera approuvée. 

@@ -189,18 +189,18 @@
     }
   }
   @media screen and (max-height:320px){
-    .modal-content{
+    .modal-content-erreur{
       padding-top: 0vh;
     }
   }
   @media screen and (min-height:600px){
-    .modal-content{
+    .modal-content-erreur{
       padding-top: 5vh;
     }
   }
   @media screen and (min-height:800px){
-    .modal-content{
-      padding-top: 8vh;
+    .modal-content-erreur{
+      padding-top: 6vh;
     }
   }
   

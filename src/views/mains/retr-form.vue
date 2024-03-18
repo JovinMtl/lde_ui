@@ -59,7 +59,7 @@
             <div class="home" v-if="!respoOperation">
                 <empty-modal @byeModal="toogleModal" :modalActive="modalActive" erreur="true">
                     <div >
-                        <h1 class="modal-content">Une erreur est survenue </h1>
+                        <h1 class="modal-content modal-content-erreur">Une erreur est survenue </h1>
                         <p>Nous n'avons pas pu finaliser votre opération suite à un problème de connexion au serveur.
                             
                             <br>

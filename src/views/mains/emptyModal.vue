@@ -5,7 +5,7 @@
             <div v-show="modalActive" class="modal-inner">
                 <!-- <i class="fa fa-times-circle" aria-hidden="true"></i> -->
                 <slot/>
-                <button v-if="erreur=='false'" @click="bye" type="button" class="fermer">Fermer</button>
+                <button v-if="erreur=='false'" @click="bye" type="button" class="fermer positiveCas">Fermer</button>
                 <button v-if="erreur=='true'" @click="bye" type="button" class="fermer erreurCas">Fermer</button>
             </div>
         </transition>
@@ -92,12 +92,13 @@ buttoni{
         .erreurCas{
              position: relative;
              top : 20px;
-             background-color: green;
-        }
-        @media screen and (max-height:390px) {
-            .fermer{
-                position: relative;
-                top: -4vh;
+             top : 5vh;
+             background-color: yellow;
+        }min
+        @media screen and (max-height: 400px) and (max-width: 700px) {
+            .erreurCas{
+                background-color: green;
+                top: -1.3vh;
             }
         }
     }
