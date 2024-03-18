@@ -5,7 +5,8 @@
             <div v-show="modalActive" class="modal-inner">
                 <!-- <i class="fa fa-times-circle" aria-hidden="true"></i> -->
                 <slot/>
-                <button @click="bye" type="button" class="fermer">Fermer</button>
+                <button v-if="!erreur" @click="bye" type="button" class="fermer">Fermer</button>
+                <button v-if="erreur" @click="bye" type="button" class="fermer erreurCas">Fermer</button>
             </div>
         </transition>
     </div>
@@ -17,6 +18,7 @@ export default {
     props:[
         'modalActive',
         'beneficiaire',
+        'erreur',
     ],
     setup(props, {emit}){
         const payee = props.beneficiaire
@@ -68,7 +70,7 @@ buttoni{
         // background-color: red;
         box-shadow: 0 0 35px #ab7400;
         // padding: 15px;
-        padding-top: -5vh;
+        // padding-top: -5vh;
         padding-right: 5vw;
         padding-left: 5vw;
         justify-content: center;
@@ -79,15 +81,25 @@ buttoni{
         .fermer{
             position: sticky;
             bottom: 1vh;
-
             width: 24vw;
             background-color: #ab7400;
-            // background-color: red;
             padding: 5px;
             border-radius: 5px;
-            // box-shadow: 0 6px 10px #ab7400;
             box-shadow: 0 0 30px orange;
             font-size: 3vh;
+        }
+        .erreurCas{
+             position: relative;
+             top : 20px   
+        }
+        @media screen and (max-height:390px) {
+            .fermer{
+                position: relative;
+                background-color: red;
+                // margin-top: -130px;
+                top: -4vh;
+                // top: ;
+            }
         }
     }
 }

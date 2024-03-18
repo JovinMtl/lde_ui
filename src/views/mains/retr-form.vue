@@ -56,16 +56,15 @@
                     </div>
                 </empty-modal>
             </div>
-            <div class="home" v-if="!respoOperation">
-                <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
+            <div class="home" v-if="respoOperation">
+                <empty-modal @byeModal="toogleModal" :modalActive="modalActive" erreur=True>
                     <div class="modal-content">
                         <h1 >Une erreur est survenue </h1>
                         <p>Nous n'avons pas pu finaliser votre opération suite à un problème de connexion au serveur.
-                            <br> <br>
-                            Veuillez réessayer ultérieurement.
+                            
                             <br>
-                            <!-- <span style="font-size: 2.3vh; display:inline-flex; position: relative; margin-top: 3vh">
-                                Ceci pourra prendre au maximum 10 minutes.</span> -->
+                            <span style="font-size: 2.3vh; display:inline-flex; position: relative; margin-top: 3vh">
+                                Veuillez réessayer ultérieurement.</span>
                         </p>
                     </div>
                 </empty-modal>
