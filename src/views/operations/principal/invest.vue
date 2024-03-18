@@ -74,7 +74,7 @@
             <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
             <!-- <ion-button v-show="!modalActive && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer retrait</ion-button> -->
             <ion-button v-show="!modalActive && selectedItem" id="confirmButton" 
-                expand="block" @click="toogleModal">Confirmer retrait</ion-button>
+                expand="block" @click="toogleModal">Confirmer</ion-button>
     </base-menu-app>
 </template>
 
