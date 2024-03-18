@@ -1,6 +1,6 @@
 
 <template>
-    <div id="info" class="haut">
+    <div id="info" style="margin-top: 3vh;">
         <p >Veuillez choisir l'opération de votre choix.</p>
     </div>
     <div class="opt">

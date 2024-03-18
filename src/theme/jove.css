@@ -136,7 +136,8 @@
     
     .textProfile{
       position: relative; 
-      top: -4px;
+      /* top: -4px; */
+      top : -1vh;
       color: #ab7400;
     }
     .iconAvatar{
@@ -176,12 +177,15 @@
       left: 45vw;
       /* color: green; */
     }
-    
-  }
-  @media screen and (min-width: 1210px) {
     .avatar{
       margin-left: 60px;
       padding-left: 20px;
+    }
+    
+  }
+  @media screen and (min-width: 1210px) {
+    .iconAvatar{
+      margin-left: 13.4vw;
     }
   }
   
@@ -218,11 +222,9 @@
   }
 
   #info{
-    /* background-color: red; */
     margin-left: 8%;
     margin-right: 8%;
     text-align: center;
-    /* color: white; */
   }
   .fields>input{
     background-color: #fff;
