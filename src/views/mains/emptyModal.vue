@@ -91,13 +91,10 @@ buttoni{
         }
         .erreurCas{
              position: relative;
-             top : 20px;
              top : 5vh;
-             background-color: yellow;
-        }min
+        }
         @media screen and (max-height: 400px) and (max-width: 700px) {
             .erreurCas{
-                background-color: green;
                 top: -1.3vh;
             }
         }
