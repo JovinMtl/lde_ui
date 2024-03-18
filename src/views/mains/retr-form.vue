@@ -42,7 +42,7 @@
                 >
                 <loa-der></loa-der>
             </div>
-            <div class="home">
+            <div class="home" v-if="respoOperation">
                 <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
                     <div class="modal-content">
                         <h1 >Confirmation </h1>
@@ -56,9 +56,24 @@
                     </div>
                 </empty-modal>
             </div>
+            <div class="home" v-if="!respoOperation">
+                <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
+                    <div class="modal-content">
+                        <h1 >Une erreur est survenue </h1>
+                        <p>Nous n'avons pas pu finaliser votre opération suite à un problème de connexion au serveur.
+                            <br> <br>
+                            Veuillez réessayer ultérieurement.
+                            <br>
+                            <!-- <span style="font-size: 2.3vh; display:inline-flex; position: relative; margin-top: 3vh">
+                                Ceci pourra prendre au maximum 10 minutes.</span> -->
+                        </p>
+                    </div>
+                </empty-modal>
+            </div>
             <br><br><br>
             <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
-            <ion-button v-show="!modalActive && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer retrait</ion-button>
+            <!-- <ion-button v-show="!modalActive && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer retrait</ion-button> -->
+            <ion-button v-show="!modalActive && selectedItem" id="confirmButton" expand="block" @click="toogleModal">Confirmer retrait</ion-button>
 </template>
 <script>
 import { 
@@ -67,14 +82,49 @@ import {
 } from '@ionic/vue'
 import { ref, watch, onBeforeUpdate, onBeforeUnmount } from 'vue'
 import { useStore } from 'vuex'
-import emptyModalVue from '../../mains/emptyModal.vue'
+// import emptyModalVue from '../../mains/emptyModal.vue'
+// import emptyModalVue from '../mains/emptyModal.vue'
+import emptyModalVue from './emptyModal.vue'
+import Loader from '../auxiliare/processing/processing1.vue'
 export default {
     components: {
         'empty-modal' : emptyModalVue,
+        'loa-der': Loader,
         IonSelectOption, IonSelect, IonInput, 
         IonLabel, IonItem, IonButton, IonList,  
     },
     setup() {
+        //Start of things of submitting the form
+        const respoOperation = ref(false)
+        const depotUrl = 'http://127.0.0.1:8002/jov/api/principal/receiveDepot/'
+        const baseURL = '//127.0.0.1:8002'
+        async function kurungika(){
+            //
+            const formToBeSent = new FormData()
+            formToBeSent.append('currency', 'BIF')
+            
+            try{
+                const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
+                    method:'POST',
+                    // headers: {
+                    //     'Content-Type':'application/json',
+                    //     'Content-Type':'application/octet-stream' //when file
+                    // },
+                    body: formToBeSent,
+                })
+                if(response.ok){
+                    console.log("La reponse est bien: ", response)
+                    respoOperation.value = true
+                } else{
+                    console.log("La reponse n'est pas bon")
+                    respoOperation.value = false
+                }
+            }catch(value){
+                console.log("VOus avez rencontre une erreur supprenant : ", value)
+                respoOperation.value = false
+            }
+        }
+        //End of things of submitting the form
         //Begin of Managing the waiter
         const waiter = ref(false)
         //Ending of Managing the waiter
@@ -291,7 +341,8 @@ export default {
         return {
             selectedItem, finished,
 
-            modalActive,
+            modalActive, waiter, respoOperation,
+            toogleModal,
         }
     },
 }
