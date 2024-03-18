@@ -1,5 +1,5 @@
 <template>
-    <h3 class="usere whiter">
+    <h3 style="text-align: center;">
         Vous êtes sur le point de changer votre mot de passe.
     </h3>
     <ion-list>
