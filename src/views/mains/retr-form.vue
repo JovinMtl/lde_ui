@@ -81,8 +81,6 @@ import {
 } from '@ionic/vue'
 import { ref, watch, onBeforeUpdate, onBeforeUnmount } from 'vue'
 import { useStore } from 'vuex'
-// import emptyModalVue from '../../mains/emptyModal.vue'
-// import emptyModalVue from '../mains/emptyModal.vue'
 import emptyModalVue from './emptyModal.vue'
 import Loader from '../auxiliare/processing/processing1.vue'
 export default {
