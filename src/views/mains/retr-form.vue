@@ -58,7 +58,7 @@
             </div>
             <br><br><br>
             <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
-            <ion-button v-show="!modalActive && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer retrait</ion-button>
+            <ion-button v-show="!modalActive && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer retrait</ion-button>
 </template>
 <script>
 import { 
@@ -67,12 +67,17 @@ import {
 } from '@ionic/vue'
 import { ref, watch, onBeforeUpdate, onBeforeUnmount } from 'vue'
 import { useStore } from 'vuex'
+import emptyModalVue from '../../mains/emptyModal.vue'
 export default {
     components: {
+        'empty-modal' : emptyModalVue,
         IonSelectOption, IonSelect, IonInput, 
         IonLabel, IonItem, IonButton, IonList,  
     },
     setup() {
+        //Begin of Managing the waiter
+        const waiter = ref(false)
+        //Ending of Managing the waiter
         //Start of MODAL
         const modalActive = ref(false)
         const infoModal = ref(false)
@@ -285,6 +290,8 @@ export default {
 
         return {
             selectedItem, finished,
+
+            modalActive,
         }
     },
 }
