@@ -62,7 +62,7 @@ export default {
     display: inline-flex;
     width: 90vw;
     height: calc(90vw * .98);
-    background-image: url('/resources/logo/logo_home/welcomeLit.png');
+    background-image: url('/resources/logo/logo_home/HomeLde.png');
     background-size: cover;
 }
 
