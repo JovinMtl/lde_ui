@@ -15,13 +15,14 @@
   ion-content {
     /* --ion-background-color: #ab7400; */
     /* --ion-background-color:rgb(70, 67, 67) */
+    --background: url('/lidBackground.jpg');
+    --background-size: cover;
+    --background-position: center;
+    --ion-background-color: transparent;
   }
   ion-toolbar{
-    /* --background: rgba(171, 116, 0, 0.3) ; */
     --background: black;
     color : white;
-    /* color: red; */
-    /* color : #ab7400; */
   }
   html {
     --ion-dynamic-font: var(--ion-default-dynamic-font);
