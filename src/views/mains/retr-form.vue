@@ -35,8 +35,30 @@
                 <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
 
             </ion-list>   
+            <div class="loader" v-if="waiter" 
+                style="background-color: transparent; position:fixed; 
+                top: 60%; left: 50%; transform: translate(-50%, -50%);
+                z-index: 5;"
+                >
+                <loa-der></loa-der>
+            </div>
+            <div class="home">
+                <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
+                    <div class="modal-content">
+                        <h1 >Confirmation </h1>
+                        <p>Merci pour votre dépôt. Nous traitons votre demande et vous informerons dès qu'elle sera approuvée. 
+                            <br>
+                            Veuillez vérifier votre boîte de notifications pour les mises à jour.
+                            <br>
+                            <span style="font-size: 2.3vh; display:inline-flex; position: relative; margin-top: 3vh">
+                                Ceci pourra prendre au maximum 10 minutes.</span>
+                        </p>
+                    </div>
+                </empty-modal>
+            </div>
             <br><br><br>
-            <ion-button id="confirmButton" expand="block">Confirmer</ion-button>
+            <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
+            <ion-button v-show="!modalActive && !infoModal && selectedItem && waiter==false" id="confirmButton" expand="block" @click="toogleModal">Confirmer depot</ion-button>
 </template>
 <script>
 import { 
@@ -51,6 +73,31 @@ export default {
         IonLabel, IonItem, IonButton, IonList,  
     },
     setup() {
+        //Start of MODAL
+        const modalActive = ref(false)
+        const infoModal = ref(false)
+        const toogleModal = ()=>{
+            if(infoModal.value){
+                infoModal.value = false
+                return 0
+            }
+            if(!waiter.value){
+                waiter.value = true
+                console.log("START SENDING ...")
+                kurungika()
+                console.log("END SENDING")
+                setTimeout(()=>{
+                    modalActive.value = !modalActive.value
+                }, 5000)
+            } else {
+                waiter.value = false
+                modalActive.value = !modalActive.value
+            }
+            
+            
+        }
+
+        //End of Modal
             //Beginning of Things for Currencies
         const store = useStore()
         const paymethod = ref(null)
