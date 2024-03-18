@@ -19,17 +19,11 @@
                 /* background-color: red; */
                 text-align: center;  line-height: 6vh;
                 position:absolute">
-                <div class="avatar" style="width: 50%;height: 100%;
-                    /* background-color: green; */
-                    text-align: right
-                    /* padding-left: 10vw; */
+                <div class="avatar" style="
                     ">
-                    <ion-icon :icon="personCircle" style="text-align: right; ; 
-                    font-size: 6vh; color:black"></ion-icon>
+                    <ion-icon class="iconAvatar" :icon="personCircle"></ion-icon>
                 </div>
-                <div class="username" style="width: 50%;height: 100%;
-                    /* background-color: grey; */
-                    margin-left: -3vw; font-weight: bolder;">
+                <div class="username">
                     {{ store.getters.getUsername }}
                 </div>
             </div>
