@@ -11,11 +11,11 @@
             et bien plus de fonctionnalité.
         </div>
         <div class="homeButton">
-            <ion-button expand="block" size="small" router-link="/logi">
+            <ion-button expand="block" shape="round" size="small" router-link="/logi">
                 Se connecter
             </ion-button>
-            <ion-button expand="block" size="small" fill="outline" router-link="/registration">
-                S'inscrire
+            <ion-button expand="block" shape="round" size="small" fill="outline" router-link="/registration">
+               <span style="color: black;">S'inscrire</span> 
             </ion-button>
         </div>
         <!-- <div class="jove">
