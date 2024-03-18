@@ -98,6 +98,11 @@ buttoni{
                 top: -1.3vh;
             }
         }
+        @media screen and (max-width: 350px) and (max-height: 500px ) {
+            .erreurCas{
+                top: -2.3vh;
+            }
+        }
     }
 }
 </style>
