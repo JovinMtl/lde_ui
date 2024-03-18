@@ -5,8 +5,8 @@
             <div v-show="modalActive" class="modal-inner">
                 <!-- <i class="fa fa-times-circle" aria-hidden="true"></i> -->
                 <slot/>
-                <button v-if="!erreur" @click="bye" type="button" class="fermer">Fermer</button>
-                <button v-if="erreur" @click="bye" type="button" class="fermer erreurCas">Fermer</button>
+                <button v-if="erreur=='false'" @click="bye" type="button" class="fermer">Fermer</button>
+                <button v-if="erreur=='true'" @click="bye" type="button" class="fermer erreurCas">Fermer</button>
             </div>
         </transition>
     </div>
