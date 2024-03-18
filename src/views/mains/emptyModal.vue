@@ -76,6 +76,7 @@ buttoni{
         justify-content: center;
         text-align: center;
         border-radius: 15px;
+        font-size: .88rem;
         z-index: 8;
 
         .fermer{
@@ -95,10 +96,7 @@ buttoni{
         @media screen and (max-height:390px) {
             .fermer{
                 position: relative;
-                background-color: red;
-                // margin-top: -130px;
                 top: -4vh;
-                // top: ;
             }
         }
     }

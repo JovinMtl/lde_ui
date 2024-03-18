@@ -44,7 +44,7 @@
             </div>
             <div class="home" v-if="respoOperation">
                 <empty-modal @byeModal="toogleModal" :modalActive="modalActive">
-                    <div class="modal-content">
+                    <div class="modal-contente">
                         <h1 >Confirmation </h1>
                         <p>Merci pour votre dépôt. Nous traitons votre demande et vous informerons dès qu'elle sera approuvée. 
                             <br>
@@ -56,10 +56,10 @@
                     </div>
                 </empty-modal>
             </div>
-            <div class="home" v-if="respoOperation">
+            <div class="home" v-if="!respoOperation">
                 <empty-modal @byeModal="toogleModal" :modalActive="modalActive" erreur=True>
-                    <div class="modal-content">
-                        <h1 >Une erreur est survenue </h1>
+                    <div >
+                        <h1 class="modal-content">Une erreur est survenue </h1>
                         <p>Nous n'avons pas pu finaliser votre opération suite à un problème de connexion au serveur.
                             
                             <br>

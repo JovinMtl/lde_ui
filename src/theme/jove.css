@@ -188,6 +188,21 @@
       margin-left: 13.4vw;
     }
   }
+  @media screen and (max-height:320px){
+    .modal-content{
+      padding-top: 0vh;
+    }
+  }
+  @media screen and (min-height:600px){
+    .modal-content{
+      padding-top: 5vh;
+    }
+  }
+  @media screen and (min-height:800px){
+    .modal-content{
+      padding-top: 8vh;
+    }
+  }
   
   /* #ico3{
     display: inline-flex;
