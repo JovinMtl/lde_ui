@@ -18,6 +18,7 @@ const store = createStore({
             password : 'bbb',
             user : 'null',
             isLoggedIn : false,
+            lastActivity: 'none',
         }
     },
     mutations:{
