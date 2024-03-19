@@ -7,7 +7,7 @@
         <template v-slot:finish-right>
                 <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
                 <router-link to="/">
-                    <ion-icon :icon="exitOutline" slot="end" size="large"></ion-icon>
+                    <ion-icon :icon="exitOutline" slot="end" size="large" @click="logOut"></ion-icon>
                 </router-link>
                 
         </template>
@@ -42,7 +42,7 @@
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
 import profContent from '../../mains/prof-content.vue';
-// import Solde from '../solde.vue'
+import { useStore } from 'vuex'
 import { 
     IonIcon, IonLabel,
 } from '@ionic/vue'
@@ -59,10 +59,17 @@ export default {
         // retrForm,
     },
     setup() {
+        const store = useStore()
+
+        function logOut(){
+            store.commit('resetActiveUser')
+        }
         return {
             exitOutline,notificationsOutline,
             home, layers, wallet, personCircle,
             chevronBack,
+
+            logOut,
         }
     },
 }

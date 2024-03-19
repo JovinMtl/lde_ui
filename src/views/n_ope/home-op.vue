@@ -3,7 +3,7 @@
         <template v-slot:finish-right>
                 <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
                 <router-link to="/">
-                    <ion-icon :icon="exitOutline" slot="end" size="large"></ion-icon>
+                    <ion-icon :icon="exitOutline" slot="end" size="large" @click="logOut"></ion-icon>
                 </router-link>
         </template>
         <template v-slot:body-content>
@@ -91,6 +91,10 @@ export default {
     },
     setup() {
         const store = useStore()
+
+        function logOut(){
+            store.commit('resetActiveUser')
+        }
         function getHeight(){
             const screenHeight = window.innerHeight
 
@@ -108,6 +112,8 @@ export default {
             exitOutline,notificationsOutline,
             home, layers, wallet, personCircle,
             store,
+
+            logOut,
         }
     },
 }

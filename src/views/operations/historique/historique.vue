@@ -8,7 +8,7 @@
         <template v-slot:finish-right>
                 <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
                 <router-link to="/">
-                    <ion-icon :icon="exitOutline" slot="end" size="large"></ion-icon>
+                    <ion-icon :icon="exitOutline" slot="end" size="large"  @click="logOut"></ion-icon>
                 </router-link>
                 
         </template>
@@ -51,6 +51,7 @@ import {
     home, layers, wallet, personCircle,
     chevronBack,
 } from 'ionicons/icons'
+import { useStore } from 'vuex'
 export default {
     components:{
         'base-menu' : baseMenu,
@@ -59,10 +60,17 @@ export default {
         // retrForm,
     },
     setup() {
+        const store = useStore()
+
+        function logOut(){
+            store.commit('resetActiveUser')
+        }
         return {
             exitOutline,notificationsOutline,
             home, layers, wallet, personCircle,
             chevronBack,
+
+            logOut,
         }
     },
 }
