@@ -50,10 +50,6 @@ import {
 } from 'ionicons/icons'
 import { IonIcon, IonLabel,} from '@ionic/vue'
 import { useStore } from 'vuex'
-import { 
-    onBeforeMount, onMounted, onBeforeUpdate, 
-    onUpdated, onBeforeUnmount, onUnmounted
-} from 'vue'
 export default {
     components:{
         'base-menu' : baseMenu,
