@@ -15,3 +15,15 @@
             </div>
             </div>
 </template>
+<script>
+import { useStore } from 'vuex'
+import { personCircle } from 'ionicons/icons'
+export default {
+    setup() {
+        const store = useStore()
+        return {
+            store,personCircle,
+        }
+    },
+}
+</script>

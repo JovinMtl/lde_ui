@@ -7,26 +7,8 @@
                 </router-link>
         </template>
         <template v-slot:body-content>
-            <!-- <p style="margin-bottom: -4vh; position: fixed; left: 80vw;">
-                <ion-icon :icon="personCircle" style="position:fixed ; font-size: 4vh; color:white"></ion-icon>
-                <span style="margin-right: 3vw; margin-left: 3vw;">&nbsp;</span>
-                &nbsp; &nbsp;&nbsp;
-                {{ store.getters.getUsername }}
-            </p> -->
-            <div style="text-align: center; margin-left: 45vw;">
-                <div style="display: inline-flex; width: 30vw;
-                height: 6vh; 
-                /* background-color: red; */
-                text-align: center;  line-height: 6vh;
-                position:absolute">
-                <div class="avatar" style="
-                    ">
-                    <ion-icon class="iconAvatar" :icon="personCircle"></ion-icon>
-                </div>
-                <div class="username">
-                    {{ store.getters.getUsername }}
-                </div>
-            </div>
+            <div class="avatar-container">
+                <ava-tar></ava-tar>
             </div>
             
             <div v-if="store.getters.getDevHeight < 600" id="soldeMarginTop">
@@ -39,10 +21,6 @@
             <div v-if="store.getters.getDevHeight > 650">
                 <sign-ature></sign-ature>
             </div>
-            
-            
-            <!-- <p  class="centered white">The Height of your screen is {{ store.getters.getDevHeight }} px.</p> -->
-            
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hope">
@@ -69,8 +47,8 @@
 </template>
 
 <script>
-// import baseMenu from '../../Layout/base-menu.vue';
 import baseMenu from '../Layout/base-menu.vue';
+import avatar from '../auxiliare/avatar.vue';
 import LisOp from '../mains/list-opt.vue'
 import Solde from '../auxiliare/solde.vue'
 import signature from '../auxiliare/signature.vue';
@@ -87,6 +65,7 @@ export default {
         'list-options' : LisOp,
         'sign-ature': signature,
         'sol-de': Solde,
+        'ava-tar' : avatar,
         IonIcon, IonLabel, IonButtons,
     },
     setup() {
