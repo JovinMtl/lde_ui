@@ -39,7 +39,6 @@ const app = createApp(App)
   .use(router)
   .use(store);
 
-// app.component('base-layout', Base)
 app.component('ava-tar', Avatar)
 app.component('ion-icon', IonIcon)
 app.component('ion-button',IonButton)

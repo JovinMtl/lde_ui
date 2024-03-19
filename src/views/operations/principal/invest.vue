@@ -1,6 +1,9 @@
 <template>
     <base-menu-app pageTitle ="Investissements" baArrow="true">
         <!-- Here i have imported my baseMenuApps -->
+        <div class="avatar-container" v-if="store.getters.getLastActivity !== null">
+                <ava-tar></ava-tar>
+        </div>
         <sol-de></sol-de>
         <ion-list>
                 <ion-item>
@@ -430,6 +433,8 @@ export default {
         return {
             selectedPlan, plans, capital, result, interest, periode,
             finished, selectedItem, currency,
+
+            store,
 
             modalActive, waiter, respoOperation,
             toogleModal,

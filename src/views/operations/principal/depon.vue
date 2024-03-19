@@ -1,6 +1,9 @@
 <template>
     <base-menu-app pageTitle ="Faites votre dépôt" baArrow="true">
         <!-- Here i have imported my baseMenuApps -->
+        <div class="avatar-container" v-if="store.getters.getLastActivity !== null">
+                <ava-tar></ava-tar>
+            </div>
         <sol-de></sol-de>
         <!-- <p>1 Lid pour chaque 1000 Lid</p> -->
         <ion-list>
@@ -689,7 +692,7 @@ export default {
 
             payee,infoModal,
 
-            waiter,
+            waiter, store,
         }
     },
 }

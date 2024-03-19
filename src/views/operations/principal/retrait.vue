@@ -12,6 +12,9 @@
                 
         </template>
         <template v-slot:body-content>
+            <div class="avatar-container" v-if="store.getters.getLastActivity !== null">
+                <ava-tar></ava-tar>
+            </div>
             <sol-de></sol-de> <br>
             <retr-form></retr-form>
             <!-- <sign-ature></sign-ature> -->
@@ -70,6 +73,7 @@ export default {
             exitOutline,notificationsOutline,
             home, layers, wallet, personCircle,
             chevronBack,
+            store,
 
             logOut,
         }
