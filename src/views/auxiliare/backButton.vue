@@ -7,20 +7,17 @@
 </template>
 
 <script>
-import { arrowBack, chevronBack } from 'ionicons/icons'
+import { chevronBack } from 'ionicons/icons'
 import { useRouter} from 'vue-router'
 
 export default {
-    components:{
-        IonButton, IonIcon,
-    },
     setup() {
         const router = useRouter()
         function getBack(){
             router.back()
         }
         return {
-            arrowBack, chevronBack,
+            chevronBack,
             getBack,
         }
     },
