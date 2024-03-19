@@ -55,7 +55,12 @@ const store = createStore({
         },
         setDevHeight(state, devHeight){
             state.devHeight = devHeight.value
-        }
+        },
+        resetActiveUser(state){
+            state.user = null
+            state.username = null
+            state.lastActivity = null
+        },
     },
     actions:{
         async addTop5(context, value){
