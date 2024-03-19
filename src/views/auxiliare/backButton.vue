@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { IonButton, IonIcon } from '@ionic/vue'
 import { arrowBack, chevronBack } from 'ionicons/icons'
 import { useRouter} from 'vue-router'
 

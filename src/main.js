@@ -30,7 +30,10 @@ import './theme/jove.css'
 import Base from './views/Layout/base.vue';
 import store from './store/index.js';
 import Avatar from './views/auxiliare/avatar.vue';
-import { IonIcon} from '@ionic/vue'
+import { } from '@ionic/vue'
+import { 
+  IonIcon,IonButton,
+} from '@ionic/vue'
 
 const app = createApp(App)
   .use(IonicVue)
@@ -39,7 +42,8 @@ const app = createApp(App)
 
 app.component('base-layout', Base)
 app.component('ava-tar', Avatar)
-app.component('ion-icon', IonIcon,)
+app.component('ion-icon', IonIcon)
+app.component(IonButton)
 
   
 router.isReady().then(() => {
