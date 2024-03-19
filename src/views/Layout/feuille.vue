@@ -35,10 +35,18 @@ export default {
 
         
         function checkUser(){
-            const lastActivity = sessionStorage.getItem('lastActivity')
-            const currentTime = new Date()
-            const differenceTime = currentTime.getTime() - lastActivity.getTime()
-            console.log("The difference of time is : ", differenceTime)
+            const lastActivity = (sessionStorage.getItem('lastActivity'))
+            if(lastActivity !== 'null'){
+                const currentTime = new Date()
+                            
+                var one = Date.parse(lastActivity)
+                var two = Date.parse(currentTime)
+                var diff = two - one
+                var minutes = Math.floor((diff / 1000) / 60)
+                console.log("THe diff : ", diff)
+                console.log("Minutes : ", minutes)
+            }
+            
 
         }
         checkUser()
