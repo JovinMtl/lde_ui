@@ -60,6 +60,9 @@ const store = createStore({
             state.user = null
             state.username = null
             state.lastActivity = null
+            sessionStorage.setItem('access', null)
+            sessionStorage.setItem('refresh', null)
+            sessionStorage.setItem('lastActivity', null)
         },
     },
     actions:{
