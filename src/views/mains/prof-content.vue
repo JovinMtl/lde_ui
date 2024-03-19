@@ -5,7 +5,7 @@
         <span style="margin-right: .2rem;">&nbsp;</span> 
         <div style="margin-top: 7vh; display: inline-flex; 
             position: relative; width: 60vw; height: 8vh; top: -4.8vh; font-weight: bold;">
-            <span style="font-size: 2.8vh;">Nom d'utilisateur</span> <br>
+            <span style="font-size: 2.8vh;">{{ store.getters.getUsername }}</span> <br>
             <span style="position: absolute; margin-top: 3.8vh; font-size: 2.8vh;">+257 61 233 532</span>
         </div> <br>
         
