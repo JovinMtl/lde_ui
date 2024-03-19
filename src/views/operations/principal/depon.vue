@@ -130,8 +130,10 @@ import {
     IonSelect, IonSelectOption, IonImg,
     IonThumbnail, IonLabel,
 } from '@ionic/vue'
-import { ref, watch, onBeforeUpdate, onBeforeUnmount, onMounted, reactive } from 'vue'
+import { ref, watch, onBeforeUpdate, onBeforeUnmount, onMounted } from 'vue'
 import { useStore} from 'vuex'
+import { useRoute } from 'vue-router'
+
 export default {
     components:{
         'base-menu-app': baseMenuApps,
@@ -145,6 +147,7 @@ export default {
     },
     setup() {
         const store = useStore()
+        const route = useRoute()
         //Start of things of submitting the form
         const formData = ref({
             currency : '',
@@ -204,8 +207,9 @@ export default {
             if(!waiter.value){
                 waiter.value = true
                 console.log("START SENDING ...")
-                if(store.getters.getLastActivity > 1){
-                    console.log("Connectez-vous d'abord")
+                if(Number(store.getters.getLastActivity) > 5){
+                    console.log("Connectez-vous d'abord : ", Number(store.getters.getLastActivity))
+                    console.log("et Puis revenez a : ", route.path)
                 }
                 kurungika()
                 console.log("END SENDING")

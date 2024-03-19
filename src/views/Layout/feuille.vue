@@ -46,7 +46,7 @@ export default {
                 var minutes = Math.floor((diff / 1000) / 60)
                 console.log("THe diff : ", diff)
                 console.log("Minutes : ", minutes)
-                store.commit('setLastActivity', diff)
+                store.commit('setLastActivity', minutes)
             } else {
                 store.commit('resetActiveUser')
                 console.log("You're not connected")
