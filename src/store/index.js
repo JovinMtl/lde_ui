@@ -104,6 +104,9 @@ const store = createStore({
         getLastActivity(state){
             return state.lastActivity
         },
+        getWantedRoute(state){
+            return state.wantedRoute
+        },
     }
 })
 

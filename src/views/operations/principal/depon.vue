@@ -206,15 +206,18 @@ export default {
                 return 0
             }
             if(!waiter.value){
-                waiter.value = true
-                console.log("START SENDING ...")
-                if(Number(store.getters.getLastActivity) > 5){
+
+                if(Number(store.getters.getLastActivity) > 2){
                     console.log("Connectez-vous d'abord : ", Number(store.getters.getLastActivity))
                     console.log("et Puis revenez a : ", route.path)
                     store.commit('setWantedRoute', route.path)
-                    router.path('/logi')
+                    // router.push('/logi')
+                    router.replace('/logi')
+                    // waiter.value = true
 
                 }
+                waiter.value = true
+                console.log("START SENDING ...")
                 kurungika()
                 console.log("END SENDING")
                 setTimeout(()=>{

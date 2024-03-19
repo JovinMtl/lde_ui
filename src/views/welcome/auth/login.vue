@@ -78,7 +78,20 @@ export default {
                 sessionStorage.setItem('access', data.access)
                 sessionStorage.setItem('refresh', data.refresh)
                 sessionStorage.setItem('lastActivity', new Date())
-                router.push('/hope')
+                
+                if(store.getters.getWantedRoute){
+                    var wantedRoute = store.getters.getWantedRoute
+                    console.log("THe WANTED route is : ", store.getters.getWantedRoute)
+                    store.state.wantedRoute = null
+                    router.replace(`${String(wantedRoute)}`)
+                    // router.push('/depot')
+                    // router.push(`${String(store.getters.getWantedRoute)}`)
+                } else{
+                    router.push('/hope')
+                }
+                // router.push(`${String(store.getters.getWantedRoute)}`)
+                // router.push('/depot')
+                // router.push('/hope')
 
             } else{
                 console.log("BAD")
