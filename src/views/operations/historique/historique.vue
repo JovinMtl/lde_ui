@@ -44,7 +44,7 @@
 import baseMenu from '../../Layout/base-menu.vue'
 import histoRiqueVue from '../../mains/histo-rique.vue'
 import { 
-    IonIcon, IonLabel, IonButtons, IonBackButton, 
+    IonLabel, IonButtons, IonBackButton, 
 } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
@@ -56,8 +56,7 @@ export default {
     components:{
         'base-menu' : baseMenu,
         'histo-rique': histoRiqueVue,
-        IonIcon, IonLabel, IonButtons, IonBackButton,
-        // retrForm,
+        IonLabel, IonButtons, IonBackButton,
     },
     setup() {
         const store = useStore()

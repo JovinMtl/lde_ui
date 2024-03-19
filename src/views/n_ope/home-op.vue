@@ -52,12 +52,12 @@ import avatar from '../auxiliare/avatar.vue';
 import LisOp from '../mains/list-opt.vue'
 import Solde from '../auxiliare/solde.vue'
 import signature from '../auxiliare/signature.vue';
-import { IonIcon, IonLabel, IonButtons, } from '@ionic/vue'
+import { IonLabel, IonButtons, } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
     home, layers, wallet, personCircle,
 } from 'ionicons/icons'
-import { onMounted, onBeforeUpdate} from 'vue'
+import { onMounted, } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components:{
@@ -66,7 +66,7 @@ export default {
         'sign-ature': signature,
         'sol-de': Solde,
         'ava-tar' : avatar,
-        IonIcon, IonLabel, IonButtons,
+        IonLabel, IonButtons,
     },
     setup() {
         const store = useStore()
