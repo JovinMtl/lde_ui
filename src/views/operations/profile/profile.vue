@@ -55,8 +55,7 @@ export default {
     components:{
         'base-menu' : baseMenu,
         'prof-content': profContent,
-        IonIcon, IonLabel,
-        // retrForm,
+        IonLabel,
     },
     setup() {
         const store = useStore()
