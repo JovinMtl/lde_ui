@@ -51,7 +51,8 @@ export default {
 
         // var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
         // var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
-        const baseURL = '//10.10.12.146:8002';
+        // const baseURL = '//10.10.12.146:8002';
+        const baseURL = '//127.0.0.1:8002';
         // const baseURL = '//192.168.43.156:8002';
 
         async function LogUser(){
@@ -72,7 +73,11 @@ export default {
                 console.log("OKK : ", store.getters.getUsername)
                 const data = await response.json()
                 console.log("The data is : ", data)
+                console.log("Access: ", data.access)
                 store.state.user = data
+                sessionStorage.setItem('access', data.access)
+                sessionStorage.setItem('refresh', data.refresh)
+                sessionStorage.setItem('lastActivity', new Date())
                 router.push('/hope')
 
             } else{
