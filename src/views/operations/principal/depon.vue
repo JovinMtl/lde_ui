@@ -132,7 +132,7 @@ import {
 } from '@ionic/vue'
 import { ref, watch, onBeforeUpdate, onBeforeUnmount, onMounted } from 'vue'
 import { useStore} from 'vuex'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
     components:{
@@ -148,6 +148,7 @@ export default {
     setup() {
         const store = useStore()
         const route = useRoute()
+        const router = useRouter()
         //Start of things of submitting the form
         const formData = ref({
             currency : '',
@@ -210,6 +211,9 @@ export default {
                 if(Number(store.getters.getLastActivity) > 5){
                     console.log("Connectez-vous d'abord : ", Number(store.getters.getLastActivity))
                     console.log("et Puis revenez a : ", route.path)
+                    store.commit('setWantedRoute', route.path)
+                    router.path('/logi')
+
                 }
                 kurungika()
                 console.log("END SENDING")

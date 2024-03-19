@@ -68,7 +68,10 @@ const store = createStore({
         },
         setLastActivity(state, value){
             state.lastActivity = value
-        }
+        },
+        setWantedRoute(state, value){
+            state.wantedRoute = value
+        },
     },
     actions:{
         async addTop5(context, value){
