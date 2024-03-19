@@ -18,7 +18,9 @@
 <script>
 import { useStore } from 'vuex'
 import { personCircle } from 'ionicons/icons'
+
 export default {
+    name : 'Avatar',
     setup() {
         const store = useStore()
         return {
