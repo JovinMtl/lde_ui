@@ -48,12 +48,12 @@ import {
     home, layers, wallet, personCircle, layersOutline,
     arrowBack,
 } from 'ionicons/icons'
-import { IonIcon, IonLabel,} from '@ionic/vue'
+import { IonLabel,} from '@ionic/vue'
 import { useStore } from 'vuex'
 export default {
     components:{
         'base-menu' : baseMenu,
-        IonIcon, IonLabel
+        IonLabel,
     },
     props:[
         'pageTitle',

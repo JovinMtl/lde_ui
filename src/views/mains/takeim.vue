@@ -37,14 +37,12 @@
 // import Menu from '../menu.vue'
 import signature from '../auxiliare/signature.vue'
 import { camera, add, checkmark, downloadOutline} from 'ionicons/icons'
-import { IonButton, IonButtons, IonIcon } from '@ionic/vue'
+import { IonButtons, } from '@ionic/vue'
 export default {
     components:{
         // 'me-nu' : Menu,
         'sign-ature': signature,
-        'ion-button' : IonButton,
         IonButtons,
-        IonIcon,
     },
     emits:[
         'imageCaptured',

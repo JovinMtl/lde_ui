@@ -40,7 +40,7 @@
     
 </template>
 <script>
-import {  IonList, IonItem, IonIcon } from '@ionic/vue'
+import {  IonList, IonItem, } from '@ionic/vue'
 import { 
     fingerPrint, personCircle, 
     chevronForward,
@@ -50,7 +50,7 @@ import { telegramLoginTemp } from 'vue3-telegram-login'
 
 export default {
     components:{
-        IonList, IonItem, IonIcon,
+        IonList, IonItem,
         VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
