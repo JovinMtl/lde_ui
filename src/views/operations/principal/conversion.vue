@@ -78,9 +78,8 @@
 <script>
 import baseMenuApps from '../../Layout/base-menuApps.vue';
 import solde from '../../auxiliare/solde.vue';
-import { IonIcon } from '@ionic/vue';
 import { 
-    IonItem, IonInput, IonList, IonButton,
+    IonItem, IonInput, IonList,
     IonSelect, IonSelectOption, IonImg,
     IonThumbnail, IonLabel, IonToggle,
 } from '@ionic/vue'
@@ -90,8 +89,8 @@ export default {
     components:{
         'base-menu-app': baseMenuApps,
         'sol-de' : solde,
-        IonItem, IonInput, IonList, IonButton,
-        IonSelect, IonSelectOption, IonImg, IonIcon,
+        IonItem, IonInput, IonList,
+        IonSelect, IonSelectOption, IonImg,
         IonThumbnail, IonLabel, IonToggle,
     },
     setup() {

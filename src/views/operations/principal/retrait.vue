@@ -45,7 +45,7 @@ import baseMenu from '../../Layout/base-menu.vue';
 import retrForm from '../../mains/retr-form.vue';
 import Solde from '../../auxiliare/solde.vue'
 import { 
-    IonIcon, IonLabel,
+    IonLabel,
 } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
@@ -57,7 +57,7 @@ export default {
     components:{
         'base-menu' : baseMenu,
         'sol-de': Solde,
-        IonIcon, IonLabel,
+        IonLabel,
         retrForm,
     },
     setup() {
