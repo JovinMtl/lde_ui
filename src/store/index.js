@@ -19,6 +19,8 @@ const store = createStore({
             user : 'null',
             isLoggedIn : false,
             lastActivity: null,
+
+            wantedRoute : null,
         }
     },
     mutations:{
