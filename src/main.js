@@ -27,11 +27,18 @@ import './theme/jove.css'
 
 
 // import Base from 'views/Layout/base.vue'
-import Base from './views/Layout/base.vue';
+// import Base from './views/Layout/base.vue';
 import store from './store/index.js';
 import Avatar from './views/auxiliare/avatar.vue';
-import { } from '@ionic/vue'
 import { 
+  IonPage, 
+  IonTitle, 
+  IonContent, 
+  IonHeader, 
+  IonToolbar,
+  IonFooter,
+  IonBackButton,
+  IonButtons,
   IonIcon,IonButton,
 } from '@ionic/vue'
 
@@ -40,10 +47,15 @@ const app = createApp(App)
   .use(router)
   .use(store);
 
-app.component('base-layout', Base)
+// app.component('base-layout', Base)
 app.component('ava-tar', Avatar)
 app.component('ion-icon', IonIcon)
 app.component('ion-button',IonButton)
+app.component('ion-page', IonPage)
+app.component('ion-content', IonContent)
+app.component('ion-page', )
+app.component('ion-page', )
+app.component('ion-page', )
 
   
 router.isReady().then(() => {

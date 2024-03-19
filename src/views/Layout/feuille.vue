@@ -10,32 +10,40 @@
 
 <script>
 import { 
-    IonPage, 
-    IonTitle, 
-    IonContent, 
+    IonTitle,  
     IonHeader, 
     IonToolbar,
     IonFooter,
     IonBackButton,
     IonButtons,
 } from '@ionic/vue'
+import { useStore } from 'vuex'
 export default {
     props: [
         'pageTitle'
     ],
     components:{
-        IonPage,
         IonTitle,
-        IonContent,
         IonHeader,
         IonToolbar,
         IonFooter,
         IonBackButton,
         IonButtons,
     },
-    methods: {
-        getBack(){
-            this.$router.back()
+    setup(){
+        const store = useStore()
+
+        
+        function checkUser(){
+            const lastActivity = sessionStorage.getItem('lastActivity')
+            const currentTime = new Date()
+            const differenceTime = currentTime.getTime() - lastActivity.getTime()
+            console.log("The difference of time is : ", differenceTime)
+
+        }
+        checkUser()
+
+        return {
         }
     }
 }
