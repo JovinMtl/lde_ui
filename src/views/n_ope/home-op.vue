@@ -7,7 +7,7 @@
                 </router-link>
         </template>
         <template v-slot:body-content>
-            <div class="avatar-container">
+            <div class="avatar-container" v-if="store.getters.getLastActivity !== null">
                 <ava-tar></ava-tar>
             </div>
             

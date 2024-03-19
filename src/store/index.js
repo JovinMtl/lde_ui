@@ -18,7 +18,7 @@ const store = createStore({
             password : 'bbb',
             user : 'null',
             isLoggedIn : false,
-            lastActivity: 'none',
+            lastActivity: 'null',
         }
     },
     mutations:{
@@ -92,7 +92,10 @@ const store = createStore({
         },
         getUsername(state){
             return state.username
-        }
+        },
+        getLastActivity(state){
+            return state.lastActivity
+        },
     }
 })
 
