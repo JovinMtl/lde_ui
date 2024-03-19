@@ -43,7 +43,7 @@
 import baseMenu from '../../Layout/base-menu.vue';
 import changePassword from '../../mains/ch-pw.vue'
 import { 
-    IonIcon, IonLabel,
+    IonLabel,
 } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
@@ -54,8 +54,7 @@ export default {
     components:{
         'base-menu' : baseMenu,
         'ch-pw': changePassword,
-        IonIcon, IonLabel,
-        // retrForm,
+        IonLabel,
     },
     setup() {
         return {
