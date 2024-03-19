@@ -43,7 +43,7 @@ const app = createApp(App)
 app.component('base-layout', Base)
 app.component('ava-tar', Avatar)
 app.component('ion-icon', IonIcon)
-app.component(IonButton)
+app.component('ion-button',IonButton)
 
   
 router.isReady().then(() => {
