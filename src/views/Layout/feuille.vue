@@ -36,6 +36,7 @@ export default {
         
         function checkUser(){
             const lastActivity = (sessionStorage.getItem('lastActivity'))
+            console.log("The lastActivity value: ", lastActivity)
             if(lastActivity !== 'null'){
                 const currentTime = new Date()
                             
@@ -45,6 +46,7 @@ export default {
                 var minutes = Math.floor((diff / 1000) / 60)
                 console.log("THe diff : ", diff)
                 console.log("Minutes : ", minutes)
+                store.commit('setLastActivity', diff)
             } else {
                 store.commit('resetActiveUser')
                 console.log("You're not connected")

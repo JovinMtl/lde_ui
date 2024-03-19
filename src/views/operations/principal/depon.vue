@@ -196,6 +196,7 @@ export default {
         const modalActive = ref(false)
         const infoModal = ref(false)
         const toogleModal = ()=>{
+            
             if(infoModal.value){
                 infoModal.value = false
                 return 0
@@ -203,6 +204,9 @@ export default {
             if(!waiter.value){
                 waiter.value = true
                 console.log("START SENDING ...")
+                if(store.getters.getLastActivity > 1){
+                    console.log("Connectez-vous d'abord")
+                }
                 kurungika()
                 console.log("END SENDING")
                 setTimeout(()=>{

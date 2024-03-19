@@ -18,7 +18,7 @@ const store = createStore({
             password : 'bbb',
             user : 'null',
             isLoggedIn : false,
-            lastActivity: 'null',
+            lastActivity: null,
         }
     },
     mutations:{
@@ -64,6 +64,9 @@ const store = createStore({
             sessionStorage.setItem('refresh', null)
             sessionStorage.setItem('lastActivity', null)
         },
+        setLastActivity(state, value){
+            state.lastActivity = value
+        }
     },
     actions:{
         async addTop5(context, value){
