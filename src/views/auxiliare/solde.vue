@@ -21,9 +21,7 @@
 <script>
 import { ref } from 'vue'
 import { eyeOff, eye} from 'ionicons/icons'
-import { IonIcon} from '@ionic/vue'
 export default {
-    components: { IonIcon },
     setup() {
         let soldeVisible = ref(false);
         let solde = 3000
