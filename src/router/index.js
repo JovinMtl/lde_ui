@@ -6,21 +6,11 @@ import HomP from '../views/n_ope/home-op.vue'
 import Depon from '../views/operations/principal/depon.vue'
 import Login from '../views/welcome/auth/login.vue'
 import Registration from '../views/welcome/auth/registr.vue'
-import transfer from '../views/operations/principal/transfer.vue'
+// import transfer from '../views/operations/principal/transfer.vue'
 import retrait from '../views/operations/principal/retrait.vue'
 import Lit from '../views/welcome/homelit.vue'
-import Histo from '../views/operations/historique/historique.vue'
-import Convert from '../views/operations/principal/conversion.vue'
-import invest from '../views/operations/principal/invest.vue'
-import profile from '../views/operations/profile/profile.vue'
-import changePassword from '../views/operations/profile/change-password.vue'
-// import Loader from '..views/auxiliare/processing/processing1.vue'
+// import Convert from '../views/operations/principal/conversion.vue'
 import Loader from '../views/auxiliare/processing/processing1.vue'
-// import { defineAsyncComponent} from 'vue'
-
-// const changePassword = defineAsyncComponent({
-//   loader: () => import('../views/operations/profile/change-password.vue'), // function that returns a Promise resolving to the component definition
-// });
 
 const routes= [
   {
@@ -57,10 +47,10 @@ const routes= [
     component: Depon
   },
   
-  {
-    path : '/transfer',
-    component : transfer,
-  },
+  // {
+  //   path : '/transfer',
+  //   component : transfer,
+  // },
   {
     path : '/retrait',
     component: retrait,
@@ -68,23 +58,23 @@ const routes= [
   
   {
     path : '/histo',
-    component : Histo,
+    component : ()=>import('../views/operations/historique/historique.vue')
   },
-  {
-    path : '/convert',
-    component : Convert
-  },
+  // {
+  //   path : '/convert',
+  //   component : Convert
+  // },
   {
     path : '/invest',
-    component : invest
+    component : ()=>import('../views/operations/principal/invest.vue')
   },
   {
     path : '/profile',
-    component: profile,
+    component: ()=>import('../views/operations/profile/profile.vue')
   },
   {
     path : '/chpa',
-    component: changePassword,
+    component : ()=> import('../views/operations/profile/change-password.vue')
 
   },
   {
