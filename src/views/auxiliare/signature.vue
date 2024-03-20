@@ -2,7 +2,7 @@
 <template>
     <div id="endPag">
         <div id="logolit"></div>
-        <p >LD Lit Dinar </p>
+        <p style="text-shadow: 0 0 10px black;">LD Lit Dinar </p>
     </div>
 </template>
 <style scoped>
