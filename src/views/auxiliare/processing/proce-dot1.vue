@@ -23,7 +23,7 @@
             width: 50vw;
             height: 100px;
             width: 320px;
-            background-color: #fff;
+            /* background-color: #fff; */
             background-color: transparent;
             top: 50%;
             left: 50%;
@@ -35,6 +35,8 @@
             /* width: 8%; */
             width: 16%;
             background-color: red;
+            background-color: black;
+            background-color: rgba(255, 187, 0, 0.781);
             top : 50%;
             left : 15%;
             transform: translate(-50%, -50%);
@@ -51,7 +53,10 @@
             /* width: 8%; */
             width: 16%;
             background-color: rgb(0, 255, 34);
+            background-color: #ab7400;
+            background-color: white;
             left : 45%;
+            left : 50%;
             top : 50%;
             transform: translate(-50%, -50%);
             border-radius: 250px;
@@ -71,7 +76,10 @@
             /* width: 8%; */
             width: 16%;
             background-color: rgb(8, 165, 139);
-            left : 75%;
+            background-color: white;
+            background-color: rgba(255, 187, 0, 0.781);
+            /* left : 75%; */
+            left : 90%;
             top : 50%;
             transform: translate(-50%, -50%);
             border-radius: 250px;
@@ -89,12 +97,15 @@
                 left: 10%;
             }
             50%{
-                /* left: 30%; */
-                box-shadow: 0 0 45px red;
+                /* left: 60%; */
+                box-shadow: 0 0 15px rgb(255, 187, 0);
+            }
+            69%{
+                box-shadow: 0 0 55px orange;
             }
             75%{
-                left: 29%;
-                box-shadow: 0 0 35px red;
+                left: 33.5%;
+                box-shadow: 0 0 15px orange;
             }
         }
         @keyframes agent3 {
@@ -103,25 +114,30 @@
             }
             50%{
                 /* background-color : red; */
-                box-shadow: 0 0 45px rgb(0, 255, 34);
+                /* box-shadow: 0 0 45px rgb(0, 255, 34); */
+                box-shadow: 0 0 45px white;
             }
             75%{
                 /* background-color: rgb(8, 165, 139); */
-                box-shadow: 0 0 65px rgb(0, 255, 34);
+                /* box-shadow: 0 0 65px rgb(0, 255, 34); */
+                box-shadow: 0 0 75px white;
                 /* background-color: green; */
             }
         }
         @keyframes agent5 {
             0%, 100%{
-                left: 75%;
+                left: 90%;
             }
             50%{
                 /* left: 60%; */
-                box-shadow: 0 0 45px rgb(8, 165, 139);
+                box-shadow: 0 0 15px rgb(255, 187, 0);
+            }
+            69%{
+                box-shadow: 0 0 55px orange;
             }
             75%{
-                left: 61%;
-                box-shadow: 0 0 35px rgb(8, 165, 139);
+                left: 67%;
+                box-shadow: 0 0 15px orange;
             }
         }
 </style>
