@@ -104,7 +104,7 @@
                 box-shadow: 0 0 55px orange;
             }
             75%{
-                left: 33.5%;
+                left: 33%;
                 box-shadow: 0 0 15px orange;
             }
         }
