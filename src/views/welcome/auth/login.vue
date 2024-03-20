@@ -109,6 +109,7 @@ export default {
                 if(username.value=='pass' && password.value=='pass'){
                     failedLogin.value = false
                     store.state.username = username.value
+                    failedNetwork.value = false
                     router.push('/hope')
                 }
             }
