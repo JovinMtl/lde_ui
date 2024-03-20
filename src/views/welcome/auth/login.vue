@@ -10,6 +10,7 @@
                 <div id="info">
                     <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous connecter.</p>
                     <p v-if="failedLogin" style="color: #ab2800;">Vous avez utisé un nom d'utilisateur ou mot de passe <strong>incorrect</strong>.</p>
+                    <p v-if="failedNetwork" style="color: #ab2800;">Vous faisons face au problème de connexion au <strong>serveur</strong>.</p>
                 </div>
                     <div>
                         <div class="usere fields">
@@ -48,6 +49,7 @@ export default {
         const username = ref(null)
         const password = ref(null)
         const failedLogin = ref(false)
+        const failedNetwork = ref(false)
 
         // var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
         // var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
@@ -97,10 +99,12 @@ export default {
             } else{
                 console.log("BAD")
                 failedLogin.value = true
+                failedNetwork.value = false
                 
             }
             } catch(value){
                 //
+                failedNetwork.value = true
                 console.log("YOu did not reach the server because: ", value)
                 if(username.value=='pass' && password.value=='pass'){
                     failedLogin.value = false
