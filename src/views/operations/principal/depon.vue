@@ -230,7 +230,7 @@ export default {
             }
             if(!waiter.value){
                 checkUser()
-                if((store.getters.getLastActivity) > 2){
+                if((store.getters.getLastActivity) > 5){
                     console.log("Connectez-vous d'abord : ", Number(store.getters.getLastActivity))
                     console.log("et Puis revenez a : ", route.path)
                     store.commit('setWantedRoute', route.path)
@@ -745,4 +745,4 @@ export default {
 h1{
     font-size: 4vh;
 }
-</style>
+</style>../../auxiliare/processing/proce-dot1vue
