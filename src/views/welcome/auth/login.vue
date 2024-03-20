@@ -10,7 +10,7 @@
                 <div id="info">
                     <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous connecter.</p>
                     <p v-if="failedLogin" style="color: #ab2800;">Vous avez utisé un nom d'utilisateur ou mot de passe <strong>incorrect</strong>.</p>
-                    <p v-if="failedNetwork" style="color: #ab2800;">Vous faisons face au problème de connexion au <strong>serveur</strong>.</p>
+                    <p v-if="failedNetwork" style="color: #ab2800;">Nous faisons face au problème de connexion au <strong>serveur</strong>.</p>
                 </div>
                     <div>
                         <div class="usere fields">
