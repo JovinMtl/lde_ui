@@ -196,6 +196,29 @@ export default {
             }
         }
         //End of things of submitting the form
+
+        //Start check if User is still active
+        function checkUser(){
+            const lastActivity = (sessionStorage.getItem('lastActivity'))
+            console.log("The lastActivity value: ", lastActivity)
+            if(lastActivity !== 'null'){
+                const currentTime = new Date()
+                            
+                var one = Date.parse(lastActivity)
+                var two = Date.parse(currentTime)
+                var diff = two - one
+                var minutes = Math.floor((diff / 1000) / 60)
+                console.log("THe diff : ", diff)
+                console.log("Minutes : ", minutes)
+                store.commit('setLastActivity', minutes)
+            } else {
+                store.commit('resetActiveUser')
+                console.log("You're not connected")
+            }
+            
+
+        }
+        //End check if User is still active
         //Start of MODAL
         const modalActive = ref(false)
         const infoModal = ref(false)
@@ -206,23 +229,25 @@ export default {
                 return 0
             }
             if(!waiter.value){
-
-                if(Number(store.getters.getLastActivity) > 2){
+                checkUser()
+                if((store.getters.getLastActivity) > 2){
                     console.log("Connectez-vous d'abord : ", Number(store.getters.getLastActivity))
                     console.log("et Puis revenez a : ", route.path)
                     store.commit('setWantedRoute', route.path)
-                    // router.push('/logi')
-                    router.replace('/logi')
+                    router.push('/logi')
+                    // router.replace('/logi')
                     // waiter.value = true
 
+                } else{
+                    waiter.value = true
+                    console.log("START SENDING ...")
+                    kurungika()
+                    console.log("END SENDING")
+                    setTimeout(()=>{
+                        modalActive.value = !modalActive.value
+                    }, 5000)
                 }
-                waiter.value = true
-                console.log("START SENDING ...")
-                kurungika()
-                console.log("END SENDING")
-                setTimeout(()=>{
-                    modalActive.value = !modalActive.value
-                }, 5000)
+                
             } else {
                 waiter.value = false
                 modalActive.value = !modalActive.value
