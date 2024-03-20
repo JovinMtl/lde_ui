@@ -24,7 +24,7 @@
         </div> 
     </router-link>
     <br><br>
-    <a href="https://t.me/adas40" previewlistener="true" style="text-decoration: none;">
+    <a href="https://t.me/akarto48" previewlistener="true" style="text-decoration: none;">
         <div style="background-color: black; 
         height: 7.5vh; width: 80vw; padding-top: 1vh;
         border-radius: 12px; padding-left: 6vw; margin-left: 6vw; color: white;">
