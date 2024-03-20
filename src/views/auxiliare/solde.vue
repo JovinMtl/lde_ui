@@ -49,7 +49,10 @@ export default {
         width: 280px;
         height: 55px;
         border-radius: 10px;
-        border: 2px solid black;
+        /* border: 2px solid black; */
+        border: 2px solid gray;
+        box-shadow: 0 0 35px black;
+        /* border-bottom-color: gray; */
     }
     .headShower{
         text-align: center;
