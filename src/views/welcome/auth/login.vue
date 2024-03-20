@@ -116,7 +116,7 @@ export default {
             
         }
         return {
-            LogUser, username, password, failedLogin,
+            LogUser, username, password, failedLogin, failedNetwork,
         }
     }
 }
