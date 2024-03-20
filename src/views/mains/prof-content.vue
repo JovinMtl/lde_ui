@@ -47,6 +47,7 @@ import {
 } from 'ionicons/icons'
 import VueTelegramLogin from 'vue-telegram-login';
 import { telegramLoginTemp } from 'vue3-telegram-login'
+import { useStore } from 'vuex'
 
 export default {
     components:{
@@ -54,11 +55,13 @@ export default {
         VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
+        const store = useStore()
         const telegramLogo = '/resources/logo/logo_home/telegrame.svg'
         
         return {
             fingerPrint, personCircle, chevronForward,
             telegramLogo,
+            store,
         }
     },
 }
