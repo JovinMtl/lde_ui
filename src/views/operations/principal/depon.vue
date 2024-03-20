@@ -103,11 +103,11 @@
                 <empty-modal @byeModal="toogleModal" :modalActive="modalActive" erreur="false">
                     <div class="modal-content">
                         <h1 >Confirmation </h1>
-                        <p>Merci pour votre dépôt. Nous traitons votre demande et vous informerons dès qu'elle sera approuvée. 
+                        <p style="font-size: 0.93em;">Merci pour votre dépôt. Nous traitons votre demande et vous informerons dès qu'elle sera approuvée. 
                             <br>
                             Veuillez vérifier votre boîte de notifications pour les mises à jour.
                             <br>
-                            <span style="font-size: 2.3vh; display:inline-flex; position: relative; margin-top: 3vh">
+                            <span style="font-size: 0.8ems; display:inline-flex; position: relative; margin-top: 3vh">
                                 Ceci pourra prendre au maximum 10 minutes.</span>
                         </p>
                     </div>
