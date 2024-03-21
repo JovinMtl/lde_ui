@@ -66,6 +66,7 @@ export default {
     setup() {
         const store = useStore()
 
+
         function logOut(){
             store.commit('resetActiveUser')
         }

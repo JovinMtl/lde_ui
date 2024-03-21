@@ -97,6 +97,11 @@ export default {
         const baseURL = '//127.0.0.1:8002'
         async function kurungika(){
             //
+            const currency = ''
+            const numero = ''
+            const benefitor = ''
+            const montant = ''
+            const date_submitted = new Date()
             const formToBeSent = new FormData()
             formToBeSent.append('currency', 'BIF')
             

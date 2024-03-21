@@ -150,15 +150,6 @@ export default {
         const route = useRoute()
         const router = useRouter()
         //Start of things of submitting the form
-        const formData = ref({
-            currency : '',
-            deposant : store.getters.getUsername,
-            numero : '',
-            montant : '',
-            bordereau : 'emittedBlobUri',
-            owner: '',
-            date: Date.UTC,
-        })
         const depotUrl = 'http://127.0.0.1:8002/jov/api/principal/receiveDepot/'
         const baseURL = '//127.0.0.1:8002'
         async function kurungika(){
