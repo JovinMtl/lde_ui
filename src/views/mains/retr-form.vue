@@ -104,7 +104,7 @@ export default {
             const date_submitted = new Date()
             const formToBeSent = new FormData()
             formToBeSent.append('currency', 'BIF')
-            console.log("The selected is : ", selectedItem)
+            console.log("The selected is : ", selectedItem.value)
             
             try{
                 const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
@@ -123,7 +123,7 @@ export default {
                     respoOperation.value = false
                 }
             }catch(value){
-                console.log("VOus avez rencontre une erreur supprenant : ", value)
+                // console.log("VOus avez rencontre une erreur supprenant : ", value)
                 respoOperation.value = false
             }
         }
@@ -284,11 +284,10 @@ export default {
         function uploadTop5(){
             // load the Top5 value stored locally and upload them to the store
             // To BE CALLED on onMOunted
-            console.log("store Before upload :", store.getters.getTop5)
+            // console.log("store Before upload :", store.getters.getTop5)
             const storedTop5 = localStorage.getItem('top5')
             store.dispatch('uploadTop5', storedTop5)
-            // this.$store.commit('uploadTop5', {'value': storedTop5})
-            console.log("store After upload :", store.getters.getTop5)
+            // console.log("store After upload :", store.getters.getTop5)
         }
         function updateOptions(){
             // makes call of chunk() and construct, should begin by 
@@ -297,45 +296,42 @@ export default {
             construct()
         }
         function initFunctions(){
-            console.log("INVEST SETUP: START Initialization")
+            // console.log("INVEST SETUP: START Initialization")
             uploadTop5() //slightly
             updateOptions()
-            console.log("INVEST SETUP: END Initialization")
+            // console.log("INVEST SETUP: END Initialization")
         }
         initFunctions()
         watch(selectedItem, (value)=>{
             if(finished){
                 currency.value = payes[value - 1].abbreviation
                 console.log("Finished is available : ", currency.value)
-                console.log("Sel : ", selectedItem.value, " Val: ", value)
-                // updateTop5()
+                // console.log("Sel : ", selectedItem.value, " Val: ", value)
             } else {
                 console.log("Finished is not available")
             }
         })
         onBeforeUpdate(()=>{
-            console.log("INVEST onBeforeUpdate: Start")
+            // console.log("INVEST onBeforeUpdate: Start")
             updateTop5()
             // showTop5()
             updateOptions()
             console.log("Here, the currency is : ", currency.value)
             // console.log("INVEST onBeforeUpdate: Downloading...")
             // downloadTop5()
-            console.log("INVEST onBeforeUpdate: End")
+            // console.log("INVEST onBeforeUpdate: End")
         })
         onBeforeUnmount(()=>{
-            console.log("INVEST: You are about to leave me, ONBEFOREUNMOUNT")
-            // updateTop5()
-            // showTop5()
-            console.log("INVEST: Now downloading, ONBEFOREUNMOUNT")
+            // console.log("INVEST: You are about to leave me, ONBEFOREUNMOUNT")
+            // console.log("INVEST: Now downloading, ONBEFOREUNMOUNT")
             if(selectedItem.value){
                 updateTop5()//only if i want to find the last input in the next component
                 downloadTop5()
-                console.log("INVEST ONBEFOREUNMOUNT: have downloaded: ", selectedItem.value)
+                // console.log("INVEST ONBEFOREUNMOUNT: have downloaded: ", selectedItem.value)
             } else{
-                console.log("INVEST: didn't download, ONBEFOREUNMOUNT")
+                // console.log("INVEST: didn't download, ONBEFOREUNMOUNT")
             }
-            console.log("INVEST: END downloading, ONBEFOREUNMOUNT")
+            // console.log("INVEST: END downloading, ONBEFOREUNMOUNT")
         })
         
         //Ending of Things for Currencies
