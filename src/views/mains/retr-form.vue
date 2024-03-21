@@ -83,6 +83,7 @@ import {
 } from '@ionic/vue'
 import { ref, watch, onBeforeUpdate, onBeforeUnmount } from 'vue'
 import { useStore } from 'vuex'
+import axios from 'axios'
 import emptyModalVue from './emptyModal.vue'
 import Loader from '../auxiliare/processing/processing1.vue'
 export default {
@@ -114,17 +115,24 @@ export default {
                 const response = await fetch(`${baseURL}/jov/api/retrait/receiveRetrait/`, {
                     method:'POST',
                     headers: {
-                        'Content-Type':'application/json',
+                        // 'Content-type' : 'form-data',
+                        'Authorization' : 'Bearer '+ store.getters.getAccessToken,
                         // 'Content-Type':'application/octet-stream' //when file
-                        'Authorization' : 'Bearer '+ store.getters.getAccessToken
                     },
                     body: formToBeSent,
                 })
+                // const response = await axios.post(`${baseURL}/jov/api/retrait/receiveRetrait/`, formToBeSent, {
+                //     headers: {
+                //         'Authorization': 'Bearer ' + store.getters.getAccessToken,  // Include the authorization header
+                //     },
+                // });
                 if(response.ok){
                     console.log("La reponse est bien: ", response)
+                    console.log("The sent Token: ", store.getters.getAccessToken)
                     respoOperation.value = true
                 } else{
                     console.log("La reponse n'est pas bon")
+                    console.log("The sent Token: ", store.getters.getAccessToken)
                     respoOperation.value = false
                 }
             }catch(value){
