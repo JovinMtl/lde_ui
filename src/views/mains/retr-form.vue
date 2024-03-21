@@ -113,10 +113,11 @@ export default {
             try{
                 const response = await fetch(`${baseURL}/jov/api/retrait/receiveRetrait/`, {
                     method:'POST',
-                    // headers: {
-                    //     'Content-Type':'application/json',
-                    //     'Content-Type':'application/octet-stream' //when file
-                    // },
+                    headers: {
+                        'Content-Type':'application/json',
+                        // 'Content-Type':'application/octet-stream' //when file
+                        'Authorization' : 'Bearer '+ store.getters.getAccessToken
+                    },
                     body: formToBeSent,
                 })
                 if(response.ok){
