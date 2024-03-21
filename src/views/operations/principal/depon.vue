@@ -21,19 +21,22 @@
                     <ion-label>Nom  </ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du déposant"
-                        aria-label="Nom et prenom du destinataire"></ion-input>
+                        aria-label="Nom et prenom du destinataire"
+                        v-model="deposant" ></ion-input>
                 </ion-item>
                 <ion-item v-if="selectedItem">
                     <ion-label>Numero</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du déposant"
-                        aria-label="du deposant"></ion-input>
+                        aria-label="du deposant"
+                        v-model="numero"></ion-input>
                 </ion-item>
                 <ion-item v-if="selectedItem">
                     <ion-label>Montant</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="de votre dépot"
-                        aria-label="du destinataire" type="number"></ion-input>
+                        aria-label="du destinataire" type="number"
+                        v-model="montant" ></ion-input>
                 </ion-item>
                 
                 <ion-button expand="block" v-if="paymethod == 'gallery' || this.$store.getters.getNumberTaken > 1 && paymethod != null "
@@ -150,12 +153,18 @@ export default {
         const route = useRoute()
         const router = useRouter()
         //Start of things of submitting the form
+        const numero = ref(null)
+        const deposant = ref(null)
+        const montant = ref(null)
         const depotUrl = 'http://127.0.0.1:8002/jov/api/principal/receiveDepot/'
         const baseURL = '//127.0.0.1:8002'
         async function kurungika(){
             //
             const formToBeSent = new FormData()
-            formToBeSent.append('currency', 'BIF')
+            formToBeSent.append('currency', currency.value)
+            formToBeSent.append('numero', numero.value)
+            formToBeSent.append('deposant', deposant.value)
+            formToBeSent.append('montant', montant.value)
             if(emittedBlobUri.value){
                 //
                 // Convert the emittedBlobUri to a Blob
@@ -169,12 +178,13 @@ export default {
                 formToBeSent.append('bordereau', imageFile);
                         }
             try{
-                const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
+                const response = await fetch(`${baseURL}/jov/api/depot/receiveDepot/`, {
                     method:'POST',
-                    // headers: {
-                    //     'Content-Type':'application/json',
-                    //     'Content-Type':'application/octet-stream' //when file
-                    // },
+                    headers: {
+                        // 'Content-Type':'application/json',
+                        // 'Content-Type':'application/octet-stream' //when file
+                        'Authorization' : 'Bearer '+ store.getters.getAccessToken,
+                    },
                     body: formToBeSent,
                 })
                 if(response.ok){
@@ -717,13 +727,11 @@ export default {
             paymethod, selectedItem, finished, payes, takenPhoto,
             selectedImage, temp,tempe, emittedBlobUri,
             changeImage, FileSelect, receivePhoto, compressImageBeforeSent,
-
             modalActive,
             toogleModal,
-
             payee,infoModal,
-
             waiter, store,
+            numero, deposant, montant,
         }
     },
 }

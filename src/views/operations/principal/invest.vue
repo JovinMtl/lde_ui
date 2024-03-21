@@ -112,7 +112,8 @@ export default {
         async function kurungika(){
             //
             const formToBeSent = new FormData()
-            formToBeSent.append('currency', 'BIF')
+            formToBeSent.append('currency', currency.value)
+            formToBeSent.append('periode', periode.value)
             
             try{
                 const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
@@ -429,6 +430,10 @@ export default {
             setResult(selectedPlan.value)
         })
         //End of Things for Investment Plan
+
+        //Start of submission form
+        
+        //End of Submission form
         
         
         return {
