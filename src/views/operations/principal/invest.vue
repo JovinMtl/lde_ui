@@ -113,9 +113,9 @@ export default {
             //
             const formToBeSent = new FormData()
             formToBeSent.append('currency', currency.value)
-            formToBeSent.append('duree', duree)
-            formToBeSent.append('taux', taux)
             formToBeSent.append('capital', capital.value)
+            formToBeSent.append('taux', taux)
+            formToBeSent.append('duree', duree)
             
             try{
                 const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
