@@ -16,20 +16,22 @@
                     <ion-label>Numero</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du bénéficiaire"
-                        aria-label="du deposant"></ion-input>
+                        aria-label="du deposant" v-model="numero"></ion-input>
                 </ion-item>
 
                 <ion-item>
                     <ion-label>Nom</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="du bénéficiaire"
-                        aria-label="Nom et prenom du destinataire" type="text"></ion-input>
+                        aria-label="Nom et prenom du destinataire" 
+                        type="text" v-model="benefitor"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Montant</ion-label>
                     <span style="margin-right: 1rem;">&nbsp;</span>
                     <ion-input color="primary" placeholder="de votre retrait"
-                        aria-label="du destinataire" type="number"></ion-input>
+                        aria-label="du destinataire" type="number"
+                        v-model="montant"></ion-input>
                 </ion-item>
                 
                 <!-- <ion-button id="confirmButton" expand="block">Confirmer</ion-button> -->
@@ -92,22 +94,24 @@ export default {
     },
     setup() {
         //Start of things of submitting the form
+        const numero = ref(null)
+        const benefitor = ref(null)
+        const montant = ref(null)
         const respoOperation = ref(false)
         const depotUrl = 'http://127.0.0.1:8002/jov/api/principal/receiveDepot/'
         const baseURL = '//127.0.0.1:8002'
         async function kurungika(){
             //
-            const currency = ''
-            const numero = ''
-            const benefitor = ''
-            const montant = ''
-            const date_submitted = new Date()
+            // currency is already defined at line 239
             const formToBeSent = new FormData()
-            formToBeSent.append('currency', 'BIF')
-            console.log("The selected is : ", selectedItem.value)
+            formToBeSent.append('currency', currency.value)
+            formToBeSent.append('numero', numero.value)
+            formToBeSent.append('benefitor', benefitor.value)
+            formToBeSent.append('montant', montant.value)
+            console.log("The montant is : ", montant.value)
             
             try{
-                const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
+                const response = await fetch(`${baseURL}/jov/api/retrait/receiveRetrait/`, {
                     method:'POST',
                     // headers: {
                     //     'Content-Type':'application/json',
@@ -342,6 +346,8 @@ export default {
 
             modalActive, waiter, respoOperation,
             toogleModal,
+
+            numero, benefitor, montant,
         }
     },
 }
