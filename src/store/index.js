@@ -107,6 +107,9 @@ const store = createStore({
         getWantedRoute(state){
             return state.wantedRoute
         },
+        getAccessToken(state){
+            return state.user.access
+        }
     }
 })
 
