@@ -104,6 +104,7 @@ export default {
             const date_submitted = new Date()
             const formToBeSent = new FormData()
             formToBeSent.append('currency', 'BIF')
+            console.log("The selected is : ", selectedItem)
             
             try{
                 const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
