@@ -118,12 +118,13 @@ export default {
             formToBeSent.append('duree', duree)
             
             try{
-                const response = await fetch(`${baseURL}/jov/api/principal/receiveDepot/`, {
+                const response = await fetch(`${baseURL}/jov/api/invest/receiveInvests/`, {
                     method:'POST',
-                    // headers: {
-                    //     'Content-Type':'application/json',
-                    //     'Content-Type':'application/octet-stream' //when file
-                    // },
+                    headers: {
+                        // 'Content-Type':'application/json',
+                        // 'Content-Type':'application/octet-stream' //when file
+                        'Authorization' : 'Bearer '+ store.getters.getAccessToken,
+                    },
                     body: formToBeSent,
                 })
                 if(response.ok){
