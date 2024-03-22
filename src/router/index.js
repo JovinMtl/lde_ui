@@ -12,6 +12,8 @@ import Lit from '../views/welcome/homelit.vue'
 // import Convert from '../views/operations/principal/conversion.vue'
 import Loader from '../views/auxiliare/processing/processing1.vue'
 
+import investAdmin from '../views/operations/principal/invest-admin.vue'
+
 const routes= [
   {
     path: '/',
@@ -84,6 +86,10 @@ const routes= [
   {
     path : '/loader',
     component : Loader
+  },
+  {
+    path : '/invest-admin',
+    component: investAdmin,
   }
 ]
 
