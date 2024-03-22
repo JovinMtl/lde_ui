@@ -45,14 +45,11 @@ import {
     fingerPrint, personCircle, 
     chevronForward,
 } from 'ionicons/icons'
-import VueTelegramLogin from 'vue-telegram-login';
-import { telegramLoginTemp } from 'vue3-telegram-login'
 import { useStore } from 'vuex'
 
 export default {
     components:{
         IonList, IonItem,
-        VueTelegramLogin, telegramLoginTemp,
     },
     setup() {
         const store = useStore()
