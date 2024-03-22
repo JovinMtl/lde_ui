@@ -16,7 +16,12 @@
                 <ava-tar></ava-tar>
             </div>
             <sol-de></sol-de> <br>
-            <invest-list :notApproved="notApproved"></invest-list>
+            <div v-if="notApproved">
+                <invest-list></invest-list>
+            </div>
+            <div>
+                <inve-linp></inve-linp>
+            </div>
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hope">
@@ -61,6 +66,7 @@ import emptyModalVue from '../../mains/emptyModal.vue';
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
 
 import InvestList from '../../mains/admin/invest-list.vue';
+import invLiNp from '../../mains/admin/inv-li-np.vue';
 import { 
     exitOutline,notificationsOutline,
     home,
@@ -75,6 +81,7 @@ export default {
         'loa-der': Loader,
 
         'invest-list' : InvestList,
+        'inve-linp' : invLiNp,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption,
         IonLabel,
