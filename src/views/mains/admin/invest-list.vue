@@ -4,7 +4,7 @@
     <ion-list v-for="(invest, index) in allInvests">
         <ion-item>{{ invest.owner }}, {{ invest.currency }},
             {{ invest.result }}, {{ (invest.date_submitted).slice(11,16)}}
-            <span v-if="!invest.approved">
+            <span v-show="!invest.approved">
                 <a :href="invest.link_to_approve">
                 <ion-button>
                     <ion-icon :src="checkmarkDone"></ion-icon>
@@ -28,7 +28,7 @@
 <script>
 import { IonList, IonItem, IonButton, IonIcon } from '@ionic/vue'
 import { checkmarkDone } from 'ionicons/icons'
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, onBeforeUpdate, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components:{
@@ -54,10 +54,9 @@ export default {
                 });
 
                 if (response.ok){
-                    const data = await response.json()
-                    allInvests.value = data
+                    allInvests.value = await response.json()
                     console.log("Things are well received")
-                    console.log(allInvests.value)
+                    // console.log(allInvests.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
