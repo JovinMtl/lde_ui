@@ -2,50 +2,74 @@
     <div>
         <p>Here is the list of investments</p>
     <ion-list v-for="(invest, index) in allInvests">
-        <ion-item>{{ invest.owner }}, {{ invest.currency }},
+        <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
             {{ invest.result }}, {{ (invest.date_submitted).slice(11,16)}}
-            <span v-show="!invest.approved">
-                <a :href="invest.link_to_approve">
-                <ion-button>
-                    <ion-icon :src="checkmarkDone"></ion-icon>
+            <span v-show="!invest.approved" >
+                <!-- <a :href="invest.link_to_approve"> -->
+                <button  :id="'jo'+index" :value="invest.link_to_approve" 
+                    @click="kwemeza($event.target.value)"
+                    style="height: 2em; margin: 8px 10px; background-color: orange;
+                            color: black;border-radius: 5px; padding: 0 5px;">
+                    Approuver
+                    <!-- <ion-icon :src="checkmarkDone" ></ion-icon> -->
                     <!-- jonk -->
-                </ion-button>
-                </a>
+                </button>
+                <button  :id="'jo'+index" :value="invest.link_to_approve" 
+                    @click="kwemeza($event.target.value)"
+                    style="height: 2em; margin: 8px 10px; background-color: red;
+                            color: black;border-radius: 5px; padding: 0 5px;">
+                    Refuser
+                    <!-- <ion-icon :src="checkmarkDone" ></ion-icon> -->
+                    <!-- jonk -->
+                </button>
             </span>
             
         </ion-item>
     </ion-list>
-    <button value="jove" ref="approveLink" @click="kwemeza">Voici</button>
+    <!-- <button value="jove" ref="approveLink" @click="kwemeza">Voici</button> -->
     <!-- <ol v-for="invest in allInvests">
         <li>{{ invest.owner }} jove</li>
     </ol>
     :class="index" value="jove" ref="approveLink" @click="kwemeza"
     <p>This is what we have {{ allInvests }}</p> -->
     </div>
+    <div style="background-color: green;"> here : {{ notApproved }}</div>
+    <div style="background-color: white; text-align: center;">
+        <p v-if="operationSuccess"> {{ message }}</p>
+        <p v-else style="color: red;"> {{ message }}</p>
+    </div>
     
 </template>
 
 <script>
 import { IonList, IonItem, IonButton, IonIcon } from '@ionic/vue'
-import { checkmarkDone } from 'ionicons/icons'
-import { reactive, ref, onMounted, onBeforeUpdate, onUpdated } from 'vue'
+import { checkmarkDone, close } from 'ionicons/icons'
+import { reactive, ref, onMounted, onBeforeUpdate, onUpdated, watch } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components:{
         IonList, IonItem, IonButton, IonIcon
     },
-    setup() {
+    props:[
+        'notApproved', 'yetApproved', 'allInvests',
+    ],
+    setup(props) {
         const store = useStore()
-        const approveLink = ref(null)
+        const message = ref(null)
+        const operationSuccess = ref(false)
+
+        const noApproved = ref(false)
         
         const allInvests = ref(null)
+        var suffix = '/jov/api/invest/allInvests/'
 
         async function kubaza(){
             const url = ' http://localhost:8002/jov/api/invest/allInvests/'
             const baseURL = '//127.0.0.1:8002'
+            
 
             try {
-                const response = await fetch(`${baseURL}/jov/api/invest/allInvests/`,{
+                const response = await fetch(`${baseURL}${suffix}`,{
                     method: 'GET',
                     headers:{
                         // 'Content-type' : 'application/json',
@@ -65,15 +89,49 @@ export default {
             }
         }
 
-        function kwemeza(){
-            console.log("The selected : ", approveLink.value.value)
+        async function kwemeza(link){
+            console.log("The click element: ", link)
+
+
+            try{
+                const responseActivate = await fetch(`${link}`,{
+                    method: 'GET',
+                        headers:{
+                            'Authorization' : 'Bearer '+ store.getters.getAccessToken,
+                        },
+                })
+                if(responseActivate.ok){
+                    console.log("Vous avez bien approuvee cet investissement ")
+                    message.value = "Vous avez bien approuvee cet investissement "
+                    operationSuccess.value = true
+                } else{
+                    console.log("Cet investissement n'est pas approuvee")
+                    message.value = "Cet investissement n'est pas approuvee"
+                    operationSuccess.value = false
+                }
+            } catch(value){
+                operationSuccess.value = false
+                message.value = "Investissement non approuve, probleme de connexion."
+            }
+            
         }
         kubaza()
 
+        watch(()=>props.notApproved, (newValue, oldValue)=>{
+            noApproved.value = newValue
+            if(newValue){
+                console.log("Now Showing those DONE")
+                suffix = '/jov/api/invest/doneInvests/'
+                kubaza()
+            }
+        })
+
         return {
-            allInvests, approveLink,
-            checkmarkDone,
+            allInvests, message, operationSuccess,
+            checkmarkDone, close,
             kwemeza,
+            // notApproved:props.notApproved,
+            noApproved,
         }
     },
 }

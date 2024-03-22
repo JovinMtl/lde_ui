@@ -16,13 +16,16 @@
                 <ava-tar></ava-tar>
             </div>
             <sol-de></sol-de> <br>
-            <invest-list></invest-list>
+            <invest-list :notApproved="notApproved"></invest-list>
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hope">
                 <ion-icon id="ico1" :icon="home" size="large"></ion-icon>
             </router-link>
-            <router-link to="/histo">
+            <!-- <router-link to="/histo">
+                <ion-icon id="ico2" :icon="checkmark" size="large"></ion-icon>
+            </router-link> -->
+            <router-link to="" @click="nonApproved()">
                 <ion-icon id="ico2" :icon="checkmark" size="large"></ion-icon>
             </router-link>
             <!-- <router-link to="/depot">
@@ -78,6 +81,16 @@ export default {
     },
     setup() {
         const store = useStore()
+
+        //Start of Things of Non approved & approved investments 
+        const notApproved = ref(false)
+        const yetApproved = ref(false)
+        const allInvests = ref(true)
+
+        function nonApproved(){
+            notApproved.value = !notApproved.value
+        }
+        //End of Things of Non approved & approved investments
 
         function logOut(){
             store.commit('resetActiveUser')
@@ -423,7 +436,10 @@ export default {
             exitOutline,notificationsOutline,
             home,
             chevronBack,
-            checkmarkDone, checkmark
+            checkmarkDone, checkmark,
+
+            notApproved, yetApproved, allInvests,
+            nonApproved,
         }
     },
 }
