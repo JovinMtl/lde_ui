@@ -52,7 +52,8 @@ export default {
                     name : 'Investir',
                     color: 'grey',
                     borderRadius : '25px',
-                    path : '/invest',
+                    // path : '/invest',
+                    path : '/invest-admin',
                 },
                 
             ]

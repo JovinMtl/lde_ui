@@ -17,6 +17,7 @@ const store = createStore({
             username : 'null',
             password : 'bbb',
             user : 'null',
+            isAdmin: false,
             isLoggedIn : false,
             lastActivity: null,
 

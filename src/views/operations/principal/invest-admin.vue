@@ -1,40 +1,87 @@
 <template>
-    <base-menu-app pageTitle ="Investissements" baArrow="true">
-        <!-- Here i have imported my baseMenuApps -->
-        <div class="avatar-container" v-if="store.getters.getLastActivity !== null">
+    <base-menu pageTitle="Investissements">
+        <template v-slot:back-left>
+            <ion-icon :icon="chevronBack" slot="end" size="large">Back</ion-icon>
+            <!-- <ion-back-button text="Retour"></ion-back-button> -->
+        </template>
+        <template v-slot:finish-right>
+                <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
+                <router-link to="/">
+                    <ion-icon :icon="exitOutline" slot="end" size="large" @click="logOut"></ion-icon>
+                </router-link>
+                
+        </template>
+        <template v-slot:body-content>
+            <div class="avatar-container" v-if="store.getters.getLastActivity !== null">
                 <ava-tar></ava-tar>
-        </div>
-        <sol-de></sol-de>
-        
-        <br><br><br>
-        
-    </base-menu-app>
+            </div>
+            <sol-de></sol-de> <br>
+            <invest-list></invest-list>
+        </template>
+        <template v-slot:Footer-menu>
+            <router-link to="/hope">
+                <ion-icon id="ico1" :icon="home" size="large"></ion-icon>
+            </router-link>
+            <router-link to="/histo">
+                <ion-icon id="ico2" :icon="checkmark" size="large"></ion-icon>
+            </router-link>
+            <!-- <router-link to="/depot">
+                <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
+            </router-link> -->
+            <router-link to="/profile">
+                <ion-icon id="ico4" :icon="checkmarkDone" size="large"></ion-icon>
+            </router-link>
+            
+
+            <ion-label id="lab1">Accueil</ion-label>
+            <ion-label id="lab2">Non approuvés</ion-label>
+            <!-- <ion-label id="lab3">Portefeuille</ion-label> -->
+            <ion-label id="lab4">Approuvés</ion-label>
+        </template>
+            
+    </base-menu>
 </template>
 
 <script>
-import baseMenuApps from '../../Layout/base-menuApps.vue'
+import baseMenu from '../../Layout/base-menu.vue';
+// import baseMenuApps from '../../Layout/base-menuApps.vue'
 import solde from '../../auxiliare/solde.vue';
 import { 
     IonItem, IonInput, IonList, IonButton,
     IonSelect, IonSelectOption,
     IonLabel,
 } from '@ionic/vue'
-import { ref, watch, onMounted, onBeforeUpdate,onBeforeUnmount, computed, } from 'vue'
+import { ref, watch, onBeforeUpdate,onBeforeUnmount,} from 'vue'
 import { useStore } from 'vuex'
 import emptyModalVue from '../../mains/emptyModal.vue';
 // import Loader from '../../auxiliare/processing/processing1.vue'
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
+
+import InvestList from '../../mains/admin/invest-list.vue';
+import { 
+    exitOutline,notificationsOutline,
+    home,
+    chevronBack,
+    checkmarkDone, checkmark
+} from 'ionicons/icons'
 export default {
     components:{
-        'base-menu-app': baseMenuApps,
+        'base-menu' : baseMenu,
         'sol-de' : solde,
         'empty-modal' : emptyModalVue,
         'loa-der': Loader,
+
+        'invest-list' : InvestList,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption,
         IonLabel,
     },
     setup() {
+        const store = useStore()
+
+        function logOut(){
+            store.commit('resetActiveUser')
+        }
         //Start of things of submitting the form
         const respoOperation = ref(false)
         const depotUrl = 'http://127.0.0.1:8002/jov/api/principal/receiveDepot/'
@@ -100,7 +147,7 @@ export default {
         //End of Modal
 
         //Beginning of Things for Currencies
-        const store = useStore()
+        
         const paymethod = ref(null)
         const selectedItem = ref(null)
         const allElements = [ 1,2,3,4,5,6,7,8,9,10,11]
@@ -370,13 +417,13 @@ export default {
         
         
         return {
-            selectedPlan, plans, capital, result, interest, periode,
-            finished, selectedItem, currency,
 
-            store,
+            store, logOut,
 
-            modalActive, waiter, respoOperation,
-            toogleModal,
+            exitOutline,notificationsOutline,
+            home,
+            chevronBack,
+            checkmarkDone, checkmark
         }
     },
 }
