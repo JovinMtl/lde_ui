@@ -1,37 +1,50 @@
 <template>
-    <div>
-        <p>Here is the list of investments</p>
+    <div v-show="!noApproved">
+        <p>Here is the list of investments(NO)</p>
     <ion-list v-for="(invest, index) in allInvests">
         <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
             {{ invest.result }}, {{ (invest.date_submitted).slice(11,16)}}
             <span v-show="!invest.approved" >
-                <!-- <a :href="invest.link_to_approve"> -->
                 <button  :id="'jo'+index" :value="invest.link_to_approve" 
                     @click="kwemeza($event.target.value)"
                     style="height: 2em; margin: 8px 10px; background-color: orange;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Approuver
-                    <!-- <ion-icon :src="checkmarkDone" ></ion-icon> -->
-                    <!-- jonk -->
                 </button>
                 <button  :id="'jo'+index" :value="invest.link_to_approve" 
                     @click="kwemeza($event.target.value)"
                     style="height: 2em; margin: 8px 10px; background-color: red;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Refuser
-                    <!-- <ion-icon :src="checkmarkDone" ></ion-icon> -->
-                    <!-- jonk -->
                 </button>
             </span>
             
         </ion-item>
     </ion-list>
-    <!-- <button value="jove" ref="approveLink" @click="kwemeza">Voici</button> -->
-    <!-- <ol v-for="invest in allInvests">
-        <li>{{ invest.owner }} jove</li>
-    </ol>
-    :class="index" value="jove" ref="approveLink" @click="kwemeza"
-    <p>This is what we have {{ allInvests }}</p> -->
+    </div>
+
+    <div v-show="noApproved">
+        <p>Here is the list of investments( YES)</p>
+    <ion-list v-for="(invest, index) in allInvests">
+        <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
+            {{ invest.result }}, {{ (invest.date_submitted).slice(11,16)}}
+            <span v-show="!invest.approved" >
+                <button  :id="'jo'+index" :value="invest.link_to_approve" 
+                    @click="kwemeza($event.target.value)"
+                    style="height: 2em; margin: 8px 10px; background-color: orange;
+                            color: black;border-radius: 5px; padding: 0 5px;">
+                    Approuver
+                </button>
+                <button  :id="'jo'+index" :value="invest.link_to_approve" 
+                    @click="kwemeza($event.target.value)"
+                    style="height: 2em; margin: 8px 10px; background-color: red;
+                            color: black;border-radius: 5px; padding: 0 5px;">
+                    Refuser
+                </button>
+            </span>
+            
+        </ion-item>
+    </ion-list>
     </div>
     <div style="background-color: green;"> here : {{ notApproved }}</div>
     <div style="background-color: white; text-align: center;">
