@@ -1,42 +1,42 @@
 <template>
-    <p>Here is the list of investments</p>
-    <ion-list>
-        <ion-item></ion-item>
+    <div>
+        <p>Here is the list of investments</p>
+    <ion-list v-for="(invest, index) in allInvests">
+        <ion-item>{{ invest.owner }}, {{ invest.currency }},
+            {{ invest.result }}, {{ (invest.date_submitted).slice(11,16)}}
+            <span v-if="!invest.approved">
+                <a :href="invest.link_to_approve">
+                <ion-button>
+                    <ion-icon :src="checkmarkDone"></ion-icon>
+                    <!-- jonk -->
+                </ion-button>
+                </a>
+            </span>
+            
+        </ion-item>
     </ion-list>
+    <button value="jove" ref="approveLink" @click="kwemeza">Voici</button>
+    <!-- <ol v-for="invest in allInvests">
+        <li>{{ invest.owner }} jove</li>
+    </ol>
+    :class="index" value="jove" ref="approveLink" @click="kwemeza"
+    <p>This is what we have {{ allInvests }}</p> -->
+    </div>
+    
 </template>
 
 <script>
-import { IonList, IonItem } from '@ionic/vue'
-import { ref } from 'vue'
+import { IonList, IonItem, IonButton, IonIcon } from '@ionic/vue'
+import { checkmarkDone } from 'ionicons/icons'
+import { reactive, ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components:{
-        IonList, IonItem
+        IonList, IonItem, IonButton, IonIcon
     },
     setup() {
         const store = useStore()
-
-        // function checkUser(){
-        //     const lastActivity = (sessionStorage.getItem('lastActivity'))
-        //     console.log("The lastActivity value: ", lastActivity)
-        //     if(lastActivity !== 'null'){
-        //         const currentTime = new Date()
-                            
-        //         var one = Date.parse(lastActivity)
-        //         var two = Date.parse(currentTime)
-        //         var diff = two - one
-        //         var minutes = Math.floor((diff / 1000) / 60)
-        //         console.log("THe diff : ", diff)
-        //         console.log("Minutes : ", minutes)
-        //         store.commit('setLastActivity', minutes)
-        //     } else {
-        //         store.commit('resetActiveUser')
-        //         console.log("You're not connected")
-        //     }
-            
-
-        // }
-        // checkUser()
+        const approveLink = ref(null)
         
         const allInvests = ref(null)
 
@@ -57,6 +57,7 @@ export default {
                     const data = await response.json()
                     allInvests.value = data
                     console.log("Things are well received")
+                    console.log(allInvests.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
@@ -64,7 +65,17 @@ export default {
                 console.log("THe reason is : ", value)
             }
         }
+
+        function kwemeza(){
+            console.log("The selected : ", approveLink.value.value)
+        }
         kubaza()
+
+        return {
+            allInvests, approveLink,
+            checkmarkDone,
+            kwemeza,
+        }
     },
 }
 </script>
