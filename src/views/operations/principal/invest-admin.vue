@@ -45,9 +45,9 @@
             
 
             <ion-label id="lab1">Accueil</ion-label>
-            <ion-label id="lab2">Non approuvés</ion-label>
+            <ion-label id="l2">Non approuvés</ion-label>
             <!-- <ion-label id="lab3">Portefeuille</ion-label> -->
-            <ion-label id="lab4">Approuvés</ion-label>
+            <ion-label id="l4">Approuvés</ion-label>
         </template>
             
     </base-menu>
