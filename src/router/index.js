@@ -14,6 +14,7 @@ import Loader from '../views/auxiliare/processing/processing1.vue'
 
 import investAdmin from '../views/operations/principal/invest-admin.vue'
 import depotAdmin from '../views/operations/principal/depot-admin.vue'
+import desplayImage from '../views/n_ope/displ-image.vue'
 
 const routes= [
   {
@@ -95,6 +96,10 @@ const routes= [
   {
     path : '/depot-admin',
     component : depotAdmin
+  },
+  {
+    path : '/open-image',
+    component : desplayImage,
   },
 ]
 
