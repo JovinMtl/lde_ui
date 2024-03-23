@@ -347,7 +347,7 @@ export default {
             // console.log("INVEST CHUNK: see the combined: ", combiNEd)
             let uniqueValuesSet = new Set(combiNEd);
             wanted = Array.from(uniqueValuesSet);
-            console.log("INVEST CHUNK: the wanted BEFORE action: ", wanted)
+            // console.log("INVEST CHUNK: the wanted BEFORE action: ", wanted)
             let nonZero = []
             wanted.forEach((value)=>{
                 if(value !== 0){
@@ -355,7 +355,7 @@ export default {
                 }
             })
             wanted = nonZero
-            console.log("INVEST CHUNK: the wanted AFTER action: ", wanted)
+            // console.log("INVEST CHUNK: the wanted AFTER action: ", wanted)
         }
         function construct(){
             // This is for constructing the new object of options 
