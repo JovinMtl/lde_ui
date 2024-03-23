@@ -55,8 +55,8 @@ export default {
 
                 if (response.ok){
                     allDepots.value = await response.json()
-                    // console.log("Things are well received")
-                    // console.log(allInvests.value)
+                    console.log("DEP-li-LIST: Things are well received")
+                    console.log(allDepots.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
