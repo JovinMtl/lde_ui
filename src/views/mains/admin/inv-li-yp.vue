@@ -22,7 +22,6 @@
         </ion-item>
     </ion-list>
     </div>
-    <p>THe content is : {{ allInvests }}</p>
     <div style="background-color: white; text-align: center;">
         <p v-if="operationSuccess"> {{ message }}</p>
         <p v-else style="color: red;"> {{ message }}</p>
