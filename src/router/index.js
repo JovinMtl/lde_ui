@@ -13,6 +13,7 @@ import Lit from '../views/welcome/homelit.vue'
 import Loader from '../views/auxiliare/processing/processing1.vue'
 
 import investAdmin from '../views/operations/principal/invest-admin.vue'
+import depotAdmin from '../views/operations/principal/depot-admin.vue'
 
 const routes= [
   {
@@ -90,7 +91,11 @@ const routes= [
   {
     path : '/invest-admin',
     component: investAdmin,
-  }
+  },
+  {
+    path : '/depot-admin',
+    component : depotAdmin
+  },
 ]
 
 const router = createRouter({
