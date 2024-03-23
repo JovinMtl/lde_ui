@@ -22,6 +22,9 @@
             <div v-if="notApproved">
                 <inve-linp></inve-linp>
             </div>
+            <div v-if="yetApproved">
+                <inve-liyp></inve-liyp>
+            </div>
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hope">
@@ -67,6 +70,7 @@ import Loader from '../../auxiliare/processing/proce-dot1.vue'
 
 import InvestList from '../../mains/admin/invest-list.vue';
 import invLiNp from '../../mains/admin/inv-li-np.vue';
+import invLiYp from '../../mains/admin/inv-li-yp.vue'
 import { 
     exitOutline,notificationsOutline,
     home,
@@ -82,6 +86,7 @@ export default {
 
         'invest-list' : InvestList,
         'inve-linp' : invLiNp,
+        'inve-liyp' : invLiYp,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption,
         IonLabel,
@@ -97,11 +102,9 @@ export default {
         function nonApproved(){
             notApproved.value = !notApproved.value
             allInvests.value = !allInvests.value
-            yetApproved.value = !yetApproved.value
         }
         function yetApprovedFunction(){
             yetApproved.value = !yetApproved.value
-            notApproved.value = !notApproved.value
             allInvests.value = !allInvests.value
         }
         //End of Things of Non approved & approved investments
