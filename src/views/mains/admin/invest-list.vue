@@ -110,7 +110,8 @@ export default {
             noApproved.value = newValue
             if(newValue){
                 console.log("Now Showing those DONE")
-                suffix = '/jov/api/invest/doneInvests/'
+                // suffix = '/jov/api/invest/doneInvests/'
+                suffix = '/jov/api/invest/needInvests/'
                 kubaza()
             }
         })

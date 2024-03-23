@@ -16,9 +16,9 @@
                 <ava-tar></ava-tar>
             </div>
             <sol-de></sol-de> <br>
-            <div v-if="notApproved">
+            <!-- <div v-if="notApproved">
                 <invest-list></invest-list>
-            </div>
+            </div> -->
             <div>
                 <inve-linp></inve-linp>
             </div>
