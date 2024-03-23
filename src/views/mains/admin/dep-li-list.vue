@@ -11,9 +11,6 @@
                             border: 1px solid orange;"
                             />
                 </ion-thumbnail>
-                <!-- <router-link>
-                    <ion-button>Ouvrir</ion-button>
-                </router-link> -->
                 <router-link to="/hope">
                     <button :value="'http://127.0.0.1:8002'+depot.bordereau" 
                     @click="turnImage($event.target.value)"
