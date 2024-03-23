@@ -16,10 +16,10 @@
                 <ava-tar></ava-tar>
             </div>
             <sol-de></sol-de> <br>
-            <!-- <div v-if="notApproved">
+            <div v-if="allInvests">
                 <invest-list></invest-list>
-            </div> -->
-            <div>
+            </div>
+            <div v-if="notApproved">
                 <inve-linp></inve-linp>
             </div>
         </template>
@@ -96,6 +96,7 @@ export default {
 
         function nonApproved(){
             notApproved.value = !notApproved.value
+            allInvests.value = !allInvests.value
         }
         //End of Things of Non approved & approved investments
 

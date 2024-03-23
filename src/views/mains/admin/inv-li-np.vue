@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Here is the list of investments(NO)</p>
+        <p>Here is the list of investments(NOT Yet approved)</p>
     <ion-list v-for="(invest, index) in allInvests">
         <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
             {{ invest.result }}, {{ (invest.date_submitted).slice(11, 16)}}
