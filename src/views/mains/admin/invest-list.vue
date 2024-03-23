@@ -62,7 +62,7 @@ export default {
 
                 if (response.ok){
                     allInvests.value = await response.json()
-                    console.log("Things are well received")
+                    // console.log("Things are well received")
                     // console.log(allInvests.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
