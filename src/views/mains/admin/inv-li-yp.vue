@@ -2,7 +2,7 @@
     <div>
         <p>Here is the list of investments(Only Yet approved)</p>
     <ion-list v-for="(invest, index) in allInvests">
-        <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
+        <ion-item :class="'jo'+index" class="index">{{ invest.owner }}, {{ invest.currency }},
             {{ invest.result }}, {{ (invest.date_submitted).slice(11, 16)}}
             <span v-show="!invest.approved" >
                 <button  :id="'jo'+index" :value="invest.link_to_approve" 
@@ -11,7 +11,7 @@
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Approuver
                 </button>
-                <button  :id="'jo'+index" :value="invest.link_to_approve" 
+                <button   :value="invest.link_to_approve" 
                     @click="kwemeza($event.target.value)"
                     style="height: 2em; margin: 8px 10px; background-color: red;
                             color: black;border-radius: 5px; padding: 0 5px;">

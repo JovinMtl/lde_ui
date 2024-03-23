@@ -1,5 +1,5 @@
 <template>
-    <div v-show="!noApproved">
+    <div>
         <p>Here is the list of investments(ALL MIXED)</p>
     <ion-list v-for="(invest, index) in allInvests">
         <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
@@ -22,7 +22,6 @@
         </ion-item>
     </ion-list>
     </div>
-    <div style="background-color: green;"> here : {{ notApproved }}</div>
     <div style="background-color: white; text-align: center;">
         <p v-if="operationSuccess"> {{ message }}</p>
         <p v-else style="color: red;"> {{ message }}</p>
@@ -39,15 +38,10 @@ export default {
     components:{
         IonList, IonItem, IonButton, IonIcon
     },
-    props:[
-        'notApproved', 'yetApproved', 'allInvests',
-    ],
-    setup(props) {
+    setup() {
         const store = useStore()
         const message = ref(null)
         const operationSuccess = ref(false)
-
-        const noApproved = ref(false)
         
         const allInvests = ref(null)
         var suffix = '/jov/api/invest/allInvests/'
@@ -106,22 +100,10 @@ export default {
         }
         kubaza()
 
-        watch(()=>props.notApproved, (newValue, oldValue)=>{
-            noApproved.value = newValue
-            if(newValue){
-                console.log("Now Showing those DONE")
-                // suffix = '/jov/api/invest/doneInvests/'
-                suffix = '/jov/api/invest/needInvests/'
-                kubaza()
-            }
-        })
-
         return {
             allInvests, message, operationSuccess,
             checkmarkDone, close,
             kwemeza,
-            // notApproved:props.notApproved,
-            noApproved,
         }
     },
 }

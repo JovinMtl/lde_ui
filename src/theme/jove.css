@@ -241,6 +241,10 @@
     margin-right: 8%;
     text-align: center;
   }
+  .jo0{
+    color: red;
+    --background: green;
+  }
   .fields>input{
     background-color: #fff;
     padding: 10px 20px;
