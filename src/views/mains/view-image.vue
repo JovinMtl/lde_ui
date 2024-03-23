@@ -1,6 +1,9 @@
 <template>
-    <p>Here we view our photo</p>
-    <img :src="store.getters.getActualBordeau" alt="Bordereau">
+    <div>
+        <p>Here we view our photo</p>
+        <img :src="store.getters.getActualBordeau" alt="Bordereau">
+    </div>
+    
 </template>
 <script>
 import { useStore } from 'vuex'
