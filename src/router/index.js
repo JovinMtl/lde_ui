@@ -99,11 +99,11 @@ const routes= [
     component : depotAdmin
   },
   {
-    path : '/open-image',
+    path : '/oimage',
     component : displayImage,
   },
   {
-    path : '/view-image',
+    path : '/vimage',
     component : viewImage
   }
 ]

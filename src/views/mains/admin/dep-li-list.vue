@@ -7,16 +7,17 @@
             <ion-item>
                 Depot, <ion-thumbnail>
                     <img :src="'http://127.0.0.1:8002'+depot.bordereau"
+                            
+                            @click="turnImage($event.target.src)"
                             alt="Bordereau"  style="border-radius: 15px;
                             border: 1px solid orange;"
                             />
                 </ion-thumbnail>
-                <router-link to="/hope">
+                <router-link to="/oimage">
                     <button :value="'http://127.0.0.1:8002'+depot.bordereau" 
                     @click="turnImage($event.target.value)"
                     style="margin: 5px 5px; padding: 5px 5px;">voir</button>
                 </router-link>
-                <router-link to="/view-image">Go to image</router-link>
             </ion-item>
         </ion-list>
 
@@ -28,12 +29,14 @@
 import { IonThumbnail, IonList, IonItem, IonButton, } from '@ionic/vue'
 import { ref, } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter} from 'vue-router'
 export default {
     components: {
         IonThumbnail, IonList, IonItem, IonButton,
     },
     setup() {
         const store = useStore()
+        const router = useRouter()
         const allowImage = ref(false)
         const link = ref(null)
 
@@ -43,6 +46,7 @@ export default {
             store.commit('setActualBordereau', value)
             link.value = value
             console.log("The committed value : ", store.getters.getActualBordeau)
+            router.push('/oimage')
         }
         const message = ref(null)
         const operationSuccess = ref(false)
