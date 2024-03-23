@@ -1,16 +1,24 @@
 <template>
     <div style="text-align: center;">
         <p>Here we see depot, we want to view an image</p>
-        <img src="http://127.0.0.1:8002/prof/depots/image_RKJV27N.jpeg" 
-            alt="Depot2" v-show="allowImage">
-        <ion-list>
+        <!-- <img :src="link" 
+            alt="Depot2" v-show="allowImage"> -->
+        <ion-list v-for="depot in allDepots">
             <ion-item>
-                Depot, <ion-thumbnail
-                        @click="turnImage">
-                    <img src="http://127.0.0.1:8002/prof/depots/image_RKJV27N.jpeg"
+                Depot, <ion-thumbnail>
+                    <img :src="'http://127.0.0.1:8002'+depot.bordereau"
                             alt="Bordereau"  style="border-radius: 15px;
-                            border: 1px solid orange;"/>
+                            border: 1px solid orange;"
+                            />
                 </ion-thumbnail>
+                <!-- <router-link>
+                    <ion-button>Ouvrir</ion-button>
+                </router-link> -->
+                <router-link to="/hope">
+                    <button :value="'http://127.0.0.1:8002'+depot.bordereau" 
+                    @click="turnImage($event.target.value)"
+                    style="margin: 5px 5px; padding: 5px 5px;">voir</button>
+                </router-link>
             </ion-item>
         </ion-list>
 
@@ -19,19 +27,22 @@
 </template>
 
 <script>
-import { IonThumbnail, IonList, IonItem, } from '@ionic/vue'
+import { IonThumbnail, IonList, IonItem, IonButton, } from '@ionic/vue'
 import { ref, } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components: {
-        IonThumbnail, IonList, IonItem, 
+        IonThumbnail, IonList, IonItem, IonButton,
     },
     setup() {
         const store = useStore()
         const allowImage = ref(false)
+        const link = ref(null)
 
-        function turnImage(){
+        function turnImage(value){
             allowImage.value = !allowImage.value
+            console.log("The link is : ", value)
+            link.value = value
         }
         const message = ref(null)
         const operationSuccess = ref(false)
@@ -94,7 +105,7 @@ export default {
         kubaza()
 
         return {
-            allowImage,
+            allowImage, link,
             turnImage,
             allDepots,
         }
