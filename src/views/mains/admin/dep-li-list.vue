@@ -3,7 +3,9 @@
         <p>Here we see depot, we want to view an image</p>
         <ion-list v-for="(depot, index) in allDepots">
             <ion-item>
-                Depot, <ion-thumbnail slot="start">
+                Dépôt, {{ (depot.date_submitted).slice(11,16) }};
+                {{ depot.owner }} <==> {{ depot.montant }} ({{ depot.currency }})
+                <ion-thumbnail slot="start">
                     <img :src="'http://127.0.0.1:8002'+depot.bordereau"
                             
                             @click="turnImage($event.target.src)"
@@ -16,25 +18,35 @@
                     @click="turnImage($event.target.value)"
                     style="margin: 5px 5px; padding: 5px 5px;">voir</button>
                 </router-link> -->
-                <span v-show="!depot.approved" >
+                <span v-show="!depot.approved" style="display: flex;" >
                 <button  :id="'jo'+index" :value="depot.link_to_approve" 
                     @click="kwemeza($event.target.value)"
-                    style="height: 2em; margin: 8px 10px; background-color: orange;
+                    style="height: 2em; margin: 5px 5px; background-color: orange;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Approuver
                 </button>
                 <button  :id="'jo'+index" :value="depot.link_to_approve" 
                     @click="kwemeza($event.target.value)"
-                    style="height: 2em; margin: 8px 10px; background-color: red;
+                    style="height: 2em; margin: 5px 5px; background-color: red;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Refuser
                 </button>
             </span>
             </ion-item>
         </ion-list>
-        <div v-if="!operationSuccess">
-            <empty-modal>
-                Cette Recharge n'est pas approuvee avec succes.
+        <div v-if="true">
+            <empty-modal @byeModal="toogleModal" :modalActive="modalActive" erreur="false">
+                <div style=" text-align: center; justify-content: center;
+                justify-items: center; 
+                /* font-size: 1.7rem; transform: translate(0%, 50%); */
+                ">
+                .
+                <br><br>
+                <h3>Rapport de votre operation</h3>
+                <h5>Cette Recharge n'est pas approuvée avec succes.</h5>
+                    
+                </div>
+                
             </empty-modal>
         </div>
         <!-- <div>
@@ -62,6 +74,12 @@ export default {
         const router = useRouter()
         const allowImage = ref(false)
         const link = ref(null)
+
+        const modalActive = ref(false)
+
+        function toogleModal(value){
+            modalActive.value = value
+        }
 
         function turnImage(value){
             allowImage.value = !allowImage.value
@@ -94,7 +112,7 @@ export default {
                 if (response.ok){
                     allDepots.value = await response.json()
                     console.log("DEP-li-LIST: Things are well received")
-                    console.log(allDepots.value)
+                    console.dir(allDepots.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
@@ -118,13 +136,16 @@ export default {
                     console.log("Vous avez bien approuvee cet investissement ")
                     message.value = "Vous avez bien approuvee cet investissement "
                     operationSuccess.value = true
+                    modalActive.value = true
                 } else{
                     console.log("Cet investissement n'est pas approuvee")
                     message.value = "Cet investissement n'est pas approuvee"
                     operationSuccess.value = false
+                    modalActive.value = false
                 }
             } catch(value){
                 operationSuccess.value = false
+                modalActive.value = falses
                 message.value = "Investissement non approuve, probleme de connexion."
             }
             
@@ -133,11 +154,20 @@ export default {
 
         return {
             allowImage, link,
-            turnImage, kwemeza,
+            turnImage, kwemeza, toogleModal,
             allDepots,
             operationSuccess,
+            modalActive,
         }
         
     },
 }
 </script>
+
+<style scoped>
+.fermer{
+    /* background: red; */
+    color: green;
+    transform: translate(-1%, 230%);
+}
+</style>
