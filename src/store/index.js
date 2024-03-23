@@ -22,6 +22,7 @@ const store = createStore({
             lastActivity: null,
 
             wantedRoute : null,
+            actualBordereau : '..'
         }
     },
     mutations:{
@@ -73,6 +74,9 @@ const store = createStore({
         setWantedRoute(state, value){
             state.wantedRoute = value
         },
+        setActualBordereau(state, value){
+            state.actualBordereau = value
+        }
     },
     actions:{
         async addTop5(context, value){
@@ -110,6 +114,9 @@ const store = createStore({
         },
         getAccessToken(state){
             return state.user.access
+        },
+        getActualBordeau(state){
+            return state.actualBordereau
         }
     }
 })

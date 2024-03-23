@@ -16,6 +16,7 @@
                     @click="turnImage($event.target.value)"
                     style="margin: 5px 5px; padding: 5px 5px;">voir</button>
                 </router-link>
+                <router-link to="/view-image">Go to image</router-link>
             </ion-item>
         </ion-list>
 
@@ -39,7 +40,9 @@ export default {
         function turnImage(value){
             allowImage.value = !allowImage.value
             console.log("The link is : ", value)
+            store.commit('setActualBordereau', value)
             link.value = value
+            console.log("The committed value : ", store.getters.getActualBordeau)
         }
         const message = ref(null)
         const operationSuccess = ref(false)

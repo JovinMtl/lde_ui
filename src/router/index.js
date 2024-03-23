@@ -14,7 +14,8 @@ import Loader from '../views/auxiliare/processing/processing1.vue'
 
 import investAdmin from '../views/operations/principal/invest-admin.vue'
 import depotAdmin from '../views/operations/principal/depot-admin.vue'
-import desplayImage from '../views/n_ope/displ-image.vue'
+import displayImage from '../views/n_ope/displ-image.vue'
+import viewImage from '../views/mains/view-image.vue'
 
 const routes= [
   {
@@ -99,8 +100,12 @@ const routes= [
   },
   {
     path : '/open-image',
-    component : desplayImage,
+    component : displayImage,
   },
+  {
+    path : '/view-image',
+    component : viewImage
+  }
 ]
 
 const router = createRouter({

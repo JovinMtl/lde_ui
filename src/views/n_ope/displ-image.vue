@@ -1,19 +1,18 @@
 <template>
     <feui-lle>
         <back-button></back-button>
-        <div class="loginPage" style="padding: 60px 0;">
-            <div class="header">
-                <signature-head></signature-head>
-            </div>
-        </div>
+        <view-image></view-image>
     </feui-lle>
 </template>
 
 <script>
-import feuille from '../../Layout/feuille.vue';
-import BackButton from '../../auxiliare/backButton.vue'
+import feuille from '../Layout/feuille.vue'
+import BackButton from '../auxiliare/backButton.vue';
+import viewImage from '../mains/view-image.vue';
 export default {
     components:{
+        'feui-lle': feuille,
+        'view-image': viewImage,
         BackButton,
     },
     setup() {
