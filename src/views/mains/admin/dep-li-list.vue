@@ -1,11 +1,9 @@
 <template>
     <div style="text-align: center;">
         <p>Here we see depot, we want to view an image</p>
-        <!-- <img :src="link" 
-            alt="Depot2" v-show="allowImage"> -->
-        <ion-list v-for="depot in allDepots">
+        <ion-list v-for="(depot, index) in allDepots">
             <ion-item>
-                Depot, <ion-thumbnail>
+                Depot, <ion-thumbnail slot="start">
                     <img :src="'http://127.0.0.1:8002'+depot.bordereau"
                             
                             @click="turnImage($event.target.src)"
@@ -13,13 +11,35 @@
                             border: 1px solid orange;"
                             />
                 </ion-thumbnail>
-                <router-link to="/oimage">
+                <!-- <router-link to="/oimage">
                     <button :value="'http://127.0.0.1:8002'+depot.bordereau" 
                     @click="turnImage($event.target.value)"
                     style="margin: 5px 5px; padding: 5px 5px;">voir</button>
-                </router-link>
+                </router-link> -->
+                <span v-show="!depot.approved" >
+                <button  :id="'jo'+index" :value="depot.link_to_approve" 
+                    @click="kwemeza($event.target.value)"
+                    style="height: 2em; margin: 8px 10px; background-color: orange;
+                            color: black;border-radius: 5px; padding: 0 5px;">
+                    Approuver
+                </button>
+                <button  :id="'jo'+index" :value="depot.link_to_approve" 
+                    @click="kwemeza($event.target.value)"
+                    style="height: 2em; margin: 8px 10px; background-color: red;
+                            color: black;border-radius: 5px; padding: 0 5px;">
+                    Refuser
+                </button>
+            </span>
             </ion-item>
         </ion-list>
+        <div v-if="!operationSuccess">
+            <empty-modal>
+                Cette Recharge n'est pas approuvee avec succes.
+            </empty-modal>
+        </div>
+        <!-- <div>
+            <empty-modal></empty-modal>
+        </div> -->
 
     </div>
     
@@ -30,8 +50,11 @@ import { IonThumbnail, IonList, IonItem, IonButton, } from '@ionic/vue'
 import { ref, } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter} from 'vue-router'
+import emptyModal from '../../mains/emptyModal.vue'
+import emptyModalVue from '../emptyModal.vue'
 export default {
     components: {
+        'empty-modal': emptyModal,
         IonThumbnail, IonList, IonItem, IonButton,
     },
     setup() {
@@ -110,8 +133,9 @@ export default {
 
         return {
             allowImage, link,
-            turnImage,
+            turnImage, kwemeza,
             allDepots,
+            operationSuccess,
         }
         
     },
