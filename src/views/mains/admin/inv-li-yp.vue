@@ -32,7 +32,7 @@
 <script>
 import { IonList, IonItem, IonButton, IonIcon } from '@ionic/vue'
 import { checkmarkDone, close } from 'ionicons/icons'
-import { reactive, ref, onMounted, onBeforeUpdate, onUpdated, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components:{
@@ -99,6 +99,10 @@ export default {
             
         }
         kubaza()
+
+        const reversedInvest = computed(()=>{
+            return allInvests.value.reverse().splice(0,5)
+        })
 
 
         return {
