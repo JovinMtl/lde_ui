@@ -36,7 +36,7 @@
             <!-- <router-link to="/depot">
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
             </router-link> -->
-            <router-link to="/profile">
+            <router-link to="" @click="yetApprovedFunction()">
                 <ion-icon id="ico4" :icon="checkmarkDone" size="large"></ion-icon>
             </router-link>
             
@@ -95,6 +95,12 @@ export default {
         const allInvests = ref(true)
 
         function nonApproved(){
+            notApproved.value = !notApproved.value
+            allInvests.value = !allInvests.value
+            yetApproved.value = !yetApproved.value
+        }
+        function yetApprovedFunction(){
+            yetApproved.value = !yetApproved.value
             notApproved.value = !notApproved.value
             allInvests.value = !allInvests.value
         }
@@ -447,7 +453,7 @@ export default {
             checkmarkDone, checkmark,
 
             notApproved, yetApproved, allInvests,
-            nonApproved,
+            nonApproved, yetApprovedFunction,
         }
     },
 }

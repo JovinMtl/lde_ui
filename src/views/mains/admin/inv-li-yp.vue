@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Here is the list of investments(NOT Yet approved)</p>
+        <p>Here is the list of investments(Only Yet approved)</p>
     <ion-list v-for="(invest, index) in allInvests">
         <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
             {{ invest.result }}, {{ (invest.date_submitted).slice(11, 16)}}
@@ -45,7 +45,7 @@ export default {
         const operationSuccess = ref(false)
         
         const allInvests = ref(null)
-        var suffix = '/jov/api/invest/needInvests/'
+        var suffix = '/jov/api/invest/doneInvests/'
 
         async function kubaza(){
             const url = ' http://localhost:8002/jov/api/invest/allInvests/'
