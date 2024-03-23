@@ -100,12 +100,24 @@ export default {
         const allInvests = ref(true)
 
         function nonApproved(){
-            notApproved.value = !notApproved.value
-            allInvests.value = !allInvests.value
+            yetApproved.value = false
+            if(notApproved.value){
+                notApproved.value = false
+                allInvests.value = true
+            } else {
+                notApproved.value = true
+                allInvests.value = false
+            }
         }
         function yetApprovedFunction(){
-            yetApproved.value = !yetApproved.value
-            allInvests.value = !allInvests.value
+            notApproved.value = false
+            if(yetApproved.value){
+                yetApproved.value = false
+                allInvests.value = true
+            } else {
+                allInvests.value = false
+                yetApproved.value = true
+            }
         }
         //End of Things of Non approved & approved investments
 
