@@ -1,6 +1,6 @@
 <template>
     <div style="text-align: center;">
-        <p>Here we see depot, we want to view an image</p>
+        <p>Dépots : Non Approuvés</p>
         <ion-list v-for="(depot, index) in allDepots">
             <ion-item>
                 Dépôt, {{ (depot.date_submitted).slice(11,16) }};
@@ -124,9 +124,10 @@ export default {
 
         async function kwemeza(link){
             indexApproved = Number(link.id.slice(2))
+            console.log("Asking to : ", link.value)
 
             try{
-                const responseActivate = await fetch(`${link}`,{
+                const responseActivate = await fetch(`${link.value}`,{
                     method: 'GET',
                         headers:{
                             'Authorization' : 'Bearer '+ store.getters.getAccessToken,

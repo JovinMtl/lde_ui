@@ -126,7 +126,7 @@ export default {
             indexApproved = Number(link.id.slice(2))
 
             try{
-                const responseActivate = await fetch(`${link}`,{
+                const responseActivate = await fetch(`${link.value}`,{
                     method: 'GET',
                         headers:{
                             'Authorization' : 'Bearer '+ store.getters.getAccessToken,
