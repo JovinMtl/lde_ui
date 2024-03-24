@@ -1,6 +1,6 @@
 <template>
     <div style="text-align: center;">
-        <p>Here we see depot, we want to view an image</p>
+        <p>Tous les Dépôts combinés : Non Approuvés et Bien Approuvés</p>
         <ion-list v-for="(depot, index) in allDepots">
             <ion-item>
                 Dépôt, {{ (depot.date_submitted).slice(11,16) }};
