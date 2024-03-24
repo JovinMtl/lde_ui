@@ -20,10 +20,10 @@
                 <depot-list></depot-list>
             </div>
             <div v-if="notApproved">
-                <inve-linp></inve-linp>
+                <depli-np></depli-np>
             </div>
             <div v-if="yetApproved">
-                <inve-liyp></inve-liyp>
+                <depli-yp></depli-yp>
             </div>
         </template>
         <template v-slot:Footer-menu>
@@ -55,7 +55,6 @@
 
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
-// import baseMenuApps from '../../Layout/base-menuApps.vue'
 import solde from '../../auxiliare/solde.vue';
 import { 
     IonItem, IonInput, IonList, IonButton,
@@ -69,6 +68,8 @@ import emptyModalVue from '../../mains/emptyModal.vue';
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
 
 import depLiList from '../../mains/admin/dep-li-list.vue';
+import depLiNp from '../../mains/admin/dep-li-np.vue'
+import depLiYp from '../../mains/admin/dep-li-yp.vue'
 import { 
     exitOutline,notificationsOutline,
     home,
@@ -83,6 +84,8 @@ export default {
         'loa-der': Loader,
 
         'depot-list' : depLiList,
+        'depli-np' : depLiNp,
+        'depli-yp' : depLiYp,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption,
         IonLabel,

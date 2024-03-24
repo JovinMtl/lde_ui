@@ -93,7 +93,7 @@ export default {
         const operationSuccess = ref(false)
         
         const allDepots = ref(null)
-        var suffix = '/jov/api/depot/getDepotNotDone/'
+        var suffix = '/jov/api/depot/getDepotDone/'
         var indexApproved = 0
 
         async function kubaza(){
