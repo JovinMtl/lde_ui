@@ -20,7 +20,7 @@
                 </router-link> -->
                 <span v-show="!depot.approved" style="display: flex;" >
                 <button  :id="'jo'+index" :value="depot.link_to_approve" 
-                    @click="kwemeza($event.target.value)"
+                    @click="kwemeza($event.target)"
                     style="height: 2em; margin: 5px 5px; background-color: orange;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Approuver
@@ -42,8 +42,8 @@
                 ">
                 .
                 <br><br>
-                <h3>Rapport de votre operation</h3>
-                <h5>Cette Recharge n'est pas approuvée avec succes.</h5>
+                <h3>Rapport de votre opération</h3>
+                <h5>Cette Recharge est approuvée avec succes.</h5>
                     
                 </div>
                 
@@ -59,7 +59,7 @@
 
 <script>
 import { IonThumbnail, IonList, IonItem, IonButton, } from '@ionic/vue'
-import { ref, } from 'vue'
+import { reactive, ref, } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter} from 'vue-router'
 import emptyModal from '../../mains/emptyModal.vue'
@@ -89,11 +89,12 @@ export default {
             console.log("The committed value : ", store.getters.getActualBordeau)
             router.push('/oimage')
         }
-        const message = ref(null)
+        // const message = ref(null)
         const operationSuccess = ref(false)
         
         const allDepots = ref(null)
         var suffix = '/jov/api/depot/getDepotAll/'
+        var indexApproved = 0
 
         async function kubaza(){
             const url = ' http://localhost:8002/jov/api/invest/allInvests/'
@@ -122,8 +123,7 @@ export default {
         }
 
         async function kwemeza(link){
-            console.log("The click element: ", link)
-
+            indexApproved = Number(link.id.slice(2))
 
             try{
                 const responseActivate = await fetch(`${link}`,{
@@ -133,20 +133,19 @@ export default {
                         },
                 })
                 if(responseActivate.ok){
-                    console.log("Vous avez bien approuvee cet investissement ")
-                    message.value = "Vous avez bien approuvee cet investissement "
+                    const data = await responseActivate.json()
+                    console.log("Vous avez bien approuvee cette Recharge ", data)
+                    allDepots.value.valueOf(5)[indexApproved].approved = true
                     operationSuccess.value = true
                     modalActive.value = true
                 } else{
-                    console.log("Cet investissement n'est pas approuvee")
-                    message.value = "Cet investissement n'est pas approuvee"
+                    console.log("Cette RECHARGE n'est pas approuvee")
                     operationSuccess.value = false
                     modalActive.value = false
                 }
             } catch(value){
                 operationSuccess.value = false
-                modalActive.value = falses
-                message.value = "Investissement non approuve, probleme de connexion."
+                modalActive.value = false
             }
             
         }
