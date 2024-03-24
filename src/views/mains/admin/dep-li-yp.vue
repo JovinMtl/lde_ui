@@ -1,6 +1,6 @@
 <template>
     <div style="text-align: center;">
-        <p>Here we see depot, we want to view an image</p>
+        <p>Dépôts bien Approuvés</p>
         <ion-list v-for="(depot, index) in allDepots">
             <ion-item>
                 Dépôt, {{ (depot.date_submitted).slice(11,16) }};
@@ -126,7 +126,7 @@ export default {
             indexApproved = Number(link.id.slice(2))
 
             try{
-                const responseActivate = await fetch(`${link}`,{
+                const responseActivate = await fetch(`${link.value}`,{
                     method: 'GET',
                         headers:{
                             'Authorization' : 'Bearer '+ store.getters.getAccessToken,
