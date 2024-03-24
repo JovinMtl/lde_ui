@@ -16,16 +16,15 @@
                 <ava-tar></ava-tar>
             </div>
             <sol-de></sol-de> <br>
-            <depot-list></depot-list>
-            <!-- <div v-if="allInvests">
-                <invest-list></invest-list>
+            <div v-if="allDepots">
+                <depot-list></depot-list>
             </div>
             <div v-if="notApproved">
                 <inve-linp></inve-linp>
             </div>
             <div v-if="yetApproved">
                 <inve-liyp></inve-liyp>
-            </div> -->
+            </div>
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hope">
@@ -94,25 +93,25 @@ export default {
         //Start of Things of Non approved & approved investments 
         const notApproved = ref(false)
         const yetApproved = ref(false)
-        const allInvests = ref(true)
+        const allDepots = ref(true)
 
         function nonApproved(){
             yetApproved.value = false
             if(notApproved.value){
                 notApproved.value = false
-                allInvests.value = true
+                allDepots.value = true
             } else {
                 notApproved.value = true
-                allInvests.value = false
+                allDepots.value = false
             }
         }
         function yetApprovedFunction(){
             notApproved.value = false
             if(yetApproved.value){
                 yetApproved.value = false
-                allInvests.value = true
+                allDepots.value = true
             } else {
-                allInvests.value = false
+                allDepots.value = false
                 yetApproved.value = true
             }
         }
@@ -463,7 +462,7 @@ export default {
             chevronBack,
             checkmarkDone, checkmark,
 
-            notApproved, yetApproved, allInvests,
+            notApproved, yetApproved, allDepots,
             nonApproved, yetApprovedFunction,
         }
     },
