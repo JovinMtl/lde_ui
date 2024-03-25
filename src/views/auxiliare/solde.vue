@@ -50,11 +50,13 @@
 import { ref } from 'vue'
 import { eyeOff, eye} from 'ionicons/icons'
 import { IonSelect, IonSelectOption,} from '@ionic/vue'
+import { useStore } from 'vuex'
 export default {
     components:{
         IonSelect, IonSelectOption,
     },
     setup() {
+        const store = useStore()
         let soldeVisible = ref(false);
         let solde = 3000000
         const soldeObject = ref(null)
@@ -89,6 +91,7 @@ export default {
                 console.log("THe reason is : ", value)
             }
         }
+        kubaza()
 
         return {
             Invert,
