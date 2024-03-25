@@ -42,6 +42,7 @@
         </div>
         <br><br>
         <br><br>
+        <p>SOlde: {{ soldeObject }}</p>
     </div>
 </template>
 
@@ -56,15 +57,47 @@ export default {
     setup() {
         let soldeVisible = ref(false);
         let solde = 3000000
+        const soldeObject = ref(null)
+
         function Invert(){
             soldeVisible.value = !soldeVisible.value
         }
+
+        async function kubaza(){
+            const url = ' http://localhost:8002/jov/api/invest/allInvests/'
+            const baseURL = '//127.0.0.1:8002'
+            const suffix = '/jov/api/solde/getSolde/'
+            
+
+            try {
+                const response = await fetch(`${baseURL}${suffix}`,{
+                    method: 'GET',
+                    headers:{
+                        // 'Content-type' : 'application/json',
+                        'Authorization' : 'Bearer '+ store.getters.getAccessToken,
+                    },
+                });
+
+                if (response.ok){
+                    soldeObject.value = await response.json()
+                    console.log("SOLDE: Things are well received")
+                    console.dir(soldeObject.value)
+                } else {
+                    console.log("SOLDE: Connection wasn't successfull, with : ", store.getters.getAccessToken)
+                }
+            } catch(value){
+                console.log("THe reason is : ", value)
+            }
+        }
+
         return {
             Invert,
             soldeVisible,
             solde,
             eyeOff,
             eye,
+
+            soldeObject,
         }
     },
 }
