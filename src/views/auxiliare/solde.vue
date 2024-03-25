@@ -28,26 +28,34 @@
                     <ion-icon id="eyeVisible"
                         :icon="eye"  @click="Invert" size="large"></ion-icon> 
                     <span @click="Invert" id="soldVisible"
-                    class="segoe"><strong> {{ solde }} </strong></span>
+                    class="segoe"><strong> {{ amount }} </strong></span>
                 </div>
                 <div style="display: inline-flex; position:relative; left: 4rem;
-                        top: 0.35rem;"  v-if="soldeVisible">
-                    <ion-select placeholder="USDT">
-                        <ion-select-option value="apples">BIF</ion-select-option>
-                        <ion-select-option value="oranges">KES</ion-select-option>
-                        <ion-select-option value="bananas">FRW</ion-select-option>
-                    </ion-select>
+                        top: 0.35rem;"  v-if="soldeVisible && soldeObject">
+                    <!-- <ion-select placeholder="USDT">
+                        <ion-select-option value="apples" v-for="currency in currencies">
+                            {{ currency.nom }}
+                        </ion-select-option>
+                    </ion-select> -->
+                    <span>
+                    <ion-select aria-label="Fruit" interface="popover" 
+                    placeholder="choisir" cancel-text="Annuler" v-model="somme">
+                        <ion-select-option
+                            v-for="(jove, index) in currencies" :value="index" 
+                            > 
+                            {{ jove.nom }}
+                        </ion-select-option>
+                    </ion-select></span>
                 </div>
             </div>
         </div>
         <br><br>
         <br><br>
-        <p>SOlde: {{ soldeObject }}</p>
     </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { eyeOff, eye} from 'ionicons/icons'
 import { IonSelect, IonSelectOption,} from '@ionic/vue'
 import { useStore } from 'vuex'
@@ -60,13 +68,65 @@ export default {
         let soldeVisible = ref(false);
         let solde = 3000000
         const soldeObject = ref(null)
+        const currencies = ref(null)
+        const somme = ref(0)
+        const amount = ref(0)
 
         function Invert(){
             soldeVisible.value = !soldeVisible.value
         }
+        
+        function buildCurrencies(){
 
+            currencies.value = 
+            [
+                {
+                    'nom': 'USDT',
+                    'somme' : soldeObject.value.valueOf(5)['usdt']
+                },
+                {
+                    'nom': 'USD',
+                    'somme' : soldeObject.value.valueOf(5)['usd']
+                },
+                {
+                    'nom': 'Fbu',
+                    'somme' : soldeObject.value.valueOf(5)['bif']
+                },
+                {
+                    'nom': 'Frw',
+                    'somme' : String(soldeObject.value.rwf)
+                },
+                {
+                    'nom': 'KES',
+                    'somme' : String(soldeObject.value.kes)
+                },
+                {
+                    'nom': 'Ugx',
+                    'somme' : String(soldeObject.value.ugx),
+                },
+                {
+                    'nom': 'Tsh',
+                    'somme' : String(soldeObject.value.tsh)
+                },
+                {
+                    'nom': 'Zmw',
+                    'somme' : String(soldeObject.value.zmw)
+                },
+                {
+                    'nom': 'Eur',
+                    'somme' : String(soldeObject.value.eur)
+                },
+                {
+                    'nom': 'TRX',
+                    'somme' : String(soldeObject.value.trx)
+                },
+                {
+                    'nom': 'LID',
+                    'somme' : String(soldeObject.value.lid)
+                },
+            ]
+        } 
         async function kubaza(){
-            const url = ' http://localhost:8002/jov/api/invest/allInvests/'
             const baseURL = '//127.0.0.1:8002'
             const suffix = '/jov/api/solde/getSolde/'
             
@@ -83,6 +143,8 @@ export default {
                 if (response.ok){
                     soldeObject.value = await response.json()
                     console.log("SOLDE: Things are well received")
+                    buildCurrencies()
+                    amount.value = currencies.value.valueOf(0)[0].somme
                     console.dir(soldeObject.value)
                 } else {
                     console.log("SOLDE: Connection wasn't successfull, with : ", store.getters.getAccessToken)
@@ -93,6 +155,15 @@ export default {
         }
         kubaza()
 
+        watch(somme, (value)=>{
+            //
+            console.log("You changed into : ", value)
+            console.log("; ", currencies.value.valueOf(0)[value].somme)
+            amount.value = currencies.value.valueOf(0)[value].somme
+        })
+
+        
+
         return {
             Invert,
             soldeVisible,
@@ -100,7 +171,8 @@ export default {
             eyeOff,
             eye,
 
-            soldeObject,
+            soldeObject, currencies,
+            somme,amount,
         }
     },
 }
