@@ -1,6 +1,6 @@
 <template>
     <div style="text-align: center;">
-        <p style="margin-top: -40px;">Dépôts Non Approuvés</p>
+        <p style="margin-top: -40px; font-weight: bolder">Dépôts Non Approuvés</p>
         <ion-list v-for="(depot, index) in allDepots">
             <ion-item>
                 Dépôt, {{ (depot.date_submitted).slice(11,16) }};
