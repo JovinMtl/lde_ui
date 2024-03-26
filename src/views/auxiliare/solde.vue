@@ -41,15 +41,13 @@
                     <ion-select aria-label="Fruit" interface="popover" 
                     placeholder="choisir" cancel-text="Annuler" v-model="somme">
                         <ion-select-option
-                            v-for="(jove, index) in currencies" :value="index" 
-                            > 
+                            v-for="(jove, index) in currencies" :value="index" > 
                             {{ jove.nom }}
                         </ion-select-option>
                     </ion-select></span>
                 </div>
             </div>
         </div>
-        <br><br>
         <br><br>
     </div>
 </template>
@@ -66,7 +64,7 @@ export default {
     setup() {
         const store = useStore()
         let soldeVisible = ref(false);
-        let solde = 3000000
+        // let solde = 3000000
         const soldeObject = ref(null)
         const currencies = ref(null)
         const somme = ref(0)
@@ -167,7 +165,7 @@ export default {
         return {
             Invert,
             soldeVisible,
-            solde,
+            // solde,
             eyeOff,
             eye,
 
