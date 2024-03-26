@@ -3,7 +3,7 @@
         <p style="margin-top: -40px; font-weight: bolder">
             Tous les Dépôts combinés : Non Approuvés et Bien Approuvés
         </p>
-        <ion-list v-for="(depot, index) in allDepots">
+        <ion-list v-for="(depot, index) in allDepots"  :inset="true">
             <ion-item>
                 Dépôt, {{ (depot.date_submitted).slice(11,16) }};
                 {{ depot.owner }} <==> {{ depot.montant }} ({{ depot.currency }})

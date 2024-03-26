@@ -59,7 +59,7 @@
 
 <script>
 import { IonThumbnail, IonList, IonItem, IonButton, } from '@ionic/vue'
-import { reactive, ref, } from 'vue'
+import { ref, } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter} from 'vue-router'
 import emptyModal from '../../mains/emptyModal.vue'
