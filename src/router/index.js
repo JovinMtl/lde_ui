@@ -16,6 +16,7 @@ import investAdmin from '../views/operations/principal/invest-admin.vue'
 import depotAdmin from '../views/operations/principal/depot-admin.vue'
 import displayImage from '../views/n_ope/displ-image.vue'
 import viewImage from '../views/mains/view-image.vue'
+import Notification from '../views/operations/principal/notification.vue'
 
 const routes= [
   {
@@ -105,7 +106,11 @@ const routes= [
   {
     path : '/vimage',
     component : viewImage
-  }
+  },
+  {
+    path : '/notif',
+    component : Notification
+  },
 ]
 
 const router = createRouter({

@@ -1,5 +1,5 @@
 <template>
-    <base-menu pageTitle="Investissements">
+    <base-menu pageTitle="Notifications">
         <template v-slot:back-left>
             <ion-icon :icon="chevronBack" slot="end" size="large">Back</ion-icon>
             <!-- <ion-back-button text="Retour"></ion-back-button> -->
@@ -18,14 +18,14 @@
                 <ava-tar></ava-tar>
             </div>
             <sol-de></sol-de> <br>
-            <div v-if="allInvests">
-                <invest-list></invest-list>
+            <div v-if="allDepots">
+                <depot-list></depot-list>
             </div>
             <div v-if="notApproved">
-                <inve-linp></inve-linp>
+                <depli-np></depli-np>
             </div>
             <div v-if="yetApproved">
-                <inve-liyp></inve-liyp>
+                <depli-yp></depli-yp>
             </div>
         </template>
         <template v-slot:Footer-menu>
@@ -57,7 +57,6 @@
 
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
-// import baseMenuApps from '../../Layout/base-menuApps.vue'
 import solde from '../../auxiliare/solde.vue';
 import { 
     IonItem, IonInput, IonList, IonButton,
@@ -70,9 +69,9 @@ import emptyModalVue from '../../mains/emptyModal.vue';
 // import Loader from '../../auxiliare/processing/processing1.vue'
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
 
-import InvestList from '../../mains/admin/invest-list.vue';
-import invLiNp from '../../mains/admin/inv-li-np.vue';
-import invLiYp from '../../mains/admin/inv-li-yp.vue'
+import depLiList from '../../mains/admin/dep-li-list.vue';
+import depLiNp from '../../mains/admin/dep-li-np.vue'
+import depLiYp from '../../mains/admin/dep-li-yp.vue'
 import { 
     exitOutline,notificationsOutline,
     home,
@@ -86,9 +85,9 @@ export default {
         'empty-modal' : emptyModalVue,
         'loa-der': Loader,
 
-        'invest-list' : InvestList,
-        'inve-linp' : invLiNp,
-        'inve-liyp' : invLiYp,
+        'depot-list' : depLiList,
+        'depli-np' : depLiNp,
+        'depli-yp' : depLiYp,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption,
         IonLabel,
@@ -99,25 +98,25 @@ export default {
         //Start of Things of Non approved & approved investments 
         const notApproved = ref(false)
         const yetApproved = ref(false)
-        const allInvests = ref(true)
+        const allDepots = ref(true)
 
         function nonApproved(){
             yetApproved.value = false
             if(notApproved.value){
                 notApproved.value = false
-                allInvests.value = true
+                allDepots.value = true
             } else {
                 notApproved.value = true
-                allInvests.value = false
+                allDepots.value = false
             }
         }
         function yetApprovedFunction(){
             notApproved.value = false
             if(yetApproved.value){
                 yetApproved.value = false
-                allInvests.value = true
+                allDepots.value = true
             } else {
-                allInvests.value = false
+                allDepots.value = false
                 yetApproved.value = true
             }
         }
@@ -468,7 +467,7 @@ export default {
             chevronBack,
             checkmarkDone, checkmark,
 
-            notApproved, yetApproved, allInvests,
+            notApproved, yetApproved, allDepots,
             nonApproved, yetApprovedFunction,
         }
     },

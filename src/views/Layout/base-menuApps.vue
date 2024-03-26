@@ -8,7 +8,10 @@
         </template>
         <template v-slot:finish-right>
             <!-- <div class="right-icon"> -->
-                <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
+                <router-link to="/notif">
+                    <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
+                </router-link>
+                <!-- <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon> -->
                 <router-link to="/">
                     <ion-icon :icon="exitOutline" slot="end" size="large" @click="logOut"></ion-icon>
                 </router-link>
