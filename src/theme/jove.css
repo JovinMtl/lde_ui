@@ -1,13 +1,6 @@
 
-/* .centered {
-    width: 100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: -50px;
-  } */
+
   .centered{
-    /* background-color: red; */
     text-align: center;
     margin-left: 3vw;
     margin-right: 3vw;
@@ -37,12 +30,20 @@
   .white{
     background-color: black;
     color : white;
-    color: red;
     border-radius: 6px;
   }
   .whiteOnly{
     color : white;
-    color: red;
+  }
+  .whitee{
+    --background : white;
+    color: black;
+    border-radius: 6px;
+  }
+  .blackee{
+      --background : black;
+      color: white;
+      border-radius: 6px;
   }
 
   

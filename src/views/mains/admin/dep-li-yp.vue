@@ -1,8 +1,8 @@
 <template>
     <div style="text-align: center;">
         <p style="margin-top: -40px; font-weight: bolder">Dépôts bien Approuvés</p>
-        <ion-list v-for="(depot, index) in allDepots">
-            <ion-item>
+        <ion-list v-for="(depot, index) in allDepots" :inset="true">
+            <ion-item :class="index%2==0  ?'whitee' : 'blackee'">
                 Dépôt, {{ (depot.date_submitted).slice(11,16) }};
                 {{ depot.owner }} <==> {{ depot.montant }} ({{ depot.currency }})
                 <ion-thumbnail slot="start">

@@ -2,15 +2,17 @@
     <div>
         <div v-if="allNotifs">
             <ion-list :inset="true">
-                <ion-item v-for="(notif, index) in allNotifs">
-                {{ index+1 }}. Vous avez 
-                <span style="margin-right: .3rem;">&nbsp;</span>
-                <span v-if="notif.motif == 'Depot'">déposés</span>
+                <ion-item v-for="(notif, index) in allNotifs" 
+                    :class="index%2==0  ?'whitee' : 'blackee'"
+                    style="margin-top: 10px;">
+                    <span v-if="notif.motif == 'Depot'">
+                        {{ index+1 }}. Vous avez déposés
+                        une somme de {{ notif.amount }} ({{ notif.currency }})
+                        sur votre compte à l'heure de {{ (notif.date_approved).slice(11, 16) }}.
+                    </span>
                 <span style="margin-right: .3rem;">&nbsp;</span>
                 <span v-if="notif.motif == 'Retrait'">retire</span>
                 <span v-if="notif.motif == 'Investir'">Investi</span>
-                une somme de {{ notif.amount }} ({{ notif.currency }})
-                sur votre compte à l'heure de {{ (notif.date_approved).slice(11, 16) }}.
                 </ion-item>
             </ion-list>
         </div>
@@ -67,3 +69,5 @@ export default {
     },
 }
 </script>
+
+

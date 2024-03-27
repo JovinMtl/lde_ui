@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="allNotifs">
+        <div v-if="histoDisponible">
             <ion-list :inset="true">
                 <ion-item v-for="(notif, index) in allNotifs">
                 {{ index+1 }}.Une somme de {{ notif.amount }} ({{ notif.currency }})
@@ -20,6 +20,7 @@
                 </ion-item>
             </ion-list>
         </div>
+        <p v-else class="centered">Veuillez recharger votre compte pour avoir l'historique.</p>
         
 
     </div>
@@ -36,6 +37,7 @@ export default {
     setup() {
         const store = useStore()
         const allNotifs = ref(null)
+        const histoDisponible = ref(false)
         
         
         async function kubaza(){
@@ -55,8 +57,10 @@ export default {
 
                 if (response.ok){
                     allNotifs.value = await response.json()
+                    histoDisponible.value = allNotifs.value.length
                     console.log("NOTIFS: Things are well received")
                     console.dir(allNotifs.value)
+
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
@@ -67,7 +71,7 @@ export default {
         kubaza()
 
         return {
-            store, allNotifs,
+            store, allNotifs, histoDisponible,
         }
         
     },
