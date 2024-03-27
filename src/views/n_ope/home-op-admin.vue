@@ -35,14 +35,14 @@
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
             </router-link> -->
             <router-link to="/profile">
-                <ion-icon id="ico4" :icon="personCircle" size="large"></ion-icon>
+                <ion-icon id="ico4" :icon="search" size="large"></ion-icon>
             </router-link>
             
 
             <ion-label id="lab1">Accueil</ion-label>
             <ion-label id="lab2">Historique</ion-label>
             <!-- <ion-label id="lab3">Portefeuille</ion-label> -->
-            <ion-label id="lab4">Profile</ion-label>
+            <ion-label id="lab4">Verifier</ion-label>
         </template>
             
     </base-menu>
@@ -58,6 +58,7 @@ import { IonLabel, IonButtons, } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
     home, layers, wallet, personCircle,
+    search, searchCircleOutline,
 } from 'ionicons/icons'
 import { onMounted, } from 'vue'
 import { useStore } from 'vuex'
@@ -91,7 +92,8 @@ export default {
 
         return {
             exitOutline,notificationsOutline,
-            home, layers, wallet, personCircle,
+            home, layers, wallet, personCircle, search, 
+            searchCircleOutline,
             store,
 
             logOut,
