@@ -14,7 +14,7 @@
                 
         </template>
         <template v-slot:body-content>
-            <!-- <noti-fic></noti-fic> -->
+            <veri-fica></veri-fica>
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hope">
@@ -42,7 +42,7 @@
 
 <script>
 import baseMenu from '../../Layout/base-menu.vue';
-import NotiFic from '../../mains/noti-fic.vue';
+import veriFica from '../../mains/admin/veri-fica.vue';
 import { 
     IonLabel,
 } from '@ionic/vue'
@@ -56,7 +56,7 @@ import { useStore } from 'vuex'
 export default {
     components:{
         'base-menu' : baseMenu,
-        'noti-fic': NotiFic,
+        'veri-fica': veriFica,
         IonLabel,
     },
     setup() {
@@ -78,3 +78,6 @@ export default {
     },
 }
 </script>
+
+
+
