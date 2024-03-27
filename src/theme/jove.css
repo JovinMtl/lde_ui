@@ -94,6 +94,13 @@
     font-size: 12px;
     left: 82.5vw;
   }
+  #la4{
+    display: inline-flex;
+    position: fixed;
+    bottom: 1px;
+    font-size: 12px;
+    left: 82.5vw;
+  }
   #l4{
     display: inline-flex;
     position: fixed;
