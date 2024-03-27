@@ -59,7 +59,7 @@
     position: fixed;
     bottom: 0px;
     font-size: 12px;
-    left: 8.2%;
+    left: 8.1%;
   }
   #ico2{
     display: inline-flex;
@@ -99,7 +99,7 @@
     position: fixed;
     bottom: 1px;
     font-size: 12px;
-    left: 82.5vw;
+    left: 82.1vw;
   }
   #l4{
     display: inline-flex;
@@ -163,6 +163,14 @@
       left: 82.8vw;
       /* color: green; */
     }
+    #la4{
+      display: inline-flex;
+      position: fixed;
+      bottom: 1px;
+      font-size: 12px;
+      left: 82.6vw;
+      /* color: green; */
+    }
     #l4{
       display: inline-flex;
       position: fixed;
@@ -221,6 +229,10 @@
   @media screen and (min-width: 1000px) {
     #lab2{
       left: 45vw;
+      /* color: green; */
+    }
+    #la4{
+      left: 82.73vw;
       /* color: green; */
     }
     .avatar{
