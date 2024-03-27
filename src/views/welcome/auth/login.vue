@@ -86,8 +86,8 @@ export default {
                     // router.push('/depot')
                     // router.push(`${String(store.getters.getWantedRoute)}`)
                 } else{
-                    router.push('/home-admin')
-                    // router.push('/hope')
+                    // router.push('/home-admin')
+                    router.push('/hope')
                 }
 
             } else{
