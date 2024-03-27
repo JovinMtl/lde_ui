@@ -1,5 +1,6 @@
+
 <template>
-    <base-menu pageTitle="Notifications">
+    <base-menu pageTitle="Historique">
         <template v-slot:back-left>
             <ion-icon :icon="chevronBack" slot="end" size="large">Back</ion-icon>
             <!-- <ion-back-button text="Retour"></ion-back-button> -->
@@ -9,12 +10,13 @@
                     <ion-icon :icon="notificationsOutline" slot="end" size="large"></ion-icon>
                 </router-link>
                 <router-link to="/">
-                    <ion-icon :icon="exitOutline" slot="end" size="large" @click="logOut"></ion-icon>
+                    <ion-icon :icon="exitOutline" slot="end" size="large"  @click="logOut"></ion-icon>
                 </router-link>
                 
         </template>
         <template v-slot:body-content>
-            <noti-fic></noti-fic>
+            <!-- C'est ici votre Historique -->
+            <histo-rique></histo-rique>
         </template>
         <template v-slot:Footer-menu>
             <router-link to="/hope">
@@ -41,10 +43,10 @@
 </template>
 
 <script>
-import baseMenu from '../../Layout/base-menu.vue';
-import NotiFic from '../../mains/noti-fic.vue';
+import baseMenu from '../../Layout/base-menu.vue'
+import histoRiqueVue from '../../mains/histo-rique.vue'
 import { 
-    IonLabel,
+    IonLabel, IonButtons, IonBackButton, 
 } from '@ionic/vue'
 import { 
     exitOutline,notificationsOutline,
@@ -55,12 +57,11 @@ import { useStore } from 'vuex'
 export default {
     components:{
         'base-menu' : baseMenu,
-        'noti-fic': NotiFic,
-        IonLabel,
+        'histo-rique': histoRiqueVue,
+        IonLabel, IonButtons, IonBackButton,
     },
     setup() {
         const store = useStore()
-
 
         function logOut(){
             store.commit('resetActiveUser')
@@ -69,7 +70,6 @@ export default {
             exitOutline,notificationsOutline,
             home, layers, wallet, personCircle,
             chevronBack,
-            store,
 
             logOut,
         }
