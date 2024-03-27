@@ -34,7 +34,7 @@
             <!-- <router-link to="/depot">
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
             </router-link> -->
-            <router-link to="/profile">
+            <router-link to="/check">
                 <ion-icon id="ico4" :icon="search" size="large"></ion-icon>
             </router-link>
             
