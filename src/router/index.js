@@ -17,6 +17,8 @@ import depotAdmin from '../views/operations/principal/depot-admin.vue'
 import displayImage from '../views/n_ope/displ-image.vue'
 import viewImage from '../views/mains/view-image.vue'
 import Notification from '../views/operations/principal/notification.vue'
+import homeOpAdmin from '../views/n_ope/home-op-admin.vue'
+import HomeOpAdmin from '../views/n_ope/home-op-admin.vue'
 
 const routes= [
   {
@@ -110,6 +112,10 @@ const routes= [
   {
     path : '/notif',
     component : Notification
+  },
+  {
+    path : '/home-admin',
+    component: HomeOpAdmin
   },
 ]
 
