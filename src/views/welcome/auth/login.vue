@@ -51,13 +51,8 @@ export default {
         const failedLogin = ref(false)
         const failedNetwork = ref(false)
 
-        // var localHostEndpoint = "http://127.0.0.1:8000/jov/api/token/"
-        // var lanLocalhostEndpoint = "http://10.10.12.146:8000/jov/api/token/"
-        // const baseURL = '//10.10.12.146:8002';
-        // const baseURL = '//127.0.0.1:8002';
-        //const baseURL = '//10.10.12.170:8002';
+
         const baseURL = '//127.0.0.1:8002';
-        // const baseURL = '//192.168.43.156:8002';
 
         async function LogUser(){
             try{
