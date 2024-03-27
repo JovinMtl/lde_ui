@@ -91,11 +91,9 @@ export default {
                     // router.push('/depot')
                     // router.push(`${String(store.getters.getWantedRoute)}`)
                 } else{
-                    router.push('/hope')
+                    router.push('/home-admin')
+                    // router.push('/hope')
                 }
-                // router.push(`${String(store.getters.getWantedRoute)}`)
-                // router.push('/depot')
-                // router.push('/hope')
 
             } else{
                 console.log("BAD")
