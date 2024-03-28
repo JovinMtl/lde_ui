@@ -33,6 +33,16 @@
                 </ion-popover>
         </div>
     </div>
+    <div>
+        <ion-button id="present-alert">Click Me</ion-button>
+        <ion-alert
+            trigger="present-alert"
+            header="Operation Reussie"
+            sub-header="A Sub Header Is Optional"
+            message="Vous avez bien approuve cette recharge"
+            :buttons="alertButtons"
+        ></ion-alert>
+    </div>
 </template>
 <script>
 import { ref } from 'vue'
@@ -40,12 +50,14 @@ import { useStore } from 'vuex'
 import { 
     IonItem, IonList, IonSearchbar, IonSpinner,
     IonButton, IonContent, IonPopover,
+    IonAlert,
 } from '@ionic/vue';
 import Loader from '../../../views/auxiliare/processing/processing1.vue'
 export default {
     components: {
         IonItem, IonList, IonSearchbar, IonSpinner,
         IonButton, IonContent, IonPopover,
+        IonAlert,
         'loa-der': Loader,
     },
     setup() {
@@ -53,6 +65,7 @@ export default {
         const dataInput = ref(null)
         const data = ref(null)
         const waiting = ref(false)
+        const alertButtons = ['Ok'];
 
         function aboutUser(userInput){
             waiting.value = true
@@ -101,7 +114,8 @@ export default {
 
 
         return {
-            aboutUser, dataInput, data, waiting
+            aboutUser, dataInput, data, waiting,
+            alertButtons,
         }
         
     },

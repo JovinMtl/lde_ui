@@ -4,7 +4,7 @@
             Tous les Dépôts combinés : Non Approuvés et Bien Approuvés
         </p>
         <ion-list v-for="(depot, index) in allDepots"  
-            :inset="true" style="margin-top: -20px;">
+            :inset="true">
             <ion-item :class="index%2==0  ?'whitee' : 'blackee'" 
                 >
                 Dépôt, {{ (depot.date_submitted).slice(11,16) }};
@@ -17,11 +17,7 @@
                             border: 1px solid orange;"
                             />
                 </ion-thumbnail>
-                <!-- <router-link to="/oimage">
-                    <button :value="'http://127.0.0.1:8002'+depot.bordereau" 
-                    @click="turnImage($event.target.value)"
-                    style="margin: 5px 5px; padding: 5px 5px;">voir</button>
-                </router-link> -->
+                
                 <span v-show="!depot.approved" style="display: flex;" >
                 <button  :id="'jo'+index" :value="depot.link_to_approve" 
                     @click="kwemeza($event.target)"
@@ -38,52 +34,84 @@
             </span>
             </ion-item>
         </ion-list>
-        <div v-if="true">
-            <empty-modal @byeModal="toogleModal" :modalActive="modalActive" erreur="false">
-                <div style=" text-align: center; justify-content: center;
-                justify-items: center; 
-                /* font-size: 1.7rem; transform: translate(0%, 50%); */
-                ">
-                .
-                <br><br>
-                <h3>Rapport de votre opération</h3>
-                <h5>Cette Recharge est approuvée avec succes.</h5>
-                    
-                </div>
-                
-            </empty-modal>
+        <div v-show="waiting" style="background-color: transparent; position:fixed; 
+                top: 60%; left: 50%; transform: translate(-50%, -50%);
+                z-index: 5;">
+            <!-- <ion-spinner color="danger" name="lines-sharp"></ion-spinner> -->
+            <loa-der></loa-der>
         </div>
-        <!-- <div>
-            <empty-modal></empty-modal>
-        </div> -->
-
     </div>
     
 </template>
 
 <script>
-import { IonThumbnail, IonList, IonItem, IonButton, } from '@ionic/vue'
-import { reactive, ref, } from 'vue'
+import { 
+    IonThumbnail, IonList, IonItem, IonButton, IonAlert, IonSpinner,
+    alertController,
+} from '@ionic/vue'
+import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter} from 'vue-router'
-import emptyModal from '../../mains/emptyModal.vue'
-import emptyModalVue from '../emptyModal.vue'
+import Loader from '../../auxiliare/processing/processing1.vue'
+// import emptyModal from '../emptyModal.vue'
 export default {
     components: {
-        'empty-modal': emptyModal,
-        IonThumbnail, IonList, IonItem, IonButton,
+        'loa-der': Loader,
+        'alert-controller': alertController,
+        IonThumbnail, IonList, IonItem, IonButton, IonAlert, IonSpinner,
     },
     setup() {
         const store = useStore()
         const router = useRouter()
         const allowImage = ref(false)
         const link = ref(null)
+        const waiting = ref(false)
+        const networkFailled = ref(false)
+        const tokenExpired = ref(false)
 
         const modalActive = ref(false)
+        const alertButtons = ['Ok'];
 
         function toogleModal(value){
             modalActive.value = value
         }
+
+        const presentAlert = async () => {
+    const alert = await alertController.create({
+        header: 'Opération réussie',
+        message: 'Vous avez bien approuvé <strong>cette</strong> recharge.',
+        buttons: ['Ok'],
+        mode: 'ios',
+        backdropDismiss: false
+    });
+
+    // Displaying the alert with the correct HTML rendering
+    await alert.present().then(() => {
+        const element = document.querySelector('ion-alert .alert-message');
+        if (element) {
+            element.innerHTML = element.textContent;
+        }
+    });
+};
+        const tokenExpiredAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Operation echoue',
+            message: 'Veuillez vous reconnecter encore.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
+        const networkFailledAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Operation echoue',
+            // subHeader: 'A Sub Header Is Optional',
+            message: 'Probleme de connexion au serveur.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
 
         function turnImage(value){
             allowImage.value = !allowImage.value
@@ -127,8 +155,9 @@ export default {
         }
 
         async function kwemeza(link){
+            waiting.value = true
             indexApproved = Number(link.id.slice(2))
-
+            
             try{
                 const responseActivate = await fetch(`${link.value}`,{
                     method: 'GET',
@@ -140,16 +169,29 @@ export default {
                     const data = await responseActivate.json()
                     console.log("Vous avez bien approuvee cette Recharge ", data)
                     allDepots.value.valueOf(5)[indexApproved].approved = true
-                    operationSuccess.value = true
-                    modalActive.value = true
+                    
+                    
+                    setTimeout(()=>{
+                        console.log("The result is okay, waiting: ", waiting.value)
+                        waiting.value = false
+                        // modalActive.value = true
+                        // operationSuccess.value = true
+                        presentAlert()
+                    }, 2000)
                 } else{
                     console.log("Cette RECHARGE n'est pas approuvee")
-                    operationSuccess.value = false
+                    // operationSuccess.value = false
                     modalActive.value = false
+                    tokenExpiredAlert()
+                    // waiting.value = false
+                    // tokenExpired.value = true
                 }
             } catch(value){
                 operationSuccess.value = false
                 modalActive.value = false
+                networkFailledAlert()
+                // tokenExpired.value = false
+                // networkFailled.value = true
             }
             
         }
@@ -161,6 +203,10 @@ export default {
             allDepots,
             operationSuccess,
             modalActive,
+            alertButtons, 
+            presentAlert, tokenExpiredAlert, networkFailledAlert,
+            waiting,
+            networkFailled, tokenExpired, 
         }
         
     },
