@@ -17,7 +17,7 @@
             <veri-fica></veri-fica>
         </template>
         <template v-slot:Footer-menu>
-            <router-link to="/hope">
+            <router-link to="/home-admin">
                 <ion-icon id="ico1" :icon="home" size="large"></ion-icon>
             </router-link>
             <router-link to="/histo">
