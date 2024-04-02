@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { ref, watch, onBeforeUpdate, } from 'vue'
+import { ref, watch, onBeforeMount } from 'vue'
 import { eyeOff, eye} from 'ionicons/icons'
 import { IonSelect, IonSelectOption,} from '@ionic/vue'
 import { useStore } from 'vuex'
@@ -87,11 +87,14 @@ export default {
             }
         }
 
-        onBeforeUpdate(()=>{
+        onBeforeMount(()=>{
             console.log("SOLDE onBeforeUpdate")
             checkInjectedSolde()
         })
-        
+        watch(()=>props.injectableSolde, (value)=>{
+            console.log("SOLDE: Injectable Changed into : ", value)
+            checkInjectedSolde()
+        })
         //Begin of Checking the INjected Solde
 
         function Invert(){
@@ -182,6 +185,7 @@ export default {
             console.log("You changed into : ", value)
             console.log("; ", currencies.value.valueOf(0)[value].somme)
             amount.value = currencies.value.valueOf(0)[value].somme
+            // checkInjectedSolde()
         })
 
         
