@@ -76,7 +76,6 @@ export default {
         //Begin of Checking the INjected Solde
         function checkInjectedSolde(){
             if(props.injectableSolde){
-                console.log("There is presence of PROPs : ", props.injectableSolde)
                 soldeObject.value = props.injectableSolde
                 buildCurrencies()
                 amount.value = currencies.value.valueOf(0)[0].somme
@@ -88,7 +87,7 @@ export default {
         }
 
         onBeforeMount(()=>{
-            console.log("SOLDE onBeforeUpdate")
+            // console.log("SOLDE onBeforeUpdate")
             checkInjectedSolde()
         })
         watch(()=>props.injectableSolde, (value)=>{
