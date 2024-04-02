@@ -27,14 +27,28 @@
             <div class="info z1">
                 infos
             </div>
-            <div class="solde z1">
+            <!-- <sol-de :injectableSolde="data.solde"></sol-de> -->
+            <div class="solde">
                 <sol-de :injectableSolde="data.solde"></sol-de>
             </div>
             <div class="histo z1">
-                <!-- Historique: {{ data.historique }} -->
+                Historique:
+                <ol style="border-radius: 15px; background-color: transparent;
+                box-shadow: 0 0 25px white;">
+                    <li v-for="histo in data.historique" 
+                        >
+                        <!-- {{ notif }} -->
+                        {{ histo.destination }} a autorise {{ histo.motif }} de
+                        {{ histo.amount }}({{ histo.currency }}) 
+                        au compte de {{ histo.destination }}. 
+                        Date: {{ (histo.date_approved).slice(0,10) }} ; 
+                        heure: {{ (histo.date_approved).slice(14,19) }} ;
+                        code d'operation: {{ histo.code }} .
+                    </li>
+                </ol>
             </div>
             <div class="notif z1">
-                Notif: 
+                Notifications: 
                 <!-- {{ data.notifications }} -->
                 <ol style="border-radius: 15px; background-color: transparent;
                 box-shadow: 0 0 25px white;">
@@ -172,5 +186,11 @@ ion-searchbar.custom {
   .z1{
     border : 5px solid black;
     border-radius: 5px;
+  }
+  .solde{
+    /* padding-top: -80px; */
+    margin-top: -65px;
+    margin-bottom: -32px;
+    /* background-color: red; */
   }
 </style>
