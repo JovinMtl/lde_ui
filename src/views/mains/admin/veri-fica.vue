@@ -31,22 +31,27 @@
             <div class="solde">
                 <sol-de :injectableSolde="data.solde"></sol-de>
             </div>
-            <div class="histo z1">
-                Historique:
-                <ol style="border-radius: 15px; background-color: transparent;
-                box-shadow: 0 0 25px white;">
-                    <li v-for="histo in data.historique" 
-                        >
-                        <!-- {{ notif }} -->
-                        {{ histo.destination }} a autorise {{ histo.motif }} de
-                        {{ histo.amount }}({{ histo.currency }}) 
-                        au compte de {{ histo.destination }}. 
-                        Date: {{ (histo.date_approved).slice(0,10) }} ; 
-                        heure: {{ (histo.date_approved).slice(14,19) }} ;
-                        code d'operation: {{ histo.code }} .
-                    </li>
-                </ol>
+            <div class="histoContainer">
+                <div class="histo z1">
+                    Historique:  
+                </div>
+                <div class="histoContent">
+                    <ol style="border-radius: 15px; background-color: transparent;
+                    box-shadow: 0 0 25px white;">
+                        <li v-for="histo in data.historique" 
+                            >
+                            <!-- {{ notif }} -->
+                            {{ histo.destination }} a autorise {{ histo.motif }} de
+                            {{ histo.amount }}({{ histo.currency }}) 
+                            au compte de {{ histo.destination }}. 
+                            Date: {{ (histo.date_approved).slice(0,10) }} ; 
+                            heure: {{ (histo.date_approved).slice(14,19) }} ;
+                            code d'operation: {{ histo.code }} .
+                        </li>
+                    </ol>
+                </div>
             </div>
+            
             <div class="notif z1">
                 Notifications: 
                 <!-- {{ data.notifications }} -->
