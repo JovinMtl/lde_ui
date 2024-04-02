@@ -80,12 +80,12 @@
             
         </div>
         <div class="centered" v-show="!data.solde">
-            This user '<span style="color: red;">{{ dataInput }}</span>' is not found.
+            L'utilisateur '<span style="color: red;">{{ dataInput }}</span>' n'a pas été trouvé.
         </div>
         
     </div>
-    <div class="centered" v-else>
-        Just type the username and see about it.
+    <div class="centered welcomeText" v-else>
+        Entrez simplement le nom d'utilisateur pour en savoir plus.
     </div>
     
 </template>
@@ -198,6 +198,9 @@ ion-searchbar.custom {
   ion-searchbar.md.custom {
     --cancel-button-color: #fff;
   }
+  /* ion-searchbar:hover .welcomeText{
+    background-color: red;
+  } */
   .z1{
     border : 5px solid black;
     border-radius: 5px;
