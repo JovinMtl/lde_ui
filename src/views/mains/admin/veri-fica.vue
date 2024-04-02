@@ -22,16 +22,19 @@
     </div>
     <div class="centered" v-if="data">
         <div v-if="data.solde">
-            //
             <h5>jove</h5>
-            <div class="info z1">
-                infos
+            <div class="infoContainer">
+                <div class="info z1">
+                    infos
+                </div>
+                <div class="infoContent">
+                    //
+                </div>
             </div>
-            <!-- <sol-de :injectableSolde="data.solde"></sol-de> -->
             <div class="solde">
                 <sol-de :injectableSolde="data.solde"></sol-de>
             </div>
-            <div class="histoContainer">
+            <div class="histoContainer" v-if="(data.historique).length">
                 <div class="histo z1">
                     Historique:  
                 </div>
@@ -51,23 +54,26 @@
                     </ol>
                 </div>
             </div>
-            
-            <div class="notif z1">
-                Notifications: 
-                <!-- {{ data.notifications }} -->
-                <ol style="border-radius: 15px; background-color: transparent;
-                box-shadow: 0 0 25px white;">
-                    <li v-for="notif in data.notifications" 
-                        >
-                        <!-- {{ notif }} -->
-                        {{ notif.destination }} a fait {{ notif.motif }} de
-                        {{ notif.amount }}({{ notif.currency }}). 
-                        Date: {{ (notif.date_approved).slice(0,10) }} ; 
-                        heure: {{ (notif.date_approved).slice(14,19) }} ;
-                        code d'operation: {{ notif.code }} .
-                    </li>
-                </ol>
+            <div class="notifContainer" v-if="(data.notifications).length">
+                <div class="notif z1">
+                    Notifications:   
+                </div>
+                <div class="notifContent">
+                    <ol style="border-radius: 15px; background-color: transparent;
+                    box-shadow: 0 0 25px white;">
+                        <li v-for="notif in data.notifications" 
+                            >
+                            <!-- {{ notif }} -->
+                            {{ notif.destination }} a fait {{ notif.motif }} de
+                            {{ notif.amount }}({{ notif.currency }}). 
+                            Date: {{ (notif.date_approved).slice(0,10) }} ; 
+                            heure: {{ (notif.date_approved).slice(14,19) }} ;
+                            code d'operation: {{ notif.code }} .
+                        </li>
+                    </ol>
+                </div>
             </div>
+            
         </div>
         <div class="centered" v-show="!data.solde">
             This user '<span style="color: red;">{{ dataInput }}</span>' is not found.
