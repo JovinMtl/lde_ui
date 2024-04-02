@@ -25,9 +25,30 @@
         <div class="info z1">
             infos
         </div>
-        <div class="solde z1"></div>
-        <div class="histo z1"></div>
-        <div class="notif z1"></div>
+        <div class="solde z1">
+            Solde: {{ data.solde }}
+            {{ selectedCurrency }} 
+            <
+        </div>
+        <div class="histo z1">
+            Historique: {{ data.historique }}
+        </div>
+        <div class="notif z1">
+            Notif: 
+            <!-- {{ data.notifications }} -->
+            <ol style="border-radius: 15px; background-color: transparent;
+            box-shadow: 0 0 25px white;">
+                <li v-for="notif in data.notifications" 
+                    >
+                    <!-- {{ notif }} -->
+                    {{ notif.destination }} a fait {{ notif.motif }} de
+                    {{ notif.amount }}({{ notif.currency }}). 
+                    Date: {{ (notif.date_approved).slice(0,10) }} ; 
+                    heure: {{ (notif.date_approved).slice(14,19) }} ;
+                    code d'operation: {{ notif.code }} .
+                </li>
+            </ol>
+        </div>
     </div>
 </template>
 <script>
