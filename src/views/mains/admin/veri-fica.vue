@@ -9,7 +9,9 @@
             showCancelButton="focus"
             cancel-button-text="Rechercher"
             @ionCancel="aboutUser($event)"
+            @keyup="checkEnter($event)"
             enterkeyhint="search"
+            mode="ios"
             v-model="dataInput"
             >
         </ion-searchbar>
@@ -17,31 +19,15 @@
             <loa-der></loa-der>
             <!-- <ion-spinner></ion-spinner> -->
         </div>
-        <ion-list>
-            
-            <ion-item>Jove</ion-item>
-        </ion-list>
-        <div>
-                <ion-button id="open-popover">Open Popover</ion-button>
-                <ion-popover :keep-contents-mounted="true" trigger="open-popover" animated="true">
-                <ion-content class="ion-padding" style="background-color: red;
-                ">
-                    This content was mounted as soon as the popover was created.
-                    This content was mounted as soon as the popover was created.
-
-                </ion-content>
-                </ion-popover>
-        </div>
     </div>
-    <div>
-        <ion-button id="present-alert">Click Me</ion-button>
-        <ion-alert
-            trigger="present-alert"
-            header="Operation Reussie"
-            sub-header="A Sub Header Is Optional"
-            message="Vous avez bien approuve cette recharge"
-            :buttons="alertButtons"
-        ></ion-alert>
+    <div class="centered">
+        <h5>jove</h5>
+        <div class="info z1">
+            infos
+        </div>
+        <div class="solde z1"></div>
+        <div class="histo z1"></div>
+        <div class="notif z1"></div>
     </div>
 </template>
 <script>
@@ -56,8 +42,6 @@ import Loader from '../../../views/auxiliare/processing/processing1.vue'
 export default {
     components: {
         IonItem, IonList, IonSearchbar, IonSpinner,
-        IonButton, IonContent, IonPopover,
-        IonAlert,
         'loa-der': Loader,
     },
     setup() {
@@ -76,10 +60,24 @@ export default {
             kubaza()
         }
 
+        const checkEnter = (ev)=>{
+            if(ev.key=='Enter'){
+                dataInput.value = ev.target.value
+                console.log("You type: ", dataInput.value)
+                kubaza()
+                // console.log("")
+            } else {
+                //
+                console.log("Waiting that you press enter : ",ev.key,";",ev.target.value)
+            }
+        }
+
         async function kubaza(){
             const url = ' http://localhost:8002/jov/api/invest/allInvests/'
             const baseURL = '//127.0.0.1:8002'
             var suffix = '/jov/api/check/userAvailable/'
+
+            console.log("Applying INPUT: ", dataInput.value)
             
             
 
@@ -114,8 +112,7 @@ export default {
 
 
         return {
-            aboutUser, dataInput, data, waiting,
-            alertButtons,
+            aboutUser, dataInput, data, waiting, checkEnter,
         }
         
     },
@@ -139,5 +136,9 @@ ion-searchbar.custom {
 
   ion-searchbar.md.custom {
     --cancel-button-color: #fff;
+  }
+  .z1{
+    border : 5px solid black;
+    border-radius: 5px;
   }
 </style>
