@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref, watch, onBeforeUpdate, } from 'vue'
 import { eyeOff, eye} from 'ionicons/icons'
 import { IonSelect, IonSelectOption,} from '@ionic/vue'
 import { useStore } from 'vuex'
@@ -61,7 +61,10 @@ export default {
     components:{
         IonSelect, IonSelectOption,
     },
-    setup() {
+    props:[
+        'injectableSolde',
+    ],
+    setup(props) {
         const store = useStore()
         let soldeVisible = ref(false);
         // let solde = 3000000
@@ -69,6 +72,27 @@ export default {
         const currencies = ref(null)
         const somme = ref(0)
         const amount = ref(0)
+
+        //Begin of Checking the INjected Solde
+        function checkInjectedSolde(){
+            if(props.injectableSolde){
+                console.log("There is presence of PROPs : ", props.injectableSolde)
+                soldeObject.value = props.injectableSolde
+                buildCurrencies()
+                amount.value = currencies.value.valueOf(0)[0].somme
+                console.log("Currencies are: ", currencies.value)
+            } else {
+                console.log("There is no PROP. now asking the server")
+                kubaza()
+            }
+        }
+
+        onBeforeUpdate(()=>{
+            console.log("SOLDE onBeforeUpdate")
+            checkInjectedSolde()
+        })
+        
+        //Begin of Checking the INjected Solde
 
         function Invert(){
             soldeVisible.value = !soldeVisible.value
@@ -151,7 +175,7 @@ export default {
                 console.log("THe reason is : ", value)
             }
         }
-        kubaza()
+        // kubaza()
 
         watch(somme, (value)=>{
             //
