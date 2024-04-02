@@ -19,6 +19,7 @@ import viewImage from '../views/mains/view-image.vue'
 import Notification from '../views/operations/principal/notification.vue'
 import HomeOpAdmin from '../views/n_ope/home-op-admin.vue'
 import Verify from '../views/operations/principal/verification.vue'
+import retraitAdmin from '../views/operations/principal/retrait-admin.vue'
 
 const routes= [
   {
@@ -121,6 +122,10 @@ const routes= [
     path : '/check',
     component : Verify
   },
+  {
+    path : '/retrait-admin',
+    component : retraitAdmin
+  }
 ]
 
 const router = createRouter({
