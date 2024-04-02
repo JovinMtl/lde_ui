@@ -28,16 +28,6 @@
                 infos
             </div>
             <div class="solde z1">
-                <!-- Solde: {{ data.solde }} -->
-                <!-- {{ selectedCurrency }}  -->
-                <!-- <span>
-                        <ion-select aria-label="Fruit" interface="popover" 
-                        placeholder="choisir" cancel-text="Annuler" v-model="somme">
-                            <ion-select-option
-                                v-for="(jove, index) in currencies" :value="index" > 
-                                {{ jove.nom }}
-                            </ion-select-option>
-                        </ion-select></span> -->
                 <sol-de :injectableSolde="data.solde"></sol-de>
             </div>
             <div class="histo z1">
@@ -92,62 +82,6 @@ export default {
         const data = ref(null)
         const waiting = ref(false)
         const alertButtons = ['Ok'];
-
-        //Begin of things of currencies
-        const currencies = ref(null)
-        const selectedCurrency = ref('usdt')
-
-        function buildCurrencies(){
-
-        currencies.value = 
-        [
-            {
-                'nom': 'USDT',
-                'somme' : soldeObject.value.valueOf(5)['usdt']
-            },
-            {
-                'nom': 'USD',
-                'somme' : soldeObject.value.valueOf(5)['usd']
-            },
-            {
-                'nom': 'Fbu',
-                'somme' : soldeObject.value.valueOf(5)['bif']
-            },
-            {
-                'nom': 'Frw',
-                'somme' : String(soldeObject.value.rwf)
-            },
-            {
-                'nom': 'KES',
-                'somme' : String(soldeObject.value.kes)
-            },
-            {
-                'nom': 'Ugx',
-                'somme' : String(soldeObject.value.ugx),
-            },
-            {
-                'nom': 'Tsh',
-                'somme' : String(soldeObject.value.tsh)
-            },
-            {
-                'nom': 'Zmw',
-                'somme' : String(soldeObject.value.zmw)
-            },
-            {
-                'nom': 'Eur',
-                'somme' : String(soldeObject.value.eur)
-            },
-            {
-                'nom': 'TRX',
-                'somme' : String(soldeObject.value.trx)
-            },
-            {
-                'nom': 'LID',
-                'somme' : String(soldeObject.value.lid)
-            },
-        ]
-        } 
-        //End of things of currencies
 
         function aboutUser(userInput){
             waiting.value = true
