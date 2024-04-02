@@ -22,13 +22,17 @@
     </div>
     <div class="centered" v-if="data">
         <div v-if="data.solde">
-            <h5>jove</h5>
-            <div class="infoContainer">
+            <h5>{{ dataInput }}</h5>
+            <div class="infoContainer" v-if="data.info.level > 1">
                 <div class="info z1">
                     infos
                 </div>
                 <div class="infoContent">
-                    //
+                    Nom: {{ data.info.firstname }} ;
+                    Prenom : {{ data.info.lastname }} ;
+                    Numero : {{ data.info.phonenumber }} ;
+                    Email : {{ data.info.email }} .
+
                 </div>
             </div>
             <div class="solde">
