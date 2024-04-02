@@ -20,50 +20,71 @@
             <!-- <ion-spinner></ion-spinner> -->
         </div>
     </div>
-    <div class="centered">
-        <h5>jove</h5>
-        <div class="info z1">
-            infos
+    <div class="centered" v-if="data">
+        <div v-if="data.solde">
+            //
+            <h5>jove</h5>
+            <div class="info z1">
+                infos
+            </div>
+            <div class="solde z1">
+                <!-- Solde: {{ data.solde }} -->
+                <!-- {{ selectedCurrency }}  -->
+                <!-- <span>
+                        <ion-select aria-label="Fruit" interface="popover" 
+                        placeholder="choisir" cancel-text="Annuler" v-model="somme">
+                            <ion-select-option
+                                v-for="(jove, index) in currencies" :value="index" > 
+                                {{ jove.nom }}
+                            </ion-select-option>
+                        </ion-select></span> -->
+                <sol-de :injectableSolde="data.solde"></sol-de>
+            </div>
+            <div class="histo z1">
+                <!-- Historique: {{ data.historique }} -->
+            </div>
+            <div class="notif z1">
+                Notif: 
+                <!-- {{ data.notifications }} -->
+                <ol style="border-radius: 15px; background-color: transparent;
+                box-shadow: 0 0 25px white;">
+                    <li v-for="notif in data.notifications" 
+                        >
+                        <!-- {{ notif }} -->
+                        {{ notif.destination }} a fait {{ notif.motif }} de
+                        {{ notif.amount }}({{ notif.currency }}). 
+                        Date: {{ (notif.date_approved).slice(0,10) }} ; 
+                        heure: {{ (notif.date_approved).slice(14,19) }} ;
+                        code d'operation: {{ notif.code }} .
+                    </li>
+                </ol>
+            </div>
         </div>
-        <div class="solde z1">
-            Solde: {{ data.solde }}
-            {{ selectedCurrency }} 
-            <
+        <div class="centered" v-show="!data.solde">
+            This user '<span style="color: red;">{{ dataInput }}</span>' is not found.
         </div>
-        <div class="histo z1">
-            Historique: {{ data.historique }}
-        </div>
-        <div class="notif z1">
-            Notif: 
-            <!-- {{ data.notifications }} -->
-            <ol style="border-radius: 15px; background-color: transparent;
-            box-shadow: 0 0 25px white;">
-                <li v-for="notif in data.notifications" 
-                    >
-                    <!-- {{ notif }} -->
-                    {{ notif.destination }} a fait {{ notif.motif }} de
-                    {{ notif.amount }}({{ notif.currency }}). 
-                    Date: {{ (notif.date_approved).slice(0,10) }} ; 
-                    heure: {{ (notif.date_approved).slice(14,19) }} ;
-                    code d'operation: {{ notif.code }} .
-                </li>
-            </ol>
-        </div>
+        
     </div>
+    <div class="centered" v-else>
+        Just type the username and see about it.
+    </div>
+    
 </template>
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { 
     IonItem, IonList, IonSearchbar, IonSpinner,
-    IonButton, IonContent, IonPopover,
-    IonAlert,
+    IonSelect, IonSelectOption,
 } from '@ionic/vue';
 import Loader from '../../../views/auxiliare/processing/processing1.vue'
+import Solde from '../../../views/auxiliare/solde.vue'
 export default {
     components: {
         IonItem, IonList, IonSearchbar, IonSpinner,
+        IonSelect, IonSelectOption,
         'loa-der': Loader,
+        'sol-de' : Solde,
     },
     setup() {
         const store = useStore()
@@ -71,6 +92,62 @@ export default {
         const data = ref(null)
         const waiting = ref(false)
         const alertButtons = ['Ok'];
+
+        //Begin of things of currencies
+        const currencies = ref(null)
+        const selectedCurrency = ref('usdt')
+
+        function buildCurrencies(){
+
+        currencies.value = 
+        [
+            {
+                'nom': 'USDT',
+                'somme' : soldeObject.value.valueOf(5)['usdt']
+            },
+            {
+                'nom': 'USD',
+                'somme' : soldeObject.value.valueOf(5)['usd']
+            },
+            {
+                'nom': 'Fbu',
+                'somme' : soldeObject.value.valueOf(5)['bif']
+            },
+            {
+                'nom': 'Frw',
+                'somme' : String(soldeObject.value.rwf)
+            },
+            {
+                'nom': 'KES',
+                'somme' : String(soldeObject.value.kes)
+            },
+            {
+                'nom': 'Ugx',
+                'somme' : String(soldeObject.value.ugx),
+            },
+            {
+                'nom': 'Tsh',
+                'somme' : String(soldeObject.value.tsh)
+            },
+            {
+                'nom': 'Zmw',
+                'somme' : String(soldeObject.value.zmw)
+            },
+            {
+                'nom': 'Eur',
+                'somme' : String(soldeObject.value.eur)
+            },
+            {
+                'nom': 'TRX',
+                'somme' : String(soldeObject.value.trx)
+            },
+            {
+                'nom': 'LID',
+                'somme' : String(soldeObject.value.lid)
+            },
+        ]
+        } 
+        //End of things of currencies
 
         function aboutUser(userInput){
             waiting.value = true
