@@ -39,7 +39,8 @@ export default {
                     name : 'Retirer',
                     color: 'gray',
                     borderRadius : '7px',
-                    path : '/retrait',
+                    // path : '/retrait',
+                    path : '/retrait-admin'
                 },
                 // {
                 //     logo : "url('resources/logo/logo_home/Currencies.png')",

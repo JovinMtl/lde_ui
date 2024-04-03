@@ -19,7 +19,7 @@
             </div>
             <sol-de></sol-de> <br>
             <div v-if="allDepots">
-                <depot-list></depot-list>
+                <retrai-list></retrai-list>
             </div>
             <div v-if="notApproved">
                 <depli-np></depli-np>
@@ -69,7 +69,8 @@ import emptyModalVue from '../../mains/emptyModal.vue';
 // import Loader from '../../auxiliare/processing/processing1.vue'
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
 
-import depLiList from '../../mains/admin/dep-li-list.vue';
+// import depLiList from '../../mains/admin/dep-li-list.vue';
+import retLiList from '../../mains/admin/ret-li-list.vue';
 import depLiNp from '../../mains/admin/dep-li-np.vue'
 import depLiYp from '../../mains/admin/dep-li-yp.vue'
 import { 
@@ -85,7 +86,7 @@ export default {
         'empty-modal' : emptyModalVue,
         'loa-der': Loader,
 
-        'depot-list' : depLiList,
+        'retrai-list' : retLiList,
         'depli-np' : depLiNp,
         'depli-yp' : depLiYp,
         IonItem, IonInput, IonList, IonButton,

@@ -1,31 +1,23 @@
 <template>
     <div style="text-align: center;">
         <p style="margin-top: -40px; font-weight: bolder">
-            Tous les Dépôts combinés : Non Approuvés et Bien Approuvés
+            Tous les Retraits combinés : Non Approuvés et Bien Approuvés
         </p>
-        <ion-list v-for="(depot, index) in allDepots"  
+        <ion-list v-for="(retrait, index) in allRetraits"  
             :inset="true">
             <ion-item :class="index%2==0  ?'whitee' : 'blackee'" 
                 >
-                Dépôt, {{ (depot.date_submitted).slice(11,16) }};
-                {{ depot.owner }} <==> {{ depot.montant }} ({{ depot.currency }})
-                <ion-thumbnail slot="start">
-                    <img :src="'http://127.0.0.1:8002'+depot.bordereau"
-                            
-                            @click="turnImage($event.target.src)"
-                            alt="Bordereau"  style="border-radius: 15px;
-                            border: 1px solid orange;"
-                            />
-                </ion-thumbnail>
+                Retrait, {{ (retrait.date_submitted).slice(11,16) }};
+                {{ retrait.owner }} <==> {{ retrait.montant }} ({{ retrait.currency }})
                 
-                <span v-show="!depot.approved" style="display: flex;" >
-                <button  :id="'jo'+index" :value="depot.link_to_approve" 
+                <span v-show="!retrait.approved" style="display: flex;" >
+                <button  :id="'jo'+index" :value="retrait.link_to_approve" 
                     @click="kwemeza($event.target)"
                     style="height: 2em; margin: 5px 5px; background-color: orange;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Approuver
                 </button>
-                <button  :id="'jo'+index" :value="depot.link_to_approve" 
+                <button  :id="'jo'+index" :value="retrait.link_to_approve" 
                     @click="kwemeza($event.target.value)"
                     style="height: 2em; margin: 5px 5px; background-color: red;
                             color: black;border-radius: 5px; padding: 0 5px;">
@@ -124,13 +116,14 @@ export default {
         // const message = ref(null)
         const operationSuccess = ref(false)
         
-        const allDepots = ref(null)
-        var suffix = '/jov/api/depot/getDepotAll/'
+        const allRetraits = ref(null)
+        
         var indexApproved = 0
 
         async function kubaza(){
-            const url = ' http://localhost:8002/jov/api/invest/allInvests/'
+            console.log("RET-LI-LIST: Begin to Ask")
             const baseURL = '//127.0.0.1:8002'
+            var suffix = '/jov/api/retrait/allRetraits/'
             
 
             try {
@@ -143,9 +136,9 @@ export default {
                 });
 
                 if (response.ok){
-                    allDepots.value = await response.json()
-                    console.log("DEP-li-LIST: Things are well received")
-                    console.dir(allDepots.value)
+                    allRetraits.value = await response.json()
+                    console.log("RETR-li-LIST: Things are well received")
+                    console.dir(allRetraits.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
@@ -200,7 +193,7 @@ export default {
         return {
             allowImage, link,
             turnImage, kwemeza, toogleModal,
-            allDepots,
+            allRetraits,
             operationSuccess,
             modalActive,
             alertButtons, 
