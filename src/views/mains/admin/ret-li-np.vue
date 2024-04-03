@@ -1,7 +1,7 @@
 <template>
     <div style="text-align: center;">
         <p style="margin-top: -40px; font-weight: bolder">
-            Tous les Retraits combinés : Non Approuvés et Bien Approuvés
+            Les Retraits non Approuvés.
         </p>
         <ion-list v-for="(retrait, index) in allRetraits"  
             :inset="true">
@@ -123,7 +123,7 @@ export default {
         async function kubaza(){
             console.log("RET-LI-LIST: Begin to Ask")
             const baseURL = '//127.0.0.1:8002'
-            var suffix = '/jov/api/retrait/allRetraits/'
+            var suffix = '/jov/api/retrait/needRetraits/'
             
 
             try {
@@ -167,8 +167,8 @@ export default {
                     setTimeout(()=>{
                         console.log("The result is okay, waiting: ", waiting.value)
                         waiting.value = false
-                        modalActive.value = true
-                        operationSuccess.value = true
+                        // modalActive.value = true
+                        // operationSuccess.value = true
                         presentAlert()
                     }, 2000)
                 } else{

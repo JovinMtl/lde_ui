@@ -22,10 +22,10 @@
                 <retrai-list></retrai-list>
             </div>
             <div v-if="notApproved">
-                <depli-np></depli-np>
+                <retli-np></retli-np>
             </div>
             <div v-if="yetApproved">
-                <depli-yp></depli-yp>
+                <retli-yp></retli-yp>
             </div>
         </template>
         <template v-slot:Footer-menu>
@@ -69,10 +69,10 @@ import emptyModalVue from '../../mains/emptyModal.vue';
 // import Loader from '../../auxiliare/processing/processing1.vue'
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
 
-// import depLiList from '../../mains/admin/dep-li-list.vue';
+
 import retLiList from '../../mains/admin/ret-li-list.vue';
-import depLiNp from '../../mains/admin/dep-li-np.vue'
-import depLiYp from '../../mains/admin/dep-li-yp.vue'
+import retLiNp from '../../mains/admin/ret-li-np.vue';
+import retLiYp from '../../mains/admin/ret-li-yp.vue';
 import { 
     exitOutline,notificationsOutline,
     home,
@@ -87,8 +87,8 @@ export default {
         'loa-der': Loader,
 
         'retrai-list' : retLiList,
-        'depli-np' : depLiNp,
-        'depli-yp' : depLiYp,
+        'retli-np' : retLiNp,
+        'retli-yp' : retLiYp,
         IonItem, IonInput, IonList, IonButton,
         IonSelect, IonSelectOption,
         IonLabel,

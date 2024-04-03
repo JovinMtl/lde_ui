@@ -1,7 +1,7 @@
 <template>
     <div style="text-align: center;">
         <p style="margin-top: -40px; font-weight: bolder">
-            Tous les Retraits combinés : Non Approuvés et Bien Approuvés
+            Les Retraits bien Approuvés.
         </p>
         <ion-list v-for="(retrait, index) in allRetraits"  
             :inset="true">
@@ -123,7 +123,7 @@ export default {
         async function kubaza(){
             console.log("RET-LI-LIST: Begin to Ask")
             const baseURL = '//127.0.0.1:8002'
-            var suffix = '/jov/api/retrait/allRetraits/'
+            var suffix = '/jov/api/retrait/doneRetraits/'
             
 
             try {
@@ -137,7 +137,7 @@ export default {
 
                 if (response.ok){
                     allRetraits.value = await response.json()
-                    console.log("RETR-li-LIST: Things are well received")
+                    console.log("RETR-Done-LIST: Things are well received")
                     console.dir(allRetraits.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
@@ -167,8 +167,8 @@ export default {
                     setTimeout(()=>{
                         console.log("The result is okay, waiting: ", waiting.value)
                         waiting.value = false
-                        modalActive.value = true
-                        operationSuccess.value = true
+                        // modalActive.value = true
+                        // operationSuccess.value = true
                         presentAlert()
                     }, 2000)
                 } else{
