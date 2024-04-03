@@ -69,50 +69,44 @@ export default {
         }
 
         const presentAlert = async () => {
-    const alert = await alertController.create({
-        header: 'Opération réussie',
-        message: 'Vous avez bien approuvé <strong>cette</strong> recharge.',
-        buttons: ['Ok'],
-        mode: 'ios',
-        backdropDismiss: false
-    });
+            const alert = await alertController.create({
+                header: 'Opération réussie',
+                message: 'Vous avez bien approuvé <strong>cette</strong> recharge.',
+                buttons: ['Ok'],
+                mode: 'ios',
+                backdropDismiss: false
+        });
 
-    // Displaying the alert with the correct HTML rendering
-    await alert.present().then(() => {
-        const element = document.querySelector('ion-alert .alert-message');
-        if (element) {
-            element.innerHTML = element.textContent;
-        }
-    });
-};
+        // Displaying the alert with the correct HTML rendering
+        await alert.present().then(() => {
+            const element = document.querySelector('ion-alert .alert-message');
+                if (element) {
+                    element.innerHTML = element.textContent;
+                }
+            });
+        };
         const tokenExpiredAlert = async () => {
             const alert = await alertController.create({
             header: 'Operation echoue',
             message: 'Veuillez vous reconnecter encore.',
             buttons: ['Ok'],
+            mode: 'ios',
             });
 
             await alert.present();
         };
         const networkFailledAlert = async () => {
             const alert = await alertController.create({
-            header: 'Operation echoue',
+            header: 'Opération échouée',
             // subHeader: 'A Sub Header Is Optional',
-            message: 'Probleme de connexion au serveur.',
+            message: 'Problème de connexion au serveur.',
             buttons: ['Ok'],
+            mode: 'ios',
             });
 
             await alert.present();
         };
 
-        function turnImage(value){
-            allowImage.value = !allowImage.value
-            console.log("The link is : ", value)
-            store.commit('setActualBordereau', value)
-            link.value = value
-            console.log("The committed value : ", store.getters.getActualBordeau)
-            router.push('/oimage')
-        }
         // const message = ref(null)
         const operationSuccess = ref(false)
         
@@ -167,32 +161,26 @@ export default {
                     setTimeout(()=>{
                         console.log("The result is okay, waiting: ", waiting.value)
                         waiting.value = false
-                        modalActive.value = true
-                        operationSuccess.value = true
+                        // modalActive.value = true
+                        // operationSuccess.value = true
                         presentAlert()
                     }, 2000)
                 } else{
                     console.log("Cette RECHARGE n'est pas approuvee")
-                    // operationSuccess.value = false
-                    modalActive.value = false
+                    waiting.value = false
                     tokenExpiredAlert()
-                    // waiting.value = false
-                    // tokenExpired.value = true
                 }
             } catch(value){
-                operationSuccess.value = false
-                modalActive.value = false
+                waiting.value = false
                 networkFailledAlert()
-                // tokenExpired.value = false
-                // networkFailled.value = true
             }
             
         }
         kubaza()
 
         return {
-            allowImage, link,
-            turnImage, kwemeza, toogleModal,
+            link,
+            kwemeza, toogleModal,
             allRetraits,
             operationSuccess,
             modalActive,
