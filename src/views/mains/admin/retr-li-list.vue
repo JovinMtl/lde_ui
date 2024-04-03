@@ -1,15 +1,14 @@
 <template>
     <div style="text-align: center;">
         <p style="margin-top: -40px; font-weight: bolder">
-            Tous les Dépôts combinés : Non Approuvés et Bien Approuvés
+            Tous les Retraits combinés : Non Approuvés et Bien Approuvés
         </p>
-        <ion-list v-for="(retrait, index) in allDepots"  
+        <ion-list v-for="(retrait, index) in allRetraits"  
             :inset="true">
             <ion-item :class="index%2==0  ?'whitee' : 'blackee'" 
                 >
-                Dépôt, {{ (retrait.date_submitted).slice(11,16) }};
+                Retrait, {{ (retrait.date_submitted).slice(11,16) }};
                 {{ retrait.owner }} <==> {{ retrait.montant }} ({{ retrait.currency }})
-                
                 
                 <span v-show="!retrait.approved" style="display: flex;" >
                 <button  :id="'jo'+index" :value="retrait.link_to_approve" 
@@ -46,7 +45,6 @@ import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter} from 'vue-router'
 import Loader from '../../auxiliare/processing/processing1.vue'
-// import emptyModal from '../emptyModal.vue'
 export default {
     components: {
         'loa-der': Loader,
@@ -56,11 +54,10 @@ export default {
     setup() {
         const store = useStore()
         const router = useRouter()
-        const allowImage = ref(false)
         const link = ref(null)
         const waiting = ref(false)
-        const networkFailled = ref(false)
-        const tokenExpired = ref(false)
+        //const networkFailled = ref(false)
+        //const tokenExpired = ref(false)
 
         const modalActive = ref(false)
         const alertButtons = ['Ok'];
@@ -70,60 +67,55 @@ export default {
         }
 
         const presentAlert = async () => {
-    const alert = await alertController.create({
-        header: 'Opération réussie',
-        message: 'Vous avez bien approuvé <strong>cette</strong> recharge.',
-        buttons: ['Ok'],
-        mode: 'ios',
-        backdropDismiss: false
-    });
+            const alert = await alertController.create({
+                header: 'Opération réussie',
+                message: 'Vous avez bien approuvé <strong>cette</strong> recharge.',
+                buttons: ['Ok'],
+                mode: 'ios',
+                backdropDismiss: false
+            });
 
-    // Displaying the alert with the correct HTML rendering
-    await alert.present().then(() => {
-        const element = document.querySelector('ion-alert .alert-message');
-        if (element) {
-            element.innerHTML = element.textContent;
-        }
-    });
-};
+            // Displaying the alert with the correct HTML rendering
+            await alert.present().then(() => {
+                const element = document.querySelector('ion-alert .alert-message');
+                    if (element) {
+                        element.innerHTML = element.textContent;
+                    }
+                });
+        };
         const tokenExpiredAlert = async () => {
             const alert = await alertController.create({
             header: 'Operation echoue',
             message: 'Veuillez vous reconnecter encore.',
             buttons: ['Ok'],
+            mode: 'ios',
             });
 
             await alert.present();
         };
         const networkFailledAlert = async () => {
             const alert = await alertController.create({
-            header: 'Operation echoue',
+            header: 'Opération échouée',
             // subHeader: 'A Sub Header Is Optional',
-            message: 'Probleme de connexion au serveur.',
+            message: 'Problème de connexion au serveur.',
             buttons: ['Ok'],
+            mode: 'ios',
             });
 
             await alert.present();
         };
 
-        function turnImage(value){
-            allowImage.value = !allowImage.value
-            console.log("The link is : ", value)
-            store.commit('setActualBordereau', value)
-            link.value = value
-            console.log("The committed value : ", store.getters.getActualBordeau)
-            router.push('/oimage')
-        }
         // const message = ref(null)
         const operationSuccess = ref(false)
         
-        const allDepots = ref(null)
-        var suffix = '/jov/api/retrait/allRetraits/'
+        const allRetraits = ref(null)
+        
         var indexApproved = 0
 
         async function kubaza(){
-            const url = ' http://localhost:8002/jov/api/invest/allInvests/'
+            console.log("RET-LI-LIST: Begin to Ask")
             const baseURL = '//127.0.0.1:8002'
+            var suffix = '/jov/api/retrait/allRetraits/'
             
 
             try {
@@ -136,9 +128,9 @@ export default {
                 });
 
                 if (response.ok){
-                    allDepots.value = await response.json()
-                    console.log("DEP-li-LIST: Things are well received")
-                    console.dir(allDepots.value)
+                    allRetraits.value = await response.json()
+                    console.log("RETR-li-LIST: Things are well received")
+                    console.dir(allRetraits.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
@@ -160,47 +152,40 @@ export default {
                 })
                 if(responseActivate.ok){
                     const data = await responseActivate.json()
-                    console.log("Vous avez bien approuvee cette Recharge ", data)
+                    console.log("Vous avez bien approuvee cette Recharge : ", data)
+                    allDepots.value.valueOf(5)[indexApproved].approved = true
                     
                     
                     setTimeout(()=>{
-                        allDepots.value.valueOf(5)[indexApproved].approved = true
                         console.log("The result is okay, waiting: ", waiting.value)
                         waiting.value = false
                         // modalActive.value = true
                         // operationSuccess.value = true
                         presentAlert()
-                    }, 3000)
+                    }, 2000)
                 } else{
                     console.log("Cette RECHARGE n'est pas approuvee")
-                    // operationSuccess.value = false
-                    modalActive.value = false
-                    tokenExpiredAlert()
                     waiting.value = false
-                    // tokenExpired.value = true
+                    tokenExpiredAlert()
                 }
             } catch(value){
-                operationSuccess.value = false
-                modalActive.value = false
-                networkFailledAlert()
                 waiting.value = false
-                // tokenExpired.value = false
-                // networkFailled.value = true
+                networkFailledAlert()
             }
             
         }
         kubaza()
 
         return {
-            allowImage, link,
-            turnImage, kwemeza, toogleModal,
-            allDepots,
+            link,
+            kwemeza, toogleModal,
+            allRetraits,
             operationSuccess,
             modalActive,
             alertButtons, 
             presentAlert, tokenExpiredAlert, networkFailledAlert,
             waiting,
-            networkFailled, tokenExpired, 
+            // networkFailled, tokenExpired, 
         }
         
     },

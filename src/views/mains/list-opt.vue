@@ -24,8 +24,8 @@ export default {
                     name : 'Recharger',
                     color: 'red',
                     borderRadius : '5px',
-                    // path : '/depot',
-                    path : '/depot-admin',
+                    path : '/depot',
+                    // path : '/depot-admin',
                 },
                 // {
                 //     logo : "url('../../resources/logo/logo_home/Transfe.png')",
