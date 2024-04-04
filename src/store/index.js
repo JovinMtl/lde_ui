@@ -22,6 +22,7 @@ const store = createStore({
             lastActivity: null,
 
             wantedRoute : null,
+            actualRoute : '',
             actualBordereau : '..'
         }
     },
@@ -76,6 +77,9 @@ const store = createStore({
         },
         setActualBordereau(state, value){
             state.actualBordereau = value
+        },
+        setactualRoute(state, value){
+            state.actualRoute = value
         }
     },
     actions:{
@@ -117,6 +121,9 @@ const store = createStore({
         },
         getActualBordeau(state){
             return state.actualBordereau
+        },
+        getactualRoute(state){
+            return state.actualRoute
         }
     }
 })
