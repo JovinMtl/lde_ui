@@ -10,6 +10,7 @@
                 >
                 Invest, {{ (invest.date_submitted).slice(11,16) }};
                 {{ invest.owner }} <==> {{ invest.capital }} ({{ invest.currency }})
+                {{ invest.duree }}mois
                 
                 
                 <span v-show="!invest.approved" style="display: flex;" >
