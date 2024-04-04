@@ -65,8 +65,8 @@ import {
 } from '@ionic/vue'
 import { ref, watch, onBeforeUpdate,onBeforeUnmount,} from 'vue'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 import emptyModalVue from '../../mains/emptyModal.vue';
-// import Loader from '../../auxiliare/processing/processing1.vue'
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
 
 import depLiList from '../../mains/admin/dep-li-list.vue';
@@ -94,11 +94,15 @@ export default {
     },
     setup() {
         const store = useStore()
+        const route = useRoute()
 
         //Start of Things of Non approved & approved investments 
         const notApproved = ref(false)
         const yetApproved = ref(false)
         const allDepots = ref(true)
+
+        //Storing this route for Poursuite use.
+        store.commit('setactualRoute', route.path)
 
         function nonApproved(){
             yetApproved.value = false
