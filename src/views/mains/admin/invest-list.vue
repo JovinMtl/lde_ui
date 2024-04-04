@@ -73,6 +73,25 @@ export default {
                 }
             });
         };
+        const tokenExpiredAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Operation echoue',
+            message: 'Veuillez vous reconnecter encore.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
+        const networkFailledAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Operation echoue',
+            // subHeader: 'A Sub Header Is Optional',
+            message: 'Probleme de connexion au serveur.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
         
         const allInvests = ref(null)
         var suffix = '/jov/api/invest/allInvests/'
@@ -95,9 +114,11 @@ export default {
                     console.log("INVE-List: Things are well received")
                     console.log(allInvests.value)
                 } else {
+                    tokenExpiredAlert()
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
             } catch(value){
+                networkFailledAlert()
                 console.log("THe reason is : ", value)
             }
         }
