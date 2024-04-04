@@ -2,7 +2,7 @@
     <div style="text-align: center;">
         <p style="margin-top: -40px; font-weight: bolder"
             class="centered">
-            Tous les Dépôts combinés : Non Approuvés et Bien Approuvés
+            Tous les <strong>investissements</strong> combinés : Non Approuvés et Bien Approuvés
         </p>
         <ion-list v-for="(invest, index) in allInvests"  
             :inset="true">
@@ -75,7 +75,7 @@ export default {
         };
         const tokenExpiredAlert = async () => {
             const alert = await alertController.create({
-            header: 'Operation echoue',
+            header: 'Opération echouée',
             message: 'Veuillez vous reconnecter encore.',
             buttons: ['Ok'],
             });
