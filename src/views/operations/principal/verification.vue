@@ -26,7 +26,7 @@
             <!-- <router-link to="/depot">
                 <ion-icon id="ico3" :icon="wallet" size="large"></ion-icon>
             </router-link> -->
-            <router-link :to="store.getters.getactualRoute">
+            <router-link :to="store.getters.getactualRoute" :replace="true">
                 <ion-icon id="ico4" :icon="returnDownForward" size="large"></ion-icon>
             </router-link>
             
