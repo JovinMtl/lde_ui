@@ -48,12 +48,12 @@
                         <li v-for="histo in data.historique" 
                             >
                             <!-- {{ notif }} -->
-                            {{ histo.destination }} a autorise {{ histo.motif }} de
+                            {{ histo.source }} a autorisé {{ histo.motif }} de
                             {{ histo.amount }}({{ histo.currency }}) 
                             au compte de {{ histo.destination }}. 
                             Date: {{ (histo.date_approved).slice(0,10) }} ; 
                             heure: {{ (histo.date_approved).slice(14,19) }} ;
-                            code d'operation: {{ histo.code }} .
+                            code d'opération: {{ histo.code }} .
                         </li>
                     </ol>
                 </div>
