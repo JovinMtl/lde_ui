@@ -9,7 +9,7 @@
             <ion-item :class="index%2==0  ?'whitee' : 'blackee'" 
                 >
                 Invest, {{ (invest.date_submitted).slice(11,16) }};
-                {{ invest.owner }} <==> {{ invest.montant }} ({{ invest.currency }})
+                {{ invest.owner }} <==> {{ invest.capital }} ({{ invest.currency }})
                 
                 
                 <span v-show="!invest.approved" style="display: flex;" >
