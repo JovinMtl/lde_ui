@@ -1,53 +1,83 @@
 <template>
-    <div>
-        <p>Here is the list of investments(ALL MIXED)</p>
-    <ion-list v-for="(invest, index) in allInvests">
-        <ion-item class="index">{{ invest.owner }}, {{ invest.currency }},
-            {{ invest.result }}, {{ (invest.date_submitted).slice(11,16)}}
-            <span v-show="!invest.approved" >
+    <div style="text-align: center;">
+        <p style="margin-top: -40px; font-weight: bolder"
+            class="centered">
+            Tous les Dépôts combinés : Non Approuvés et Bien Approuvés
+        </p>
+        <ion-list v-for="(invest, index) in allInvests"  
+            :inset="true">
+            <ion-item :class="index%2==0  ?'whitee' : 'blackee'" 
+                >
+                Invest, {{ (invest.date_submitted).slice(11,16) }};
+                {{ invest.owner }} <==> {{ invest.montant }} ({{ invest.currency }})
+                
+                
+                <span v-show="!invest.approved" style="display: flex;" >
                 <button  :id="'jo'+index" :value="invest.link_to_approve" 
-                    @click="kwemeza($event.target.value)"
-                    style="height: 2em; margin: 8px 10px; background-color: orange;
+                    @click="kwemeza($event.target)"
+                    style="height: 2em; margin: 5px 5px; background-color: orange;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Approuver
                 </button>
                 <button  :id="'jo'+index" :value="invest.link_to_approve" 
                     @click="kwemeza($event.target.value)"
-                    style="height: 2em; margin: 8px 10px; background-color: red;
+                    style="height: 2em; margin: 5px 5px; background-color: red;
                             color: black;border-radius: 5px; padding: 0 5px;">
                     Refuser
                 </button>
             </span>
-            
-        </ion-item>
-    </ion-list>
-    </div>
-    <div style="background-color: white; text-align: center;">
-        <p v-if="operationSuccess"> {{ message }}</p>
-        <p v-else style="color: red;"> {{ message }}</p>
+            </ion-item>
+        </ion-list>
+        <div v-show="waiting" style="background-color: transparent; position:fixed; 
+                top: 60%; left: 50%; transform: translate(-50%, -50%);
+                z-index: 5;">
+            <!-- <ion-spinner color="danger" name="lines-sharp"></ion-spinner> -->
+            <loa-der></loa-der>
+        </div>
     </div>
     
 </template>
 
 <script>
-import { IonList, IonItem, IonButton, IonIcon } from '@ionic/vue'
-import { checkmarkDone, close } from 'ionicons/icons'
+import { 
+    IonList, IonItem,
+    alertController,
+ } from '@ionic/vue'
+import Loader from '../../auxiliare/processing/processing1.vue'
 import { reactive, ref, onMounted, onBeforeUpdate, onUpdated, watch } from 'vue'
 import { useStore } from 'vuex'
 export default {
     components:{
-        IonList, IonItem, IonButton, IonIcon
+        'loa-der': Loader,
+        IonList, IonItem,
     },
     setup() {
         const store = useStore()
-        const message = ref(null)
-        const operationSuccess = ref(false)
+        const waiting = ref(false)
+        var indexApproved = 0
+
+        const presentAlert = async () => {
+            const alert = await alertController.create({
+                header: 'Opération réussie',
+                message: 'Vous avez bien approuvé cet <strong>investissement</strong> .',
+                buttons: ['Ok'],
+                mode: 'ios',
+                backdropDismiss: false
+            });
+
+            // Displaying the alert with the correct HTML rendering
+            await alert.present().then(() => {
+                const element = document.querySelector('ion-alert .alert-message');
+                if (element) {
+                    element.innerHTML = element.textContent;
+                }
+            });
+        };
         
         const allInvests = ref(null)
         var suffix = '/jov/api/invest/allInvests/'
 
         async function kubaza(){
-            const url = ' http://localhost:8002/jov/api/invest/allInvests/'
             const baseURL = '//127.0.0.1:8002'
             
 
@@ -62,8 +92,8 @@ export default {
 
                 if (response.ok){
                     allInvests.value = await response.json()
-                    // console.log("Things are well received")
-                    // console.log(allInvests.value)
+                    console.log("INVE-List: Things are well received")
+                    console.log(allInvests.value)
                 } else {
                     console.log("Connection wasn't successfull, with : ", store.getters.getAccessToken)
                 }
@@ -73,11 +103,13 @@ export default {
         }
 
         async function kwemeza(link){
-            console.log("The click element: ", link)
+            waiting.value = true
+            indexApproved = Number(link.id.slice(2))
+            // console.log("The click element: ", link.id.slice(2))
 
 
             try{
-                const responseActivate = await fetch(`${link}`,{
+                const responseActivate = await fetch(`${link.value}`,{
                     method: 'GET',
                         headers:{
                             'Authorization' : 'Bearer '+ store.getters.getAccessToken,
@@ -85,25 +117,29 @@ export default {
                 })
                 if(responseActivate.ok){
                     console.log("Vous avez bien approuvee cet investissement ")
-                    message.value = "Vous avez bien approuvee cet investissement "
-                    operationSuccess.value = true
+                    setTimeout(()=>{
+                        allInvests.value.valueOf(5)[indexApproved].approved = true
+                        console.log("The result is okay, waiting: ", allInvests.value.valueOf(5)[indexApproved].approved)
+                        waiting.value = false
+                        presentAlert()
+                    }, 3000)
                 } else{
                     console.log("Cet investissement n'est pas approuvee")
-                    message.value = "Cet investissement n'est pas approuvee"
-                    operationSuccess.value = false
+                    waiting.value = false
                 }
             } catch(value){
                 operationSuccess.value = false
-                message.value = "Investissement non approuve, probleme de connexion."
+                waiting.value = false
             }
             
         }
         kubaza()
 
         return {
-            allInvests, message, operationSuccess,
-            checkmarkDone, close,
+            allInvests, 
+            waiting,
             kwemeza,
+            presentAlert,
         }
     },
 }

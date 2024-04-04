@@ -1,6 +1,7 @@
 <template>
     <div style="text-align: center;">
-        <p style="margin-top: -40px; font-weight: bolder">
+        <p style="margin-top: -40px; font-weight: bolder"
+        class="centered">
             Les Retraits bien Approuvés.
         </p>
         <ion-list v-for="(retrait, index) in allRetraits"  

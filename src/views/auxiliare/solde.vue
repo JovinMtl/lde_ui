@@ -53,7 +53,11 @@
 </template>
 
 <script>
-import { ref, watch, onBeforeMount, onBeforeUpdate, onUpdated } from 'vue'
+import { ref, watch,
+    onBeforeMount, onMounted,
+    onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted,
+    onErrorCaptured,
+} from 'vue'
 import { eyeOff, eye} from 'ionicons/icons'
 import { IonSelect, IonSelectOption,} from '@ionic/vue'
 import { useStore } from 'vuex'
@@ -91,11 +95,9 @@ export default {
             checkInjectedSolde()
         })
         onUpdated(()=>{
-            console.log("SOLDE onBeforeUpdate")
-            buildCurrencies()
-            // checkInjectedSolde()
+            console.log("SOLDE onUpdated")
         })
-        // onUpdated()
+
         watch(()=>props.injectableSolde, (value)=>{
             console.log("SOLDE: Injectable Changed into : ", value)
             checkInjectedSolde()

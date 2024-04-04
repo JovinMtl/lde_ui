@@ -1,6 +1,7 @@
 <template>
     <div style="text-align: center;">
-        <p style="margin-top: -40px; font-weight: bolder">
+        <p style="margin-top: -40px; font-weight: bolder"
+        class="centered">
             Tous les Retraits combinés : Non Approuvés et Bien Approuvés
         </p>
         <ion-list v-for="(retrait, index) in allRetraits"  
