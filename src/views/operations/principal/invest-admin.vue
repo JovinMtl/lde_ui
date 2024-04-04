@@ -102,13 +102,15 @@ export default {
         //Storing this route for Poursuite use.
         store.commit('setactualRoute', route.path)
 
-
-        const currentRoute = router.currentRoute.value
+        //getNameofRoute gets the title of a route
+        const getNameofRoute = ()=>{
+            const currentRoute = router.currentRoute.value
     
-        // Access the title of the route
-        const routeTitle = currentRoute.meta.title;
-        
-        console.log("The title of the route is: ", routeTitle);
+            // Access the title of the route
+            const routeTitle = currentRoute.meta.title;
+            
+            console.log("The title of the route is: ", routeTitle);
+        }
 
         //Start of Things of Non approved & approved investments 
         const notApproved = ref(false)
