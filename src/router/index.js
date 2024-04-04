@@ -97,6 +97,9 @@ const routes= [
   {
     path : '/invest-admin',
     component: investAdmin,
+    meta : {
+      title : 'invest'
+    }
   },
   {
     path : '/depot-admin',
