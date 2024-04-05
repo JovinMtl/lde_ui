@@ -20,7 +20,7 @@
                         </div>
                         <div class="ou">
                             <div>Ou</div>
-                            <router-link to="/registration">Créer un nouveau compte</router-link>
+                            <router-link to="/registration" style="color: black">Créer un nouveau compte</router-link>
                         </div>
                     </div>
             </div>
