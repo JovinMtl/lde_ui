@@ -11,7 +11,14 @@
                     
                 </div>
                 <div id="info">
-                    <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous inscrire.</p>
+                    <p style="font-size: 3vh; margin-top: -3vh;">
+                        Veuillez remplir les informations ci-dessous pour vous inscrire.
+                        <span style="position: relative;top: 3px;left: 5px;">
+                            <ion-icon :icon="informationCircleSharp" @click="turnHelp"
+                            style="margin-top: -30px;"></ion-icon>
+                        </span>
+                        
+                    </p>
                 </div>
                 <div class="message" >
 
@@ -19,7 +26,7 @@
                         <span v-if="(m).length">{{ (m) }}</span> .
                     </span>
                 </div>
-                <div class="centered">
+                <div class="centered" v-show="showHelp">
                     <p>Y existe - t - il une erreur ? 
                         <span v-show="error_form" class="oui">Oui</span>
                         <span v-show="!error_form">Non</span> ; <br>
@@ -57,13 +64,17 @@ import feuille from '../../Layout/feuille.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import signaturevide from '../../auxiliare/signature-vide.vue'
 import BackButton from '../../auxiliare/backButton.vue'
+import { IonIcon} from '@ionic/vue'
+import { 
+    informationCircleOutline, informationCircle, informationCircleSharp,
+} from 'ionicons/icons'
 import { reactive, ref, computed } from 'vue'
 export default {
     components:{
         'feui-lle': feuille,
         'signature-head' : signatureHeadVue,
         'signature-vide' : signaturevide,
-        BackButton,
+        BackButton, IonIcon,
     },
     setup() {
         const username = ref(null)
@@ -71,6 +82,7 @@ export default {
         const phone_number = ref(null)
         const password1 = ref(null)
         const password2 = ref(null)
+        const showHelp = ref(false)
         const message = ref(['','','','',''])
         const fautes = reactive({
             'chuser': false,
@@ -308,12 +320,17 @@ export default {
             return (fautes.chuser && fautes.chepw && 
                     fautes.chemail && fautes.chpho)
         })
+        const turnHelp = ()=>{
+            showHelp.value = !showHelp.value
+        }
 
         return {
             username, email, phone_number, password1,password2,
-            message, error_form, fields_correct,
+            message, error_form, fields_correct, showHelp,
             chuser, chemail, chpw, chpw2, chphone,
-            LogUser,
+            LogUser, turnHelp,
+            informationCircleOutline, informationCircle, 
+            informationCircleSharp,
         }
     },
 }
