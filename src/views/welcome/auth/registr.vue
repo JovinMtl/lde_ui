@@ -13,8 +13,14 @@
                 <div id="info">
                     <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous inscrire.</p>
                 </div>
-                <div class="message" v-show="message">
-                    {{ message }}
+                <div class="message" v-show="error_form">
+
+                    <span v-for="m in message">
+                        <span>{{ m }}</span> .
+                    </span>
+                </div>
+                <div>
+                    <p>Error exist ? {{ error_form }}</p>
                 </div>
                     <form>
                         <div class="fields">
@@ -22,7 +28,7 @@
                                 v-model="username"/> <br>
                             <input type="password" v-model="password1" @blur="chpw"
                                 placeholder="Tapez votre mot de passe"/> <br>
-                            <input type="password" v-model="password2"
+                            <input type="password" v-model="password2" @blur="chpw2"
                                 placeholder="Retapez votre mot de passe"/> <br>
                             <input placeholder="Votre Email" type="email" @blur="chemail"
                                 v-model="email"/> <br>
@@ -43,7 +49,7 @@ import feuille from '../../Layout/feuille.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import signaturevide from '../../auxiliare/signature-vide.vue'
 import BackButton from '../../auxiliare/backButton.vue'
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 export default {
     components:{
         'feui-lle': feuille,
@@ -65,8 +71,7 @@ export default {
         })
 
         const LogUser = ()=>{
-            //check first that password2 is identical to password1
-            const passwords = password2 == password1
+            
             //passwords && fautes.chpw && fautes.chemail && 
             if(fautes.chuser){
                 //sending now the data to the endpoint
@@ -114,46 +119,105 @@ export default {
 
                 if(reponse){
                     fautes.chuser = true
-                    message.value[0] = 'ok'
+                    message.value[0] = ''
                 } else {
                     fautes.chuser = false
-                    message.value[0] = "Ce nom d'utilisateur existe."
+                    message.value[0] = "Ce nom d'utilisateur existe"
                 }
                 console.log("The valued returned is: ", reponse)
-            } else {
-                message.value[0] = "Votre nom d'utilisateur doit depasser 2 caracteres."
+            } else if((username.value).length == 0) {
+                message.value[0] = ''
+                fautes.chuser = false
+            }else {
+                message.value[0] = "Votre nom d'utilisateur doit depasser 2 caracteres"
             }
         }
         const chemail = async ()=>{
             //ask the server if there is such an email unless it's > 0
             //if okay then : fautes.chemail = true
-            if(email.value.length > 6){
-                var prefix = '/jov/api/check/usernameExist/'
-                var reponse = await kubaza(prefix, email.value, 'email')
+            const em = email.value
+            
+            if((em)){
+                if(((String(em)).indexOf('@')>-1)){
 
-                if(reponse){
-                    fautes.chemail = true
-                    message.value[1] = 'ok'
+                
+                    const eml = ((String(email.value)).length - 1)
+                    const emll = ((em.split('@'))[0]).length - 1
+                    const emlr = ((em.split('@'))[1]).length - 1
+                    var prefix = '/jov/api/check/usernameExist/'
+                    if (
+                        ((em).indexOf('@') > 1) &&
+                        (((em).split('@')).length == 2) &&
+                        (((em.split('@'))[1])[0] != '.') &&
+                        (((em.split('@'))[1])[0] != '@') &&
+                        (((em.split('@'))[1])[0] != '_') &&
+                        (((em.split('@'))[0])[emll] != '.') &&
+                        (((em.split('@'))[1])[emlr] != '.') &&
+                        (((em.split('@'))[1])[emlr] != '-') &&
+                        (((em.split('.'))[1]).length > 1) &&
+                        (((em.split('.'))[0]).length > 1)
+                    )
+                    {
+                        var reponse = await kubaza(prefix, em, 'email')
+
+                        if(reponse){
+                            fautes.chemail = true
+                            message.value[1] = ''
+                        } else {
+                            fautes.chemail = false
+                            message.value[1] = "Cet email existe"
+                        }
+                        console.log("Ce email pourrait etre valable")
+                        message.value[1] = ''
+                    } else{
+                        message.value[1] = "Cet email est incorrect, '@-.'"
+                        console.log("Cet email est incorrect")
+                    }
                 } else {
-                    fautes.chemail = false
-                    message.value[1] = "Cet email existe."
+                    message.value[1] = "Cet email manque du @."
                 }
-            } else {
-                message.value[0] = "Cet email doit depasser 6 caracteres."
+                
+            }else {
+                message.value[1] = ''
+                fautes.chemail = false
             }
+            console.log("Email sent: ", em)
         }
         const chpw = ()=>{
             //check if the length greater to 7
             //if okay then : fautes.chpw = true
             if((password1.value).length > 7){
                 fautes.chpw = true
+                message.value[2]=''
+            } else {
+                message.value[2] = "Le mot de passe doit depasser 7 caracteres"
             }
         }
+        const chpw2 = ()=>{
+            //check first that password2 is identical to password1
+            if(pweq.value){
+                message.value[3] = ''
+            } else {
+                message.value[3] = "Mot de passe non identique"
+            }
+            console.log("chpw2 asked: ", pweq.value)
+        }
+        const pweq = computed(()=>{
+            return password2.value == password1.value
+        })
+
+        const error_form = computed(()=>{
+            if(message.value[0] || message.value[1] || message.value[2] || message.value[3]){
+                return true
+            } else {
+                return false
+            }
+        })
 
         return {
             username, email, phone_number, password1,password2,
-            message,
-            chuser, chemail, chpw,
+            message, error_form,
+            chuser, chemail, chpw, chpw2,
             LogUser,
         }
     },
