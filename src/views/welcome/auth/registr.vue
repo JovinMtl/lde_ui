@@ -32,7 +32,8 @@
                                 placeholder="Retapez votre mot de passe"/> <br>
                             <input placeholder="Votre Email" type="email" @blur="chemail"
                                 v-model="email"/> <br>
-                            <input placeholder="Votre Numéro de téléphone" @blur="chphone"
+                            <input placeholder="Votre Numéro de téléphone" 
+                                @blur="chphone" type="tel"
                                 v-model="phone_number"/> <br>
                             
                             <button  @click="LogUser">S'inscrire</button>
@@ -210,25 +211,33 @@ export default {
         const pweq = computed(()=>{
             return password2.value == password1.value
         })
+        const chNumber = (char_number)=>{
+            var n_number = 0
+            try{
+                n_number = Number(char_number)
+                if(n_number){
+                    console.log("the good number is : ", n_number)
+                    return n_number
+                } else {
+                    console.log("Enlever les lettres dans le numero de telephone")
+                    message.value[3] = "Enlever les lettres dans le numero de telephone"
+                    return 0
+                }
+            }catch(error){
+                console.log("Things failed because: ", error)
+                return 1
+            }
+        }
         const chphone = ()=>{
             console.log("Checking phone number")
             var good_number = 0
+
             if(phone_number.value){
                 const phone = (String(phone_number.value)).replaceAll(' ','')
                 if(phone[0] != '+'){
-                    try{
-                        good_number = Number(phone)
-                        if(good_number){
-                            console.log("the good number is : ", good_number)
-                        } else {
-                            console.log("Enlever les lettres dans le numero de telephone")
-                            message.value[3] = "Enlever les lettres dans le numero de telephone"
-                            return 8
-                        }
-                    }catch(error){
-                        console.log("Things failed because: ", error)
-                        return 9
-                    }
+                    good_number = chNumber(phone)
+                }else{
+                    good_number = '+' + chNumber(phone)
                 }
                 if(phone.length > 7){
                     fautes.chpho = true
