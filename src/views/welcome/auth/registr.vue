@@ -187,7 +187,6 @@ export default {
                 message.value[1] = ''
                 fautes.chemail = false
             }
-            console.log("Email sent: ", em)
         }
         const chpw = ()=>{
             //check if the length greater to 7
@@ -213,7 +212,7 @@ export default {
         })
         const chphone = ()=>{
             if(phone_number.value){
-                phone = (String(phone_number.value)).replaceAll(' ','')
+                const phone = (String(phone_number.value)).replaceAll(' ','')
                 if(phone.length > 7){
                     fautes.chpho = true
                     message.value[4] = ''
