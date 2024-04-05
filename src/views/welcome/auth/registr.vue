@@ -20,13 +20,14 @@
                         <div class="fields">
                             <input placeholder="Votre nom d'utilisateur" @blur="chuser"
                                 v-model="username"/> <br>
-                            <input placeholder="Votre Email" type="email" @blur="chemail"
-                                v-model="email"/> <br>
-                            <input placeholder="Votre Numéro de téléphone" v-model="phone_number"/> <br>
                             <input type="password" v-model="password1" @blur="chpw"
                                 placeholder="Tapez votre mot de passe"/> <br>
                             <input type="password" v-model="password2"
                                 placeholder="Retapez votre mot de passe"/> <br>
+                            <input placeholder="Votre Email" type="email" @blur="chemail"
+                                v-model="email"/> <br>
+                            <input placeholder="Votre Numéro de téléphone" v-model="phone_number"/> <br>
+                            
                             <button  @click="LogUser">S'inscrire</button>
                         </div>
                         <br>
