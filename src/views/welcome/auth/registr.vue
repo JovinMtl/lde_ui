@@ -229,21 +229,20 @@ export default {
             }
         }
         const chphone = ()=>{
-            console.log("Checking phone number")
+            // console.log("Checking phone number")
             var good_number = 0
 
             if(phone_number.value){
                 const phone = (String(phone_number.value)).replaceAll(' ','')
-                if(phone[0] != '+'){
-                    good_number = chNumber(phone)
-                }else{
+                good_number = String(chNumber(phone))
+                if((phone[0] == '+')&&(good_number > 10)){
                     good_number = '+' + chNumber(phone)
-                }
-                if(phone.length > 7){
+                } else{}
+                if(good_number.length > 7){
                     fautes.chpho = true
                     message.value[3] = ''
                 } else{
-                    message.value[3] = 'Numero de telephone incorrect'
+                    message.value[3] = 'Numero de telephone invalide'
                 }
             } else {
                 fautes.chpho = false
