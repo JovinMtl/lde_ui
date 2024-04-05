@@ -56,7 +56,7 @@ export default {
         const phone_number = ref(null)
         const password1 = ref(null)
         const password2 = ref(null)
-        const message = ref(null)
+        const message = ref(['','','',''])
         const fautes = reactive({
             'chuser': false,
             'chemail': false,
@@ -66,26 +66,88 @@ export default {
         const LogUser = ()=>{
             //check first that password2 is identical to password1
             const passwords = password2 == password1
-            if(passwords && fautes.chpw && fautes.chemail && fautes.chuser){
+            //passwords && fautes.chpw && fautes.chemail && 
+            if(fautes.chuser){
                 //sending now the data to the endpoint
+                console.log("Les fautes n'existent pas")
+            } else {
+                console.log("LEs fautes existent")
             }
         }
-        const chuser = ()=>{
+        async function kubaza (prefix, data, type='username'){
+            //will ask if data(username or email) really exist or not
+            const baseURL = '//127.0.0.1:8002'
+            console.log("REGISTR-kubaza: Sending : ", data)
+            console.log("Using prefix of : ", prefix)
+            try{
+                //
+                const response = await fetch(`${baseURL}${prefix}`, {
+                    //
+                    method: 'POST',
+                    headers : {
+                        'Content-Type': 'application/json' ,
+                        // 'Authorization' : 'Bearer '+ store.getters.getAccessToken,
+                    },
+                    body : JSON.stringify({
+                        // [type]: data,
+                        'username' : 'jove',
+                    })
+                });
+                const feedback = await response.json()
+                if(feedback.ok){
+                    const status_code = feedback.status
+                    console.log("The status : ", feedback)
+                    return 1 //if it exist
+                } else {
+                    console.log("returning 2")
+                    return 2 //if it d
+                }
+            } catch(value){
+                console.log("Returning 3")
+                return 3 //if something went wrong
+            }
+        }
+        const chuser = async ()=>{
             //ask the server that the username already exist
             //if okay then : fautes.chuser = true
+            if((username.value).length > 2){
+                var prefix = '/jov/api/check/usernameExist/'
+                var reponse = await kubaza(prefix, username.value)
+
+                if(reponse.usernameExists){
+                    fautes.chuser = true
+                } else {
+                    fautes.chuser = false
+                    message.value[0] = "Ce nom d'utilisateur existe."
+                }
+            } else {
+                message.value[0] = "Votre nom d'utilisateur doit depasser 2 caracteres."
+            }
         }
-        const chemail = ()=>{
+        const chemail = async ()=>{
             //ask the server if there is such an email unless it's > 0
             //if okay then : fautes.chemail = true
+            var prefix = '/api/check/emailExist/'
+            if(email.value.length > 6){
+                var prefix = '/api/check/usernameExist/'
+                var reponse = await kubaza(prefix, username.value)
+
+                if(reponse.emailExists){
+                    fautes.chemail = true
+                } else {
+                    fautes.chemail = false
+                    message.value[1] = "Cet email existe."
+                }
+            } else {
+                message.value[0] = "Cet email doit depasser 6 caracteres."
+            }
         }
         const chpw = ()=>{
             //check if the length greater to 7
             //if okay then : fautes.chpw = true
-        }
-        if(fautes.chpw && fautes.chemail && fautes.chuser){
-            console.log("LEs fautes existent")
-        } else {
-            console.log("Les fautes n'existent pas")
+            if((password1.value).length > 7){
+                fautes.chpw = true
+            }
         }
 
         return {
