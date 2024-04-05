@@ -89,22 +89,19 @@ export default {
                         // 'Authorization' : 'Bearer '+ store.getters.getAccessToken,
                     },
                     body : JSON.stringify({
-                        // [type]: data,
-                        'username' : 'jove',
+                        [type]: data,
+                        // 'username' : 'jove',
                     })
                 });
                 const feedback = await response.json()
-                if(feedback.ok){
-                    const status_code = feedback.status
-                    console.log("The status : ", feedback)
+                if(feedback.rapport){
                     return 1 //if it exist
                 } else {
-                    console.log("returning 2")
-                    return 2 //if it d
+                    return 2 //if it is not found
                 }
             } catch(value){
                 console.log("Returning 3")
-                return 3 //if something went wrong
+                return 3 //if did not reach the server
             }
         }
         const chuser = async ()=>{
@@ -114,12 +111,14 @@ export default {
                 var prefix = '/jov/api/check/usernameExist/'
                 var reponse = await kubaza(prefix, username.value)
 
-                if(reponse.usernameExists){
+                if(reponse){
                     fautes.chuser = true
+                    message.value[0] = 'ok'
                 } else {
                     fautes.chuser = false
                     message.value[0] = "Ce nom d'utilisateur existe."
                 }
+                console.log("The valued returned is: ", reponse)
             } else {
                 message.value[0] = "Votre nom d'utilisateur doit depasser 2 caracteres."
             }
@@ -127,13 +126,13 @@ export default {
         const chemail = async ()=>{
             //ask the server if there is such an email unless it's > 0
             //if okay then : fautes.chemail = true
-            var prefix = '/api/check/emailExist/'
             if(email.value.length > 6){
-                var prefix = '/api/check/usernameExist/'
-                var reponse = await kubaza(prefix, username.value)
+                var prefix = '/jov/api/check/usernameExist/'
+                var reponse = await kubaza(prefix, email.value, 'email')
 
-                if(reponse.emailExists){
+                if(reponse){
                     fautes.chemail = true
+                    message.value[1] = 'ok'
                 } else {
                     fautes.chemail = false
                     message.value[1] = "Cet email existe."
