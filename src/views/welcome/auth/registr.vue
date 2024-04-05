@@ -32,7 +32,8 @@
                                 placeholder="Retapez votre mot de passe"/> <br>
                             <input placeholder="Votre Email" type="email" @blur="chemail"
                                 v-model="email"/> <br>
-                            <input placeholder="Votre Numéro de téléphone" v-model="phone_number"/> <br>
+                            <input placeholder="Votre Numéro de téléphone" @blur="chphone"
+                                v-model="phone_number"/> <br>
                             
                             <button  @click="LogUser">S'inscrire</button>
                         </div>
@@ -63,11 +64,12 @@ export default {
         const phone_number = ref(null)
         const password1 = ref(null)
         const password2 = ref(null)
-        const message = ref(['','','',''])
+        const message = ref(['','','','',''])
         const fautes = reactive({
             'chuser': false,
             'chemail': false,
             'chepw':false,
+            'chpho': false,
         })
 
         const LogUser = ()=>{
@@ -138,7 +140,10 @@ export default {
             const em = email.value
             
             if((em)){
-                if(((String(em)).indexOf('@')>-1)){
+                if(
+                    (((String(em)).indexOf('@')>-1))&&
+                    (((String(em)).indexOf('.')>-1)))
+                    {
 
                 
                     const eml = ((String(email.value)).length - 1)
@@ -151,6 +156,7 @@ export default {
                         (((em.split('@'))[1])[0] != '.') &&
                         (((em.split('@'))[1])[0] != '@') &&
                         (((em.split('@'))[1])[0] != '_') &&
+                        (((em.split('@'))[1]).indexOf('.') > -1) &&
                         (((em.split('@'))[0])[emll] != '.') &&
                         (((em.split('@'))[1])[emlr] != '.') &&
                         (((em.split('@'))[1])[emlr] != '-') &&
@@ -205,6 +211,20 @@ export default {
         const pweq = computed(()=>{
             return password2.value == password1.value
         })
+        const chphone = ()=>{
+            if(phone_number.value){
+                phone = (String(phone_number.value)).replaceAll(' ','')
+                if(phone.length > 7){
+                    fautes.chpho = true
+                    message.value[4] = ''
+                } else{
+                    message.value[4] = 'Numero de telephone incorrect'
+                }
+            } else {
+                fautes.chpho = false
+                message.value[4] = ''
+            }
+        }
 
         const error_form = computed(()=>{
             if(message.value[0] || message.value[1] || message.value[2] || message.value[3]){
@@ -217,7 +237,7 @@ export default {
         return {
             username, email, phone_number, password1,password2,
             message, error_form,
-            chuser, chemail, chpw, chpw2,
+            chuser, chemail, chpw, chpw2, chphone,
             LogUser,
         }
     },
