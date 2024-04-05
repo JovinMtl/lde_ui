@@ -211,17 +211,34 @@ export default {
             return password2.value == password1.value
         })
         const chphone = ()=>{
+            console.log("Checking phone number")
+            var good_number = 0
             if(phone_number.value){
                 const phone = (String(phone_number.value)).replaceAll(' ','')
+                if(phone[0] != '+'){
+                    try{
+                        good_number = Number(phone)
+                        if(good_number){
+                            console.log("the good number is : ", good_number)
+                        } else {
+                            console.log("Enlever les lettres dans le numero de telephone")
+                            message.value[3] = "Enlever les lettres dans le numero de telephone"
+                            return 8
+                        }
+                    }catch(error){
+                        console.log("Things failed because: ", error)
+                        return 9
+                    }
+                }
                 if(phone.length > 7){
                     fautes.chpho = true
-                    message.value[4] = ''
+                    message.value[3] = ''
                 } else{
-                    message.value[4] = 'Numero de telephone incorrect'
+                    message.value[3] = 'Numero de telephone incorrect'
                 }
             } else {
                 fautes.chpho = false
-                message.value[4] = ''
+                message.value[3] = ''
             }
         }
 
