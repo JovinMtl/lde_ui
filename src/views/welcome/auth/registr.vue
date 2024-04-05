@@ -22,7 +22,7 @@
                 <div>
                     <p>Error exist ? {{ error_form }}</p>
                 </div>
-                    <form>
+                    <div>
                         <div class="fields">
                             <input placeholder="Votre nom d'utilisateur" @blur="chuser"
                                 v-model="username"/> <br>
@@ -36,11 +36,11 @@
                                 @blur="chphone" type="tel"
                                 v-model="phone_number"/> <br>
                             
-                            <button  @click="LogUser">S'inscrire</button>
+                            <button  @click.prevent="LogUser">S'inscrire</button>
                         </div>
                         <br>
                         
-                    </form>
+                    </div>
             </div>
         </div>
     </feui-lle>
@@ -76,9 +76,11 @@ export default {
         const LogUser = ()=>{
             
             //passwords && fautes.chpw && fautes.chemail && 
-            if(fautes.chuser){
+            if(error_form){
                 //sending now the data to the endpoint
                 console.log("Les fautes n'existent pas")
+                const userData = new formData()
+                userData.append
             } else {
                 console.log("LEs fautes existent")
             }
