@@ -13,14 +13,20 @@
                 <div id="info">
                     <p style="font-size: 3vh; margin-top: -3vh;">Veuillez remplir les informations ci-dessous pour vous inscrire.</p>
                 </div>
-                <div class="message" v-show="error_form">
+                <div class="message" >
 
-                    <span v-for="m in message">
-                        <span>{{ m }}</span> .
+                    <span v-for="m in message" v-show="error_form">
+                        <span v-if="(m).length">{{ (m) }}</span> .
                     </span>
                 </div>
-                <div>
-                    <p>Error exist ? {{ error_form }}</p>
+                <div class="centered">
+                    <p>Y existe - t - il une erreur ? 
+                        <span v-show="error_form" class="oui">Oui</span>
+                        <span v-show="!error_form">Non</span> ; <br>
+                     Et, tous les champs sont corrects ? 
+                        <span v-show="fields_correct" class="oui">Oui</span>
+                        <span v-show="!fields_correct">Non</span> .
+                    </p>
                 </div>
                     <div>
                         <div class="fields">
@@ -72,17 +78,26 @@ export default {
             'chepw':false,
             'chpho': false,
         })
+        let good_number = 0
 
-        const LogUser = ()=>{
+        const LogUser = async ()=>{
             
             //passwords && fautes.chpw && fautes.chemail && 
-            if(error_form){
+            // if((fields_correct.value && !error_form)||(fautes.chemail))
+            if(fautes.chuser && fautes.chepw && fautes.chpho && fautes.chemail)
+            {
                 //sending now the data to the endpoint
-                console.log("Les fautes n'existent pas")
-                const userData = new formData()
-                userData.append
+                console.log("Les fautes n'existent pas: ", fields_correct.value,":", error_form.value)
+                const userData = new FormData()
+                userData.append('username', username.value)
+                userData.append('password', password1.value)
+                userData.append('email', email.value)
+                userData.append('phone', good_number)
+
+                const reponse = await kurungika(userData)
+                console.log("LE RAPPORT est : ", reponse)
             } else {
-                console.log("LEs fautes existent")
+                console.log("LEs fautes existent :", message.value,":", fautes.value)
             }
         }
         async function kubaza (prefix, data, type='username'){
@@ -113,6 +128,28 @@ export default {
             } catch(value){
                 console.log("Returning 3")
                 return 3 //if did not reach the server
+            }
+        }
+        const kurungika = async (form)=>{
+            const baseURL = '//127.0.0.1:8002' 
+            const prefix = '/jov/api/check/usernameExist/'
+
+            try {
+                const repo = await fetch(`${baseURL}${prefix}`,{
+                    method: 'POST',
+                    body: form,
+                })
+                const data = await repo.json()
+                if(data){
+                    console.log("La reponse est: ", data)
+                    return 15
+                } else {
+                    console.log("Pas de reponse du serveur")
+                    return 3
+                }
+            } catch(error){
+                console.log("Le serveur est injoignable : ", error)
+                return 0
             }
         }
         const chuser = async ()=>{
@@ -203,12 +240,15 @@ export default {
         }
         const chpw2 = ()=>{
             //check first that password2 is identical to password1
-            if(pweq.value){
+            if(password2.value == password1.value){
                 message.value[3] = ''
+                fautes.chepw = true
             } else {
                 message.value[3] = "Mot de passe non identique"
+                fautes.chepw = false
+                console.log("The 2nd pass: ", password2.value)
             }
-            console.log("chpw2 asked: ", pweq.value)
+            console.log("chpw2 asked: ", password2.value == password1.value)
         }
         const pweq = computed(()=>{
             return password2.value == password1.value
@@ -232,7 +272,7 @@ export default {
         }
         const chphone = ()=>{
             // console.log("Checking phone number")
-            var good_number = 0
+            // var good_number = 0
 
             if(phone_number.value){
                 const phone = (String(phone_number.value)).replaceAll(' ','')
@@ -244,7 +284,8 @@ export default {
                     fautes.chpho = true
                     message.value[3] = ''
                 } else{
-                    message.value[3] = 'Numero de telephone invalide'
+                    message.value[4] = 'Numero de telephone invalide'
+                    fautes.chpho = false
                 }
             } else {
                 fautes.chpho = false
@@ -253,16 +294,24 @@ export default {
         }
 
         const error_form = computed(()=>{
-            if(message.value[0] || message.value[1] || message.value[2] || message.value[3]){
+            if(message.value[0] || message.value[1] || message.value[2] || message.value[3])
+            // if(message.value[0] && message.value[1] && message.value[2] && message.value[3])
+            {
                 return true
             } else {
                 return false
             }
+            // return (fautes.chuser && fautes.chepw && 
+            //         fautes.chemail && fautes.chpho)
+        })
+        const fields_correct = computed(()=>{
+            return (fautes.chuser && fautes.chepw && 
+                    fautes.chemail && fautes.chpho)
         })
 
         return {
             username, email, phone_number, password1,password2,
-            message, error_form,
+            message, error_form, fields_correct,
             chuser, chemail, chpw, chpw2, chphone,
             LogUser,
         }
@@ -277,6 +326,9 @@ export default {
   }
   .message{
     color: red;
+  }
+  .oui{
+    color : white;
   }
   
 </style>
