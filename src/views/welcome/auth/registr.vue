@@ -66,7 +66,7 @@ import signaturevide from '../../auxiliare/signature-vide.vue'
 import BackButton from '../../auxiliare/backButton.vue'
 import { IonIcon} from '@ionic/vue'
 import { 
-    informationCircleOutline, informationCircle, informationCircleSharp,
+    informationCircleSharp,
 } from 'ionicons/icons'
 import { reactive, ref, computed } from 'vue'
 export default {
@@ -329,7 +329,6 @@ export default {
             message, error_form, fields_correct, showHelp,
             chuser, chemail, chpw, chpw2, chphone,
             LogUser, turnHelp,
-            informationCircleOutline, informationCircle, 
             informationCircleSharp,
         }
     },
