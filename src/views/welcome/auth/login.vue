@@ -12,7 +12,13 @@
                     <p v-if="failedLogin" style="color: #ab2800;">Vous avez utisé un nom d'utilisateur ou mot de passe <strong>incorrect</strong>.</p>
                     <p v-if="failedNetwork" style="color: #ab2800;">Nous faisons face au problème de connexion au <strong>serveur</strong>.</p>
                 </div>
-                    <div>
+                <div class="loader" style="background-color: transparent; position:fixed; 
+                                top: 60%; left: 50%; transform: translate(-50%, -50%);
+                             z-index: 5;" v-show="waiting">
+                            <!-- <ion-spinner></ion-spinner> -->
+                            <loa-der></loa-der>
+                        </div>
+                    <div v-show="!waiting">
                         <div class="usere fields">
                             <input placeholder="Votre nom d'utilisateur" v-model="username"/> <br>
                             <input type="password" placeholder="Votre mot de passe" v-model="password"/> <br>
@@ -33,16 +39,19 @@
 <script>
 import feuille from '../../Layout/feuille.vue';
 import BackButton from '../../auxiliare/backButton.vue';
+import Loader from '../../auxiliare/processing/processing1.vue'
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import { ref} from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { IonSpinner } from '@ionic/vue'
 
 export default {
     components:{
         'feui-lle': feuille,
         'signature-head' : signatureHeadVue,
         'back-button' : BackButton,
+        'loa-der': Loader,
     },
     setup() {
         const store = useStore()
@@ -51,11 +60,13 @@ export default {
         const password = ref(null)
         const failedLogin = ref(false)
         const failedNetwork = ref(false)
+        const waiting = ref(false)
 
 
         const baseURL = '//127.0.0.1:8002';
 
         async function LogUser(){
+            waiting.value = true
             try{
                 //
                 const response = await fetch(`${baseURL}/jov/api/token/`, {
@@ -79,6 +90,7 @@ export default {
                 sessionStorage.setItem('refresh', data.refresh)
                 sessionStorage.setItem('lastActivity', new Date())
                 
+                waiting.value = false
                 if(store.getters.getWantedRoute){
                     var wantedRoute = store.getters.getWantedRoute
                     console.log("THe WANTED route is : ", store.getters.getWantedRoute)
@@ -113,6 +125,7 @@ export default {
         }
         return {
             LogUser, username, password, failedLogin, failedNetwork,
+            waiting
         }
     }
 }
