@@ -16,7 +16,8 @@
                         <div class="usere fields">
                             <input placeholder="Votre nom d'utilisateur" v-model="username"/> <br>
                             <input type="password" placeholder="Votre mot de passe" v-model="password"/> <br>
-                            <button  @click="LogUser">Connexion</button>
+                            <!-- <button  @click="LogUser">Connexion</button> -->
+                            <ion-button  @click="LogUser" mode="ios">Connexion</ion-button>
                         </div>
                         <div class="ou">
                             <div>Ou</div>
