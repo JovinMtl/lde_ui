@@ -70,19 +70,21 @@ import feuille from '../../Layout/feuille.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import signaturevide from '../../auxiliare/signature-vide.vue'
 import BackButton from '../../auxiliare/backButton.vue'
-import { IonIcon} from '@ionic/vue'
+import { IonIcon, alertController,} from '@ionic/vue'
 import { 
     informationCircleSharp,
 } from 'ionicons/icons'
 import { reactive, ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 export default {
     components:{
         'feui-lle': feuille,
         'signature-head' : signatureHeadVue,
         'signature-vide' : signaturevide,
-        BackButton, IonIcon,
+        BackButton, IonIcon, alertController,
     },
     setup() {
+        const router = useRouter()
         const username = ref(null)
         const email = ref(null)
         const phone_number = ref(null)
@@ -113,7 +115,11 @@ export default {
                 userData.append('phone', good_number)
 
                 const reponse = await kurungika(userData)
-                console.log("LE RAPPORT est : ", reponse)
+                if(reponse == 15){
+                    presentAlert()
+                    router.replace('/activate')
+                }
+                
             } else {
                 console.log("LEs fautes existent :", message.value,":", fautes.value)
             }
@@ -163,9 +169,11 @@ export default {
                     return 15
                 } else {
                     console.log("Pas de reponse du serveur")
+                    tokenExpiredAlert()
                     return 3
                 }
             } catch(error){
+                networkFailledAlert()
                 console.log("Le serveur est injoignable : ", error)
                 return 0
             }
@@ -332,12 +340,49 @@ export default {
         const turnHelp = ()=>{
             showHelp.value = !showHelp.value
         }
+        const presentAlert = async () => {
+            const alert = await alertController.create({
+                header: 'Activation requise',
+                message: "Pour activer votre compte, veuillez utiliser le Code d'activation envoyé a votre addresse <strong>email</strong>. ",
+                buttons: ['Ok'],
+                mode: 'ios',
+                backdropDismiss: false
+            });
+
+            // Displaying the alert with the correct HTML rendering
+            await alert.present().then(() => {
+                const element = document.querySelector('ion-alert .alert-message');
+                if (element) {
+                    element.innerHTML = element.textContent;
+                }
+            });
+        };
+        const tokenExpiredAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Operation echoue',
+            message: 'Veuillez vous reconnecter encore.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
+        const networkFailledAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Operation echoue',
+            // subHeader: 'A Sub Header Is Optional',
+            message: 'Probleme de connexion au serveur.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
 
         return {
             username, email, phone_number, password1,password2,
             message, error_form, fields_correct, showHelp,
             chuser, chemail, chpw, chpw2, chphone,
             LogUser, turnHelp,
+            presentAlert, tokenExpiredAlert, networkFailledAlert,
             informationCircleSharp,
         }
     },
