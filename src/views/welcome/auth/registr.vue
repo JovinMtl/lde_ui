@@ -49,9 +49,17 @@
                                 @blur="chphone" type="tel"
                                 v-model="phone_number"/> <br>
                             
-                            <button  @click.prevent="LogUser">S'inscrire</button>
+                            <!-- <button  @click.prevent="LogUser">S'inscrire</button> -->
+                            <ion-button  
+                                style="--color:white;" @click.prevent="LogUser">S'inscrire</ion-button>
                         </div>
                         <br>
+                        <div class="centered">
+                            <div>Ou</div>
+                            <div>
+                                <ion-button>ACTIVER VOTRE COMPTE</ion-button>
+                            </div>
+                        </div>
                         
                     </div>
             </div>
