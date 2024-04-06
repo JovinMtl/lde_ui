@@ -31,7 +31,7 @@
 import feuille from '../../Layout/feuille.vue';
 import BackButton from '../../auxiliare/backButton.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
-import signatureVide from '../../auxiliare/signature.vue';
+import signatureVide from '../../auxiliare/signature-footer.vue';
 import { ref} from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'

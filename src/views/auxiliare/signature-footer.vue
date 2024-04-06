@@ -12,7 +12,7 @@
             width: 100%;
             height: 20px;
             /* bottom: 75px; */
-            bottom : 12vh;
+            bottom : 4.5vh;
             justify-content: center;
             text-align: center;
         }
