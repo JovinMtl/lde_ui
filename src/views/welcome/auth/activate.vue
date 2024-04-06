@@ -14,7 +14,7 @@
                 </div>
                     <div>
                         <div class="usere fields">
-                            <input placeholder="Votre Code d'activation" v-model="username"/> <br>
+                            <input placeholder="Votre Code d'activation" v-model="code"/> <br>
                             <!-- <input type="password" placeholder="Votre mot de passe" v-model="password"/> <br> -->
                             <!-- <button>Activer</button> -->
                             <ion-button r  @click="checkCode">Activer mon compte</ion-button>
