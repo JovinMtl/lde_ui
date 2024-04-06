@@ -1,7 +1,7 @@
 
 <template>
     <div id="info" style="margin-top: 3vh;">
-        <p >Veuillez choisir l'opération de votre choix.</p>
+        <p class="segoe">Veuillez choisir l'opération de votre choix.</p>
     </div>
     <div class="opt">
         <router-link v-for="app in apps" :to="app.path">
