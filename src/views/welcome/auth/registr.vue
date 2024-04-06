@@ -36,7 +36,9 @@
                     </p>
                 </div>
                     <div>
-                        <div class="loader" v-show="waiting">
+                        <div class="loader" style="background-color: transparent; position:fixed; 
+                                top: 60%; left: 50%; transform: translate(-50%, -50%);
+                             z-index: 5;" v-show="waiting">
                             <!-- <ion-spinner></ion-spinner> -->
                             <loa-der></loa-der>
                         </div>
@@ -74,7 +76,7 @@ import feuille from '../../Layout/feuille.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import signaturevide from '../../auxiliare/signature-vide.vue'
 import BackButton from '../../auxiliare/backButton.vue'
-import { IonIcon, alertController, IonSpinner} from '@ionic/vue'
+import { IonIcon, alertController} from '@ionic/vue'
 import Loader from '../../auxiliare/processing/processing1.vue'
 import { 
     informationCircleSharp,
@@ -88,7 +90,6 @@ export default {
         'signature-vide' : signaturevide,
         'loa-der': Loader,
         BackButton, IonIcon, alertController,
-        // IonSpinner,
     },
     setup() {
         const router = useRouter()
