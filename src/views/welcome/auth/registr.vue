@@ -36,6 +36,10 @@
                     </p>
                 </div>
                     <div>
+                        <div class="loader" v-show="waiting">
+                            <!-- <ion-spinner></ion-spinner> -->
+                            <loa-der></loa-der>
+                        </div>
                         <div class="fields">
                             <input placeholder="Votre nom d'utilisateur" @blur="chuser"
                                 v-model="username"/> <br>
@@ -70,7 +74,8 @@ import feuille from '../../Layout/feuille.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import signaturevide from '../../auxiliare/signature-vide.vue'
 import BackButton from '../../auxiliare/backButton.vue'
-import { IonIcon, alertController,} from '@ionic/vue'
+import { IonIcon, alertController, IonSpinner} from '@ionic/vue'
+import Loader from '../../auxiliare/processing/processing1.vue'
 import { 
     informationCircleSharp,
 } from 'ionicons/icons'
@@ -81,7 +86,9 @@ export default {
         'feui-lle': feuille,
         'signature-head' : signatureHeadVue,
         'signature-vide' : signaturevide,
+        'loa-der': Loader,
         BackButton, IonIcon, alertController,
+        // IonSpinner,
     },
     setup() {
         const router = useRouter()
@@ -91,6 +98,7 @@ export default {
         const password1 = ref(null)
         const password2 = ref(null)
         const showHelp = ref(false)
+        const waiting = ref(false)
         const message = ref(['','','','',''])
         const fautes = reactive({
             'chuser': false,
@@ -101,11 +109,11 @@ export default {
         let good_number = 0
 
         const LogUser = async ()=>{
-            
             //passwords && fautes.chpw && fautes.chemail && 
             // if((fields_correct.value && !error_form)||(fautes.chemail))
             if(fautes.chuser && fautes.chepw && fautes.chpho && fautes.chemail)
             {
+                waiting.value = true
                 //sending now the data to the endpoint
                 console.log("Les fautes n'existent pas: ", fields_correct.value,":", error_form.value)
                 const userData = new FormData()
@@ -115,6 +123,7 @@ export default {
                 userData.append('phone', good_number)
 
                 const reponse = await kurungika(userData)
+                waiting.value = false
                 if(reponse == 15){
                     presentAlert()
                     router.replace('/activate')
@@ -379,7 +388,7 @@ export default {
 
         return {
             username, email, phone_number, password1,password2,
-            message, error_form, fields_correct, showHelp,
+            message, error_form, fields_correct, showHelp, waiting,
             chuser, chemail, chpw, chpw2, chphone,
             LogUser, turnHelp,
             presentAlert, tokenExpiredAlert, networkFailledAlert,
