@@ -144,7 +144,7 @@ export default {
         }
         const kurungika = async (form)=>{
             const baseURL = '//127.0.0.1:8002' 
-            const prefix = '/jov/api/check/usernameExist/'
+            const prefix = '/jov/api/fuser/poolUser/'
 
             try {
                 const repo = await fetch(`${baseURL}${prefix}`,{
