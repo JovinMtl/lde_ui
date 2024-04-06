@@ -22,7 +22,8 @@
                     </div>
             </div>
         </div>
-        
+
+        <signature-vide></signature-vide>
     </feui-lle>
 </template>
 
@@ -30,6 +31,7 @@
 import feuille from '../../Layout/feuille.vue';
 import BackButton from '../../auxiliare/backButton.vue';
 import signatureHeadVue from '../../auxiliare/signatureHead.vue';
+import signatureVide from '../../auxiliare/signature.vue';
 import { ref} from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
@@ -38,6 +40,7 @@ export default {
     components:{
         'feui-lle': feuille,
         'signature-head' : signatureHeadVue,
+        'signature-vide' : signatureVide,
         'back-button' : BackButton,
     },
     setup() {
