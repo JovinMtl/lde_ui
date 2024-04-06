@@ -20,6 +20,7 @@ import Notification from '../views/operations/principal/notification.vue'
 import HomeOpAdmin from '../views/n_ope/home-op-admin.vue'
 import Verify from '../views/operations/principal/verification.vue'
 import retraitAdmin from '../views/operations/principal/retrait-admin.vue'
+import Activation from '../views/welcome/auth/activate.vue'
 
 const routes= [
   {
@@ -128,7 +129,11 @@ const routes= [
   {
     path : '/retrait-admin',
     component : retraitAdmin
-  }
+  },
+  {
+    path : '/activate',
+    component : Activation
+  },
 ]
 
 const router = createRouter({
