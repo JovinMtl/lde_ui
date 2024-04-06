@@ -139,13 +139,13 @@ export default {
                 });
                 const feedback = await response.json()
                 if(feedback.rapport){
-                    return 1 //if it exist
+                    return 0 //if it exist
                 } else {
-                    return 2 //if it is not found
+                    return 1 //if it is not found
                 }
             } catch(value){
                 console.log("Returning 3")
-                return 3 //if did not reach the server
+                return 2 //if did not reach the server
             }
         }
         const kurungika = async (form)=>{
@@ -177,10 +177,13 @@ export default {
                 var prefix = '/jov/api/check/usernameExist/'
                 var reponse = await kubaza(prefix, username.value)
 
-                if(reponse){
+                // var data = await reponse.json()
+
+                if(reponse == 1){
                     fautes.chuser = true
                     message.value[0] = ''
-                } else {
+                    console.log("THe Username report: ", reponse)
+                } else if(reponse == 0) {
                     fautes.chuser = false
                     message.value[0] = "Ce nom d'utilisateur existe"
                 }
@@ -207,7 +210,7 @@ export default {
                     const eml = ((String(email.value)).length - 1)
                     const emll = ((em.split('@'))[0]).length - 1
                     const emlr = ((em.split('@'))[1]).length - 1
-                    var prefix = '/jov/api/check/usernameExist/'
+                    var prefix = '/jov/api/check/emailExist/'
                     if (
                         ((em).indexOf('@') > 1) &&
                         (((em).split('@')).length == 2) &&
@@ -224,10 +227,10 @@ export default {
                     {
                         var reponse = await kubaza(prefix, em, 'email')
 
-                        if(reponse){
+                        if(reponse == 1){
                             fautes.chemail = true
                             message.value[1] = ''
-                        } else {
+                        } else if(reponse ==0){
                             fautes.chemail = false
                             message.value[1] = "Cet email existe"
                         }
