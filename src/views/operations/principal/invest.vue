@@ -89,8 +89,9 @@ import {
     IonSelect, IonSelectOption,
     IonLabel,
 } from '@ionic/vue'
-import { ref, watch, onMounted, onBeforeUpdate,onBeforeUnmount, computed, } from 'vue'
+import { ref, watch, onBeforeUpdate,onBeforeUnmount} from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import emptyModalVue from '../../mains/emptyModal.vue';
 // import Loader from '../../auxiliare/processing/processing1.vue'
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
@@ -105,6 +106,14 @@ export default {
         IonLabel,
     },
     setup() {
+        const store = useStore()
+        const router = useRouter()
+
+        //check that the user is Staff
+        if(store.getters.getIsStaff){
+            router.replace('/invest-admin')
+        }
+
         //Start of things of submitting the form
         const respoOperation = ref(false)
         const depotUrl = 'http://127.0.0.1:8002/jov/api/principal/receiveDepot/'
@@ -170,7 +179,6 @@ export default {
         //End of Modal
 
         //Beginning of Things for Currencies
-        const store = useStore()
         const paymethod = ref(null)
         const selectedItem = ref(null)
         const allElements = [ 1,2,3,4,5,6,7,8,9,10,11]
