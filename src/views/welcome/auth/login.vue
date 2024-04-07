@@ -94,11 +94,7 @@ export default {
                 sessionStorage.setItem('refresh', data.refresh)
                 sessionStorage.setItem('lastActivity', new Date())
                 var permission = await knowCategory()
-                if(permission) {
-                    console.log("your permissions extend to : ", permission)
-                } else{
-                    console.log("The permission is unknown")
-                }
+                store.commit('setIsStaff', permission.rapport)
                 
                 waiting.value = false
                 if(store.getters.getWantedRoute){
