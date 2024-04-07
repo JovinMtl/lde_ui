@@ -44,7 +44,10 @@ import signatureHeadVue from '../../auxiliare/signatureHead.vue';
 import { ref} from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { IonSpinner } from '@ionic/vue'
+import { 
+    // IonSpinner, 
+    alertController ,
+} from '@ionic/vue'
 
 export default {
     components:{
@@ -52,6 +55,7 @@ export default {
         'signature-head' : signatureHeadVue,
         'back-button' : BackButton,
         'loa-der': Loader,
+        alertController,
     },
     setup() {
         const store = useStore()
@@ -89,6 +93,12 @@ export default {
                 sessionStorage.setItem('access', data.access)
                 sessionStorage.setItem('refresh', data.refresh)
                 sessionStorage.setItem('lastActivity', new Date())
+                var permission = await knowCategory()
+                if(permission) {
+                    console.log("your permissions extend to : ", permission)
+                } else{
+                    console.log("The permission is unknown")
+                }
                 
                 waiting.value = false
                 if(store.getters.getWantedRoute){
@@ -104,13 +114,17 @@ export default {
                 }
 
             } else{
+                waiting.value = false
                 console.log("BAD")
                 failedLogin.value = true
                 failedNetwork.value = false
+                tokenExpiredAlert()
+                router.replace('/logi')
                 
             }
             } catch(value){
                 //
+                waiting.value = false
                 failedNetwork.value = true
                 console.log("YOu did not reach the server because: ", value)
                 if(username.value=='pass' && password.value=='pass'){
@@ -119,10 +133,52 @@ export default {
                     failedNetwork.value = false
                     router.push('/hope')
                 }
+                networkFailledAlert()
+                router.replace('/logi')
             }
             
             
         }
+        const knowCategory = async()=>{
+            var usercategory = 0
+
+            try {
+                const cate = await fetch(`${baseURL}/jov/api/check/askcate/`, {
+                    headers: {
+                        'Authorization' : 'Bearer '+ store.getters.getAccessToken,
+                    },
+                })
+                if(cate.ok){
+                    //
+                    usercategory = await cate.json()
+                    if(usercategory) return usercategory
+                } else{
+                    return 0
+                }
+                
+            } catch(error){
+                return error
+            }
+        }
+        const tokenExpiredAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Opération echouée',
+            message: 'Mot de passe incorrect.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
+        const networkFailledAlert = async () => {
+            const alert = await alertController.create({
+            header: 'Operation echoue',
+            // subHeader: 'A Sub Header Is Optional',
+            message: 'Probleme de connexion au serveur.',
+            buttons: ['Ok'],
+            });
+
+            await alert.present();
+        };
         return {
             LogUser, username, password, failedLogin, failedNetwork,
             waiting
