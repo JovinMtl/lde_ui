@@ -65,7 +65,7 @@ import {
 } from '@ionic/vue'
 import { ref, watch, onBeforeUpdate,onBeforeUnmount,} from 'vue'
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import emptyModalVue from '../../mains/emptyModal.vue';
 // import Loader from '../../auxiliare/processing/processing1.vue'
 import Loader from '../../auxiliare/processing/proce-dot1.vue'
@@ -97,9 +97,16 @@ export default {
     setup() {
         const store = useStore()
         const route = useRoute()
+        const router = useRouter()
 
         //Storing this route for Poursuite use.
         store.commit('setactualRoute', route.path)
+
+        //check that the user is Staff
+        if(!store.getters.getIsStaff){
+            router.replace('/retrait')
+        }
+
 
         //Start of Things of Non approved & approved investments 
         const notApproved = ref(false)

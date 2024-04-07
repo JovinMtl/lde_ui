@@ -68,6 +68,11 @@ export default {
     setup() {
         const store = useStore()
 
+        //check that the user is Staff
+        if(store.getters.getIsStaff){
+            router.replace('/retrait-admin')
+        }
+
 
         function logOut(){
             store.commit('resetActiveUser')
