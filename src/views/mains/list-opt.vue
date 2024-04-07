@@ -24,8 +24,8 @@ export default {
                     name : 'Recharger',
                     color: 'red',
                     borderRadius : '5px',
-                    // path : '/depot',
-                    path : '/depot-admin',
+                    path : '/depot',
+                    // path : '/depot-admin',
                 },
                 // {
                 //     logo : "url('../../resources/logo/logo_home/Transfe.png')",
@@ -39,8 +39,8 @@ export default {
                     name : 'Retirer',
                     color: 'gray',
                     borderRadius : '7px',
-                    // path : '/retrait',
-                    path : '/retrait-admin',
+                    path : '/retrait',
+                    // path : '/retrait-admin',
                 },
                 // {
                 //     logo : "url('resources/logo/logo_home/Currencies.png')",
@@ -54,8 +54,8 @@ export default {
                     name : 'Investir',
                     color: 'grey',
                     borderRadius : '25px',
-                    // path : '/invest',
-                    path : '/invest-admin',
+                    path : '/invest',
+                    // path : '/invest-admin',
                 },
                 
             ]
