@@ -123,16 +123,15 @@ export default {
                 
             }
             } catch(value){
-                //
                 waiting.value = false
                 failedNetwork.value = true
                 console.log("YOu did not reach the server because: ", value)
-                if(username.value=='pass' && password.value=='pass'){
-                    failedLogin.value = false
-                    store.state.username = username.value
-                    failedNetwork.value = false
-                    router.push('/hope')
-                }
+                // if(username.value=='pass' && password.value=='pass'){
+                //     failedLogin.value = false
+                //     store.state.username = username.value
+                //     failedNetwork.value = false
+                //     router.push('/hope')
+                // }
                 networkFailledAlert()
                 router.replace('/logi')
             }
