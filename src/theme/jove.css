@@ -17,6 +17,10 @@
     --background: black;
     color : white;
   }
+  ion-button{
+    /* color: green;
+    exte */
+  }
   html {
     --ion-dynamic-font: var(--ion-default-dynamic-font);
     --ion-font-family: 'roboto';
@@ -205,6 +209,10 @@
     .iconAvatar{
       margin-left: 13.9vw;
     }
+    .username{
+      margin-left: 0.5vw; 
+      /* color: red; */
+    }
     
   }
   @media screen and (max-width: 600px) {
@@ -262,6 +270,10 @@
     .avatar{
       margin-left: 60px;
       padding-left: 20px;
+    }
+    .username{
+      margin-left: -2.5vw; 
+      /* color: green; */
     }
     
   }

@@ -46,6 +46,7 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { 
     // IonSpinner, 
+    IonButton,
     alertController ,
 } from '@ionic/vue'
 
@@ -55,6 +56,7 @@ export default {
         'signature-head' : signatureHeadVue,
         'back-button' : BackButton,
         'loa-der': Loader,
+        IonButton,
         alertController,
     },
     setup() {
