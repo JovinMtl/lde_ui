@@ -112,6 +112,7 @@ export default {
         const LogUser = async ()=>{
             //passwords && fautes.chpw && fautes.chemail && 
             // if((fields_correct.value && !error_form)||(fautes.chemail))
+            //ACTUALIZATION
             if(fautes.chuser && fautes.chepw && fautes.chpho && fautes.chemail)
             {
                 waiting.value = true
