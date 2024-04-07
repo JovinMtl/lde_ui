@@ -108,7 +108,8 @@ export default {
         position : relative;
         /* color: #ab7400; */
         margin: 0;
-        top : 85px;
+        /* top : 85px; */
+        top : 55px;
         fill: blue;
         border-radius: 10px;
     }
