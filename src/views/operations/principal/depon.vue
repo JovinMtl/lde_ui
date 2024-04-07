@@ -152,6 +152,11 @@ export default {
         const store = useStore()
         const route = useRoute()
         const router = useRouter()
+
+        //check that the user is Staff
+        if(store.getters.getIsStaff){
+            router.replace('/depot-admin')
+        }
         //Start of things of submitting the form
         const numero = ref(null)
         const deposant = ref(null)
