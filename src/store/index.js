@@ -17,7 +17,7 @@ const store = createStore({
             username : 'null',
             password : 'bbb',
             user : 'null',
-            isAdmin: false,
+            isStaff: false,
             isLoggedIn : false,
             lastActivity: null,
 
@@ -80,7 +80,10 @@ const store = createStore({
         },
         setactualRoute(state, value){
             state.actualRoute = value
-        }
+        },
+        setIsStaff(state, value){
+            state.isStaff = value
+        },
     },
     actions:{
         async addTop5(context, value){
@@ -124,6 +127,9 @@ const store = createStore({
         },
         getactualRoute(state){
             return state.actualRoute
+        },
+        getIsStaff(state){
+            return state.isStaff
         }
     }
 })
