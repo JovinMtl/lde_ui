@@ -99,6 +99,12 @@ export default {
         const route = useRoute()
         const router = useRouter()
 
+        //check that the user is Staff
+        if(!store.getters.getIsStaff){
+            router.replace('/invest')
+        }
+
+
         //Storing this route for Poursuite use.
         store.commit('setactualRoute', route.path)
 
